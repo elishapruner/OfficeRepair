@@ -63,6 +63,30 @@ public class OfficeRepair extends AOSimulationModel
 	/*
 	 * Testing preconditions
 	 */
+	protected double closingTime; 
+	public boolean isEmployeeOut(){
+		for(i=0,i<2,i++){
+			for {j=0,j<rEmployees[i].length,j++}{
+			if (rEmployees[i][j].Status==Employee.StatusValues.SERVICING_CALL)
+					return true;
+			} 
+		}
+		return false;
+	}
+
+	public boolean implicitStopCondition() // termination explicit
+	{
+		boolean retVal = false;
+	
+		//System.out.println("ClosingTime = " + closingTime + "currentTime = "
+		//		+ getClock() + "RG.Counter.n = " + rgCounter.size());
+		if (getClock() >= closingTime && this.isEmployeeOut() == false)
+			retVal = true;
+
+		//System.out.println("implicit stop condition returns " + retVal);
+
+		return (retVal);
+	}
 	protected void testPreconditions(Behaviour behObj)
 	{
 		reschedule (behObj);
