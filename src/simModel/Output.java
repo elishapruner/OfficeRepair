@@ -14,6 +14,12 @@ public class Output {
     // Sequences - add them here
 
     // SSOVs
+	
+	int contractsT12satisfied;
+	int totalNumberT12Contracts;
+	int contractsT34satisfied;
+	int totalNumberT34Contracts;
+	double averageDailyCost; 
 
     
 }

@@ -3,6 +3,7 @@ package simModel;
 import cern.jet.random.Exponential;
 import cern.jet.random.engine.MersenneTwister;
 
+
 class RVPs 
 {
 	OfficeRepair model; 
@@ -55,5 +56,5 @@ class RVPs
 	    // clock value to get the next arrival time.
 	    return(nxtInterArr+model.getClock());
 	}
-
 }
+

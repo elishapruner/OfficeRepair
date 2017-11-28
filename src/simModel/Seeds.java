@@ -5,15 +5,15 @@ import cern.jet.random.engine.RandomSeedGenerator;
 public class Seeds 
 {
 		
-		int equipType;   // comment 1
-		int servType;   // comment 2
+		int equipmentType;   // comment 1
+		int serviceType;   // comment 2
 		int travelTime;   // comment 3
 		int arr;   // comment 4
 
 		public Seeds(RandomSeedGenerator rsg)
 		{
-			equipType =rsg.nextSeed();
-			servType =rsg.nextSeed();
+			equipmentType =rsg.nextSeed();
+			serviceType =rsg.nextSeed();
 			travelTime =rsg.nextSeed();
 			arr =rsg.nextSeed();
 		}
