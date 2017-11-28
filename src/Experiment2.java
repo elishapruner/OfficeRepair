@@ -6,7 +6,7 @@ import simModel.*;
 
 // Main Method: Experiments
 //
-public class Experiment {
+public class Experiment2 {
 	   public static void main(String[] args)
 	   {
 	       int i, NUMRUNS = 30;
