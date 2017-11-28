@@ -1,9 +1,18 @@
 package simModel;
 
 public class Constants {
-	/* Constants */
-	// Define constants as static
-	// Example: protected final static double realConstant = 8.0;
+/** Constants **/
+	
+	/*Hourly wage paid to EMP_T12 employees*/
+	protected final static double EMP_T12_HOURLY_WAGE = 26;
+	
+	/*Hourly wage paid to EMP_ALL employees*/
+	protected final static double EMP_ALL_HOURLY_WAGE = 41;
+	
+	/*Overtime wage to EMP_T12*/
+	protected final static double EMP_T12_OVERTIME_WAGE = 45.5;
+	
+	/*Overtime wage to EMP_ALL*/
+	protected final static double EMP_ALL_OVERTIME_WAGE = 71.75;
 
-  
 }
