@@ -1,9 +1,9 @@
 package simModel;
 
 public class Output {
-	ModelName model;
+	OfficeRepair model;
 
-	protected Output(ModelName md) { model = md; }
+	protected Output(OfficeRepair md) { model = md; }
     // Use OutputSequence class to define Trajectory and Sample Sequences
     // Trajectory Sequences
 

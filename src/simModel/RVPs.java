@@ -4,7 +4,7 @@ import cern.jet.random.Exponential;
 import cern.jet.random.engine.MersenneTwister;
 
 public class RVPs {
-	ModelName model; // for accessing the clock
+	OfficeRepair model; // for accessing the clock
     // Data Models - i.e. random variate generators for distributions
 	// are created using Colt classes, define
 	// reference variables here and create the objects in the
@@ -12,7 +12,7 @@ public class RVPs {
 
 
 	// Constructor
-	protected RVPs(ModelName model, Seeds sd)
+	protected RVPs(OfficeRepair model, Seeds sd)
 	{
 		this.model = model;
 		// Set up distribution functions

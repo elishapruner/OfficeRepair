@@ -1,10 +1,10 @@
 package simModel;
 
 public class UDPs {
-	ModelName model;  // for accessing the clock
+	OfficeRepair model;  // for accessing the clock
 
 	// Constructor
-	protected UDPs(ModelName model) { this.model = model; }
+	protected UDPs(OfficeRepair model) { this.model = model; }
 
 	// Translate User Defined Procedures into methods
     /*-------------------------------------------------
