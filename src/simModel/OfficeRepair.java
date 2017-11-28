@@ -16,7 +16,7 @@ public class OfficeRepair extends AOSimulationModel
 	/* Group and Queue Entities */
 	// Define the reference variables to the various 
 	// entities with scope Set and Unary
-	// Objects can be created here or in the initialise Action
+	// Objects can be created here or in the initialize Action
 
 	/* input Variables */
 	// Define any independent input variables here
@@ -40,6 +40,10 @@ public class OfficeRepair extends AOSimulationModel
 		
 		// Create RVP object with given seed
 		rvp = new RVPs(this,sd);
+
+		@SuppressWarnings("unused")
+		int Employees[][]; // Array of Employees
+		
 		
 		// rgCounter and qCustLine objects created in initialize Action
 		

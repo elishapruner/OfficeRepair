@@ -11,7 +11,7 @@ class RVPs
 			private double PROPE1000 = 0.37;
 			private double PROPE2000 = 0.33 + PROPE1000;
 			private double PROPE3000 = 0.19 + PROPE2000;
-//			private double PROPE4000 = 0.11 + PROPE3000;
+			private double PROPE4000 = 0.11 + PROPE3000;
 
 			MersenneTwister typeRandGen;
 
@@ -26,9 +26,10 @@ class RVPs
 					type = Call.equipmentType.E2000; 
 				else if (randNum >= PROPE2000 && randNum < PROPE3000)
 					type = Call.equipmentType.E3000; 
-				else 
+				else if (randNum >= PROPE3000 && randNum < PROPE4000)
 					type = Call.equipmentType.E4000; 
-			
+				else
+					type = Call.equipmentType.E4000; 
 				return(type);
 			}
 
