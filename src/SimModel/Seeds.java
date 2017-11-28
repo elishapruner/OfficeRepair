@@ -15,4 +15,6 @@ public class Seeds {
 		seed3=rsg.nextSeed();
 		seed4=rsg.nextSeed();
 	}
+
+  
 }

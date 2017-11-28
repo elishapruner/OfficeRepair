@@ -2,7 +2,7 @@ package simModel;
 
 public class DVPs {
 	ModelName model;  // for accessing the clock
-	
+
 	// Constructor
 	protected DVPs(ModelName model) { this.model = model; }
 
@@ -20,4 +20,6 @@ public class DVPs {
 	   return(nextTime);
 	}
 	------------------------------------------------------------*/
+
+  
 }

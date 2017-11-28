@@ -2,7 +2,7 @@ package simModel;
 
 public class Output {
 	ModelName model;
-	
+
 	protected Output(ModelName md) { model = md; }
     // Use OutputSequence class to define Trajectory and Sample Sequences
     // Trajectory Sequences
@@ -14,4 +14,6 @@ public class Output {
     // Sequences - add them here
 
     // SSOVs
+
+    
 }

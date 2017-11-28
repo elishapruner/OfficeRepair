@@ -14,13 +14,13 @@ public class ModelName extends AOSimulationModel {
 
 	/*-------------Entity Data Structures-------------------*/
 	/* Group and Queue Entities */
-	// Define the reference variables to the various 
+	// Define the reference variables to the various
 	// entities with scope Set and Unary
 	// Objects can be created here or in the Initialise Action
 
 	/* Input Variables */
 	// Define any Independent Input Varaibles here
-	
+
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
 	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
@@ -28,7 +28,7 @@ public class ModelName extends AOSimulationModel {
 
 	// Output object
 	protected Output output = new Output(this);
-	
+
 	// Output values - define the public methods that return values
 	// required for experimentation.
 
@@ -37,14 +37,14 @@ public class ModelName extends AOSimulationModel {
 	public ModelName(double t0time, double tftime, /*define other args,*/ Seeds sd)
 	{
 		// Initialise parameters here
-		
+
 		// Create RVP object with given seed
 		rvp = new RVPs(this,sd);
-		
+
 		// rgCounter and qCustLine objects created in Initalise Action
-		
+
 		// Initialise the simulation model
-		initAOSimulModel(t0time,tftime);   
+		initAOSimulModel(t0time,tftime);
 
 		     // Schedule the first arrivals and employee scheduling
 		Initialize init = new Initialize(this);
@@ -52,7 +52,7 @@ public class ModelName extends AOSimulationModel {
 		// Schedule other scheduled actions and acitvities here
 	}
 
-	/************  Implementation of Data Modules***********/	
+	/************  Implementation of Data Modules***********/
 	/*
 	 * Testing preconditions
 	 */
@@ -63,7 +63,7 @@ public class ModelName extends AOSimulationModel {
 
 		// Check preconditions of Interruptions in Extended Activities
 	}
-	
+
 	public void eventOccured()
 	{
 		//this.showSBL();
@@ -72,7 +72,7 @@ public class ModelName extends AOSimulationModel {
 
 		// Setup an updateTrjSequences() method in the Output class
 		// and call here if you have Trajectory Sets
-		// updateTrjSequences() 
+		// updateTrjSequences()
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
@@ -81,4 +81,6 @@ public class ModelName extends AOSimulationModel {
 		seqAct.startingEvent();
 		scheduleActivity(seqAct);
 	}
+
+  
 }
