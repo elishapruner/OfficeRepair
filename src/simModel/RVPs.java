@@ -3,22 +3,45 @@ package simModel;
 import cern.jet.random.Exponential;
 import cern.jet.random.engine.MersenneTwister;
 
-public class RVPs {
-	OfficeRepair model; // for accessing the clock
-    // Data Models - i.e. random variate generators for distributions
-	// are created using Colt classes, define
-	// reference variables here and create the objects in the
-	// constructor with seeds
+class RVPs 
+{
+	OfficeRepair model; 
+	
+	// Random Variate Procedure:  CallType - type of next Call
+			private double PROPE1000 = 0.37;
+			private double PROPE2000 = 0.33 + PROPE1000;
+			private double PROPE3000 = 0.19 + PROPE2000;
+//			private double PROPE4000 = 0.11 + PROPE3000;
 
+			MersenneTwister typeRandGen;
 
-	// Constructor
-	protected RVPs(OfficeRepair model, Seeds sd)
-	{
-		this.model = model;
+		// Method
+			public Call.equipmentType uEquipType()
+			{
+				double randNum = typeRandGen.nextDouble();
+				Call.equipmentType type;
+				if (randNum >= 0 && randNum < PROPE1000) 
+					type = Call.equipmentType.E1000; 
+				else if (randNum >= PROPE1000 && randNum < PROPE2000)
+					type = Call.equipmentType.E2000; 
+				else if (randNum >= PROPE2000 && randNum < PROPE3000)
+					type = Call.equipmentType.E3000; 
+				else 
+					type = Call.equipmentType.E4000; 
+			
+				return(type);
+			}
+
+	protected RVPs(OfficeRepair model, Seeds sd) 
+	{ 
+		this.model = model; 
 		// Set up distribution functions
-		interArrDist = new Exponential(1.0/WMEAN1, new MersenneTwister(sd.seed1));
+		interArrDist = new Exponential(1.0/WMEAN1,  
+				                       new MersenneTwister(sd.arr));
 	}
-
+	
+			
+			
 	/* Random Variate Procedure for Arrivals */
 	private Exponential interArrDist;  // Exponential distribution for interarrival times
 	private final double WMEAN1=10.0;
@@ -32,5 +55,4 @@ public class RVPs {
 	    return(nxtInterArr+model.getClock());
 	}
 
-  
 }
