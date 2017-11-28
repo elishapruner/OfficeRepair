@@ -1,8 +1,8 @@
 // File: Experiment.java
 // Description:
 
-import SimModel.*;
 import cern.jet.random.engine.*;
+import simModel.*;
 
 // Main Method: Experiments
 // 

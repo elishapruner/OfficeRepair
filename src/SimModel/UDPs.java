@@ -1,4 +1,4 @@
-package SimModel;
+package simModel;
 
 public class UDPs {
 	ModelName model;  // for accessing the clock

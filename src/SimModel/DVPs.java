@@ -1,4 +1,4 @@
-package SimModel;
+package simModel;
 
 public class DVPs {
 	ModelName model;  // for accessing the clock

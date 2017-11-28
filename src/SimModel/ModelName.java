@@ -1,4 +1,4 @@
-package SimModel;
+package simModel;
 
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;

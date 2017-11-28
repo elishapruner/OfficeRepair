@@ -1,4 +1,4 @@
-package SimModel;
+package simModel;
 
 import cern.jet.random.engine.RandomSeedGenerator;
 
