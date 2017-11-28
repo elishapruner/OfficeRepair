@@ -18,6 +18,14 @@ class Initialise extends ScheduledAction
 
 	protected void actionEvent() 
 	{
+		int employeetype;
+		for(employeetype = Constants.Employee_T12 ; employeetype <= Constants.Employee_ALL; employeetype++);
+		int employeeid;
+		for(employeeid = 0;employeeid < 50; employeeid++);
+		
+		model.rEmployees[employeetype][employeeid] = new Employee();
+		model.rEmployees[employeetype][employeeid].Status = Employee.StatusValues.READY_FOR_CALL;
+		
 		// System initialization
                 // Add initialization instructions 
 	}
