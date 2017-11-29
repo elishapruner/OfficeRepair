@@ -11,5 +11,7 @@ public class Employee {
 	
 	//Whether or not the employee has taken lunch that day
 	boolean LunchTaken;
+	public Call call;
+	protected static final Call NO_CALL = null; 
 	
 }
