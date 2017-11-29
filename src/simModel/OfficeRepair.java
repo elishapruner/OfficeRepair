@@ -15,6 +15,7 @@ public class OfficeRepair extends AOSimulationModel
 	/*-------------Entity Data Structures-------------------*/
 	
 	Employee rEmployees[][]; // Array of Employees
+	Jobs rJobs[][];
 	
 	
 	/* Group and Queue Entities */

@@ -17,5 +17,7 @@ public class Constants {
 	
 	protected final static int Employee_T12 = 0;
 	protected final static int Employee_ALL = 1;
-
+	
+	protected final static int InProcess = 1;
+	protected final static int IsDone = 0;
 }

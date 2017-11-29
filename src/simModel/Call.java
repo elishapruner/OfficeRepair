@@ -2,6 +2,7 @@ package simModel;
 
 public class Call {
 
+	
 	// Denotes the type of Equipment that must be repaired. 
 		enum equipmentType { E1000, E2000, E3000, E4000};
 		equipmentType uType1;  // Type of equipment
@@ -12,5 +13,5 @@ public class Call {
 		
 		// Time that the call was entered into the system.
 		double timeIn;	
-	
+			
 }

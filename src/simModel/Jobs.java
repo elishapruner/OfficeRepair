@@ -19,13 +19,18 @@ public class Jobs {
 		Jobs.add(call);
 	}
 
-	// public Jobs spRemoveQue()
-
-	{
+//	 public Call spRemoveQue() {
+//		Call moverId = xx;
+//       ArrayList<Call> rJobs;
+//		if (rJobs.size() != 0)
+//           moverId = rJobs.remove(0);
+//       return moverId;
+        
+        
 		// Jobs jobs = Employee.empAvailable;
 		// if(conveyor.size() != 0) comp = conveyor.remove(0);
 		// return(comp);
 
-	}
+//	}
 
 }
