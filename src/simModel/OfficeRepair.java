@@ -64,7 +64,7 @@ public class OfficeRepair extends AOSimulationModel
 	/*
 	 * Testing preconditions
 	 */
-	protected double closingTime; 
+/**	protected double closingTime; 
 	public boolean isEmployeeOut(){
 		for(i=0,i<2,i++){
 			for {j=0,j<rEmployees[i].length,j++}{
@@ -88,6 +88,9 @@ public class OfficeRepair extends AOSimulationModel
 
 		return (retVal);
 	}
+	
+	**/
+	
 	protected void testPreconditions(Behaviour behObj)
 	{
 		reschedule (behObj);

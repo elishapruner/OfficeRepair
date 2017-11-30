@@ -2,6 +2,7 @@ package simModel;
 
 import cern.jet.random.Exponential;
 import cern.jet.random.engine.MersenneTwister;
+import simModel.Call.serviceType;
 
 
 class RVPs 
@@ -55,6 +56,18 @@ class RVPs
 	    // Note that interarrival time is added to current
 	    // clock value to get the next arrival time.
 	    return(nxtInterArr+model.getClock());
+	}
+
+	/** !! **/
+	public double duCallArr() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/** !! **/
+	public serviceType uServiceType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 
