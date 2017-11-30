@@ -15,9 +15,11 @@ public class Constants {
 	/*Overtime wage to EMP_ALL*/
 	protected final static double EMP_ALL_OVERTIME_WAGE = 71.75;
 	
+	//Employee types
 	protected final static int Employee_T12 = 0;
 	protected final static int Employee_ALL = 1;
 	
+	//Call status
 	protected final static int InProcess = 1;
 	protected final static int IsDone = 0;
 }
