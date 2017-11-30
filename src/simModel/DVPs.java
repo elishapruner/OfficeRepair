@@ -1,11 +1,29 @@
 package simModel;
 
+
 public class DVPs {
 	OfficeRepair model;  // for accessing the clock
-
+   
+	public enum Location {
+        Temp1, Employee, Call}
 	// Constructor
 	protected DVPs(OfficeRepair model) { this.model = model; }
 
+    /**
+     * @param origin
+     * @param destination
+     * @return time which cost from origin to destination
+     */
+    public double calculateTime(Location origin, Location destination) {
+        double distance = this.model.udp.distance(origin, destination);
+        double TravelSpeed = 20; 
+        double time = (distance / TravelSpeed) * 60; 
+        // ( miles / miles per hour) * minutes
+        return time;
+    }
+}
+
+	
 	// Translate deterministic value procedures into methods
         /* -------------------------------------------------
 	                       Example
@@ -22,4 +40,4 @@ public class DVPs {
 	------------------------------------------------------------*/
 
   
-}
+
