@@ -14,4 +14,9 @@ public class Call {
 		// Time that the call was entered into the system.
 		double timeIn;	
 			
+		 @Override
+		    public String toString() {
+		        return String.format(uType1.name(), uType2.name(), "[timeIn: %s]");
+		    }
+
 }
