@@ -22,4 +22,12 @@ public class Constants {
 	//Call status
 	protected final static int InProcess = 1;
 	protected final static int IsDone = 0;
+	
+	//Indices for types of job in JobQueue
+	protected final static int Job_1000_2000_P = 0 ; 
+	protected final static int Job_1000_2000_B = 1 ; 
+	protected final static int Job_3000_4000_P = 2 ; 
+	protected final static int Job_3000_4000_B = 3 ; 
+	
+	
 }
