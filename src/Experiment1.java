@@ -26,7 +26,7 @@ public class Experiment1 {
 	       System.out.println(" Case 1");
 	       for(i=0 ; i < NUMRUNS ; i++)
 	       {
-	          mname = new OfficeRepair(startTime,sds[i],numEmployeesT12,numEmployeesAll);
+	          mname = new OfficeRepair(startTime, sds[i],numEmployeesT12,numEmployeesAll);
 	          mname.runSimulation();
 	          // See examples for hints on collecting output
 	          // and developing code for analysis
