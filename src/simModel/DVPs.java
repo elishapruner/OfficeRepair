@@ -14,13 +14,14 @@ public class DVPs {
      * @param destination
      * @return time which cost from origin to destination
      */
-    public double calculateTime(Location origin, Location destination) {
-        double distance = this.model.udp.distance(origin, destination);
-        double TravelSpeed = 20; 
-        double time = (distance / TravelSpeed) * 60; 
-        // ( miles / miles per hour) * minutes
-        return time;
-    }
+//    public double calculateTime(Location origin, Location destination) {
+//        double distance = this.model.udp.distance(origin, destination);
+//        double TravelSpeed = 20; 
+//        double time = (distance / TravelSpeed) * 60; 
+//        // ( miles / miles per hour) * minutes
+//        return time;
+//    }
+	
 }
 
 	

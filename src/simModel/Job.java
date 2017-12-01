@@ -2,10 +2,11 @@ package simModel;
 
 import java.util.ArrayList;
 
-public class Jobs {
+public class Job {
 	
 		// Implement the queue using an ArrayList object
-			private ArrayList<Call> qJob_1000_2000_B,qJob_1000_2000_P,Job_3000_4000_B,qJob_3000_4000_P = new ArrayList<Call>();  // Size is initialised to 0
+			public ArrayList<Call>[] Jobs = new ArrayList<Call>[4] ;
+			qJob_1000_2000_B,qJob_1000_2000_P,Job_3000_4000_B,qJob_3000_4000_P = new ArrayList<Call>();  // Size is initialised to 0
 			
 		// getters/setters and standard procedures for each queue job_1000_2000_B
 			public int getNqJob_1000_2000_B() { return(qJob_1000_2000_B.size()); }

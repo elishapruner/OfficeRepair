@@ -8,19 +8,19 @@ public class UDPs {
 	// Constructor
 	protected UDPs(OfficeRepair model) { this.model = model; }
 
-	public double distance(Location origin, Location destination) {
-		 Location next = null;
-	        int callId;
-			Jobs call = this.model.rJobs[callId];
-	        if (origin == Location.Employee) {
-	            next = Location.Call;
-	          
-	        if (origin == Location.Temp1) {
-	            next = Location.Call;
-	        }
-	        return next;
-	}
-	}
+//	public double distance(Location origin, Location destination) {
+//		 Location next = null;
+//	        int callId;
+//			Jobs call = this.model.rJobs[callId];
+//	        if (origin == Location.Employee) {
+//	            next = Location.Call;
+//	          
+//	        if (origin == Location.Temp1) {
+//	            next = Location.Call;
+//	        }
+//	        return next;
+//	}
+//	}
 }
 	        
 	// Translate User Defined Procedures into methods

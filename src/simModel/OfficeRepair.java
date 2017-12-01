@@ -1,5 +1,7 @@
 package simModel;
 
+import java.util.ArrayList;
+
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
 import simulationModelling.SequelActivity;
@@ -9,13 +11,22 @@ import simulationModelling.SequelActivity;
 public class OfficeRepair extends AOSimulationModel
 {
 	// Constants available from Constants class
+	Constants constants = new Constants() ; 
 	/* Parameter */
         // Define the parameters
+	int numEmployeesT12 ;
+	int numEmployeesALL ; 
+	
 
 	/*-------------Entity Data Structures-------------------*/
+	//Array of Employees with two indices : emp_type and emp_id 
+	protected Employee[][] rEmployees;
+	protected ArrayList<Job> Jobs = new ArrayList<Job>() ; 
 	
-	Employee rEmployees[][]; // Array of Employees
-	Jobs rJobs[];
+	
+	
+
+	Job rJobs[];
 	
 	
 	/* Group and Queue Entities */
@@ -29,7 +40,7 @@ public class OfficeRepair extends AOSimulationModel
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
 	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
-	protected UDPs udp = new UDPs(this);
+	protected UDPs udp = new UDPs(this);  
 
 	// Output object
 	protected Output output = new Output(this);
@@ -39,20 +50,28 @@ public class OfficeRepair extends AOSimulationModel
 
 
 	// Constructor
-	public OfficeRepair(double t0time, double tftime, /*define other args,*/ Seeds sd)
+	public OfficeRepair(double t0time, /*define other args,*/ Seeds sd,int numEmployeesT12, int numEmployeesALL)
 	{
 		// initialize parameters here
 		
 		// Create RVP object with given seed
 		rvp = new RVPs(this,sd);
-
-
+		this.numEmployeesT12 = numEmployeesT12 ; 
+		this.numEmployeesALL = numEmployeesALL ; 
+		
+		rEmployees = new Employee[2][] ;
+		rEmployees[constants.Employee_T12] = new Employee[numEmployeesT12] ;
+		rEmployees[constants.Employee_ALL] = new Employee[numEmployeesALL] ; 
 		
 		
+		
+		
+		
+
 		// rgCounter and qCustLine objects created in initialize Action
 		
 		// initialize the simulation model
-		initAOSimulModel(t0time,tftime);   
+		initAOSimulModel(t0time);    
 
 		     // Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);

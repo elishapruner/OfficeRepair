@@ -19,7 +19,7 @@ class Call_Recieved extends ScheduledAction
 	     icCall.uType2 = model.rvp.uServiceType();	// uServiceType needs to be created in the RVP class 
 	     icCall.uType1 = model.rvp.uEquipType();
 	     icCall.timeIn = model.getClock(); 
-	     Jobs icJobs = new Jobs();
+	     Job icJobs = new Job();
 	     
 	     // if icCall is of EquipmentType E1000 or E2000 and its of ServiceType Basic then place in the queue Job_1000_2000_B else place in the queue Job_1000_2000_P
 	     if (icCall.uType1 == icCall.uType1.E1000 || icCall.uType1 == icCall.uType1.E2000)

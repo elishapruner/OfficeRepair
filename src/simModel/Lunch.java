@@ -15,6 +15,7 @@ class Lunch extends ConditionalActivity
 	{
 		boolean returnValue = false;
 		
+		
 	    if (simModel.rEmployees[0][1].Status == Employee.StatusValues.READY_FOR_CALL && ((int)simModel.getClock())%1440 > 210 )   //	rEmployees[0][1] this needs to be fixed
 	    	returnValue = true;
 	    
