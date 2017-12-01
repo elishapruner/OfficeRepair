@@ -21,12 +21,12 @@ public class OfficeRepair extends AOSimulationModel
 	/*-------------Entity Data Structures-------------------*/
 	//Array of Employees with two indices : emp_type and emp_id 
 	protected Employee[][] rEmployees;
-	protected ArrayList<Job> Jobs = new ArrayList<Job>() ; 
+	protected ArrayList<Jobs> Jobs = new ArrayList<Jobs>() ; 
 	
 	
 	
 
-	Job rJobs[];
+	Jobs rJobs[];
 	
 	
 	/* Group and Queue Entities */
