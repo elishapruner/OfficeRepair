@@ -18,10 +18,6 @@ class Initialise extends ScheduledAction
 
 	protected void actionEvent() 
 	{
-		int employeetype;
-		for(employeetype = Constants.Employee_T12 ; employeetype <= Constants.Employee_ALL; employeetype++);
-		int employeeid;
-		for(employeeid = 0;employeeid < 50; employeeid++);
 		
 		// Initial SSOVs to 0 
 		model.output.contractsT12satisfied = 0 ;
@@ -32,13 +28,21 @@ class Initialise extends ScheduledAction
 		model.output.overtimeCost = 0 ; 
 		model.output.averageDailyCost = 0.0 ; // this SSOV is a double 
 		
+		for(int emp_id = 0;emp_id < model.numEmployeesT12; emp_id++){
+			model.rEmployees[Constants.Employee_T12][emp_id] = new Employee() ; 
+			model.rEmployees[Constants.Employee_T12][emp_id].Status = Employee.StatusValues.READY_FOR_CALL;
+			
+		}	
+		for(int emp_id = 0;emp_id < model.numEmployeesALL; emp_id++){
+			model.rEmployees[Constants.Employee_ALL][emp_id] = new Employee() ; 
+			model.rEmployees[Constants.Employee_ALL][emp_id].Status = Employee.StatusValues.READY_FOR_CALL;	
+		}	
 		
-		model.rEmployees[employeetype][employeeid] = new Employee();
-		model.rEmployees[employeetype][employeeid].Status = Employee.StatusValues.READY_FOR_CALL;
 		
+		}
 		// System initialization
                 // Add initialization instructions 
-	}
+}
 	
 
-}
+

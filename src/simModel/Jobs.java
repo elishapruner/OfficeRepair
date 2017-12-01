@@ -3,7 +3,7 @@ package simModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jobs {
+public class Jobs{
 	
 		// Implement the queue using an ArrayList object
 //			public ArrayList<Call>[] Jobs = new ArrayList<Call>[4] ;
@@ -20,6 +20,7 @@ public class Jobs {
 			
 		// getters/setters and standard procedures for each queue job_1000_2000_B
 			public int getNqJob_1000_2000_B() { return(qJob_1000_2000_B.size()); }
+			
 			public void spInsertQueqJob_1000_2000_B(Call call) { qJob_1000_2000_B.add(call); }
 			
 			public Call spRemoveQue() 
