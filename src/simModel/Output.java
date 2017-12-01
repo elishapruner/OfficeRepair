@@ -15,10 +15,15 @@ public class Output {
 
     // SSOVs
 	
-	int contractsT12satisfied;
+	int contractsT12satisfied ; 
 	int totalNumberT12Contracts;
 	int contractsT34satisfied;
 	int totalNumberT34Contracts;
+	// Removed Number of Days
+	// When ever you need it just do 
+	//  current_time // (i.e. integer division) 1440 (length of day)
+	int fixedTotalCost ; 
+	int overtimeCost ;
 	double averageDailyCost; 
 
     

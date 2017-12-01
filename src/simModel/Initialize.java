@@ -23,6 +23,16 @@ class Initialise extends ScheduledAction
 		int employeeid;
 		for(employeeid = 0;employeeid < 50; employeeid++);
 		
+		// Initial SSOVs to 0 
+		model.output.contractsT12satisfied = 0 ;
+		model.output.contractsT34satisfied = 0 ; 
+		model.output.totalNumberT12Contracts = 0 ; 
+		model.output.totalNumberT34Contracts = 0 ; 	
+		model.output.fixedTotalCost = 0 ;
+		model.output.overtimeCost = 0 ; 
+		model.output.averageDailyCost = 0.0 ; // this SSOV is a double 
+		
+		
 		model.rEmployees[employeetype][employeeid] = new Employee();
 		model.rEmployees[employeetype][employeeid].Status = Employee.StatusValues.READY_FOR_CALL;
 		
