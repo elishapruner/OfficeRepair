@@ -1,6 +1,6 @@
 package simModel;
 
-import static simModel.Call.serviceType.PREMIUM;
+
 
 import simulationModelling.ConditionalAction;
 import simulationModelling.ScheduledAction;
@@ -10,9 +10,10 @@ public class EndDay extends ConditionalAction {
      
 
 		OfficeRepair model;
+		
         public EndDay(OfficeRepair model) { this.model = model; }
         
-        protected static boolean precondition(OfficeRepair simModel)
+        protected boolean precondition(OfficeRepair simModel)
         {
                 boolean returnValue = false;
 
@@ -69,6 +70,6 @@ public class EndDay extends ConditionalAction {
                 }
         }
 	
-}
+
 
 	

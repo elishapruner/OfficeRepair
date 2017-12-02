@@ -17,6 +17,7 @@ public class Travel extends ConditionalActivity {
             for(Employee e: model.rEmployees[model.constants.Employee_T12]){
                 if (e.Status == Employee.StatusValues.READY_FOR_CALL && (model.jobs[Constants.Job_1000_2000_P].size() > 0 || model.jobs[Constants.Job_1000_2000_B].size() > 0)){
                     returnValue = true;
+                    emp = e ;
                     this.empType = "T12";
                     return(returnValue);
                 }
@@ -25,6 +26,7 @@ public class Travel extends ConditionalActivity {
             for(Employee e: model.rEmployees[model.constants.Employee_ALL]){
                 if (e.Status == Employee.StatusValues.READY_FOR_CALL && (model.jobs[Constants.Job_3000_4000_P].size() > 0 || model.jobs[Constants.Job_3000_4000_B].size() > 0)){
                     returnValue = true;
+                    emp = e ;
                     this.empType = "ALL";
                     return(returnValue);
                 }

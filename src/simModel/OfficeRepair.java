@@ -72,8 +72,14 @@ public class OfficeRepair extends AOSimulationModel
 		scheduleAction(init);  // Should always be first one scheduled.
 		// Schedule other scheduled actions and activities here
 		// Schedule other scheduled actions
-		Call_Recieved1000 callReceived = new Call_Recieved1000(this);
-		scheduleAction(callReceived);
+		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
+		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
+		Call_Recieved3000 callReceived3000 = new Call_Recieved3000(this);
+		Call_Recieved4000 callReceived4000 = new Call_Recieved4000(this);
+		scheduleAction(callReceived1000);
+		scheduleAction(callReceived2000);
+		scheduleAction(callReceived3000);
+		scheduleAction(callReceived4000);
 	}
 
 	/************  implementation of Data Modules***********/	
