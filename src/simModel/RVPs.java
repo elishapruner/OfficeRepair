@@ -10,15 +10,12 @@ import simModel.Call.ServiceTypes;
 class RVPs 
 {
 	OfficeRepair model; // for accessing the clock
-    // Data Models - i.e. random veriate generators for distributions
-	// are created using Colt classes, define 
-	// reference variables here and create the objects in the
-	// constructor with seeds
 
 	// Constructor
 	protected RVPs(OfficeRepair model, Seeds sd) 
 	{ 
 		this.model = model; 
+		
 		// Set up distribution functions		
 		double meanCallArr1000 = getMean1000();
 		callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(sd.callArrival1000));
@@ -79,25 +76,25 @@ class RVPs
 		double randNum = serviceType.nextDouble();
 		ServiceTypes serviceType = ServiceTypes.BASIC;
 		
-		if (equipType.equals(EquipmentTypes.E1000)) {
+		if (equipType == EquipmentTypes.E1000) {
 			if (randNum < percentBasicContracts1000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType.equals(EquipmentTypes.E2000)) {
+		} else if (equipType == EquipmentTypes.E2000) {
 			if (randNum < percentBasicContracts2000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType.equals(EquipmentTypes.E3000)) {
+		} else if (equipType == EquipmentTypes.E3000) {
 			if (randNum < percentBasicContracts3000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType.equals(EquipmentTypes.E4000))
+		} else if (equipType == EquipmentTypes.E4000)
 			if (randNum < percentBasicContracts4000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
@@ -121,9 +118,7 @@ class RVPs
 	protected double DuCallArrival4000() {
 	    return (callArrival4000.nextDouble() + model.getClock());
 	}
-	
-	
-	
+
 	protected double uServiceTime1000() {
 	    return (serviceTime1000.nextDouble() + model.getClock());
 	}

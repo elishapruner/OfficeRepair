@@ -23,13 +23,13 @@ public class Service extends SequelActivity {
 	protected double duration() {
 		double serviceTime = 0;
 
-		if (e.call.equipmentType.equals((EquipmentTypes.E1000))) {
+		if (e.call.equipmentType == EquipmentTypes.E1000) {
 			serviceTime = model.rvp.uServiceTime1000();
-		} else if (e.call.equipmentType.equals((EquipmentTypes.E2000))) {
+		} else if (e.call.equipmentType == EquipmentTypes.E2000) {
 			serviceTime = model.rvp.uServiceTime2000();
-		} else if (e.call.equipmentType.equals((EquipmentTypes.E3000))) {
+		} else if (e.call.equipmentType == EquipmentTypes.E3000) {
 			serviceTime = model.rvp.uServiceTime3000();
-		} else if (e.call.equipmentType.equals((EquipmentTypes.E4000))) {
+		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
 			serviceTime = model.rvp.uServiceTime4000();
 		}
 
@@ -37,10 +37,9 @@ public class Service extends SequelActivity {
 	}
 
 	protected void terminatingEvent() {
-		if ((e.call.equipmentType.equals((EquipmentTypes.E1000)))
-				|| (e.call.equipmentType.equals((EquipmentTypes.E2000)))) {
+		if ((e.call.equipmentType == EquipmentTypes.E1000) || (e.call.equipmentType == EquipmentTypes.E2000)) {
 			model.output.totalNumberT12Contracts += 1;
-			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
+			if (e.call.serviceType == ServiceTypes.PREMIUM) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {
 					model.output.contractsT12satisfied += 1;
 				}
@@ -51,8 +50,7 @@ public class Service extends SequelActivity {
 			}
 		}
 
-		if ((e.call.equipmentType.equals((EquipmentTypes.E3000)))
-				|| (e.call.equipmentType.equals((EquipmentTypes.E4000)))) {
+		if ((e.call.equipmentType == EquipmentTypes.E3000)|| (e.call.equipmentType == EquipmentTypes.E4000)) {
 			model.output.totalNumberT34Contracts += 1;
 			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {

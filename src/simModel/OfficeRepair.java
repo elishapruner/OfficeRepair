@@ -99,9 +99,6 @@ public class OfficeRepair extends AOSimulationModel {
 					+ output.totalNumberT12Contracts + " , T34Satisfifed " + output.contractsT34satisfied
 					+ " , totalT34: " + output.totalNumberT34Contracts);
 			
-			System.out.println("SatisfactionT12: " + output.getSatisfactionLevelT12() + " , SatisfactionT34: "
-					+ output.getSatisfactionLevelT34() + " , SatifactionLevelALl" + output.getSatisfactionLevelAll());
-			
 			showSBL();
 		}
 	}
