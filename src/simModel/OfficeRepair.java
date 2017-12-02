@@ -1,7 +1,5 @@
 package simModel;
 
-import java.util.ArrayList;
-
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
 import simulationModelling.SequelActivity;
@@ -24,8 +22,6 @@ public class OfficeRepair extends AOSimulationModel
 	protected JobQueue[] jobs = new JobQueue[4] ; 
 	
 
-	
-	
 	/* Group and Queue Entities */
 	// Define the reference variables to the various 
 	// entities with scope Set and Unary
@@ -42,14 +38,20 @@ public class OfficeRepair extends AOSimulationModel
 	// Output object
 	protected Output output = new Output(this);
 	
-	// Output values - define the public methods that return values
-	// required for experimentation.
-
+	// Output values - define the public methods that return values required for experimentation.
+	public double getSatisfactionLevelT12() { return output.getSatisfactionLevelT12(); }
+	public double getSatisfactionLevelT34() { return output.getSatisfactionLevelT34(); }
+	public double getSatisfactionLevelAll() { return output.getSatisfactionLevelAll(); }
+	public double getAverageDailyCost() { return output.averageDailyCost; }
 
 	// Constructor
-	public OfficeRepair(double t0time, /*define other args,*/ Seeds sd,int numEmployeesT12, int numEmployeesALL)
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int numEmployeesT12, int numEmployeesALL)
 	{
+		// Turn trancing on if traceFlag is true
+		this.traceFlag = traceFlag;
+		
 		// initialize parameters here
+		// Initialized in the experiment
 		
 		// Create RVP object with given seed
 		rvp = new RVPs(this,sd);
@@ -57,13 +59,8 @@ public class OfficeRepair extends AOSimulationModel
 		this.numEmployeesALL = numEmployeesALL ; 
 		
 		rEmployees = new Employee[2][] ;
-		rEmployees[constants.Employee_T12] = new Employee[numEmployeesT12] ;
-		rEmployees[constants.Employee_ALL] = new Employee[numEmployeesALL] ; 
-		
-		
-		
-		
-		
+		rEmployees[Constants.Employee_T12] = new Employee[numEmployeesT12] ;
+		rEmployees[Constants.Employee_ALL] = new Employee[numEmployeesALL] ; 
 
 		// rgCounter and qCustLine objects created in initialize Action
 		
@@ -74,38 +71,16 @@ public class OfficeRepair extends AOSimulationModel
 		Initialise init = new Initialise(this);
 		scheduleAction(init);  // Should always be first one scheduled.
 		// Schedule other scheduled actions and activities here
+		// Schedule other scheduled actions
+		Call_Recieved1000 callReceived = new Call_Recieved1000(this);
+		scheduleAction(callReceived);
 	}
 
 	/************  implementation of Data Modules***********/	
+	boolean traceFlag = false;
 	/*
 	 * Testing preconditions
 	 */
-/**	protected double closingTime; 
-	public boolean isEmployeeOut(){
-		for(i=0,i<2,i++){
-			for {j=0,j<rEmployees[i].length,j++}{
-			if (rEmployees[i][j].Status==Employee.StatusValues.SERVICING_CALL)
-					return true;
-			} 
-		}
-		return false;
-	}
-
-	public boolean implicitStopCondition() // termination explicit
-	{
-		boolean retVal = false;
-	
-		//System.out.println("ClosingTime = " + closingTime + "currentTime = "
-		//		+ getClock() + "RG.Counter.n = " + rgCounter.size());
-		if (getClock() >= closingTime && this.isEmployeeOut() == false)
-			retVal = true;
-
-		//System.out.println("implicit stop condition returns " + retVal);
-
-		return (retVal);
-	}
-	
-	**/
 	
 	protected void testPreconditions(Behaviour behObj)
 	{
@@ -124,6 +99,12 @@ public class OfficeRepair extends AOSimulationModel
 		// Setup an updateTrjSequences() method in the Output class
 		// and call here if you have Trajectory Sets
 		// updateTrjSequences() 
+		
+		if (traceFlag)
+		{
+			 System.out.println("Clock: " + getClock()); 
+			 showSBL();			
+		}
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters

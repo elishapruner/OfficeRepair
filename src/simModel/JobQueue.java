@@ -28,6 +28,10 @@ public class JobQueue {
 		
 	}
 	
+	public int size() {
+		return queue.size() ; 
+	}
+	
 	
 	
 //	public int getNqJob_1000_2000_P() { return(qJob_1000_2000_P.size()); }

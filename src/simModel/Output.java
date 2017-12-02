@@ -26,5 +26,56 @@ public class Output {
 	int overtimeCost ;
 	double averageDailyCost; 
 
-    
+	protected double getSatisfactionLevelT12() {
+		return contractsT12satisfied / totalNumberT12Contracts;
+	}
+	
+	protected double getSatisfactionLevelT34() {
+		return contractsT34satisfied / totalNumberT34Contracts;
+	}
+	
+	protected double getSatisfactionLevelAll() {
+		return (contractsT12satisfied + contractsT34satisfied) / (totalNumberT12Contracts + totalNumberT34Contracts);
+	}
 }
+
+
+
+
+
+//package simModel;
+//
+//class Output 
+//{
+//	OfficeRepair model;
+//	
+//	protected Output(OfficeRepair md) { 
+//		model = md; 
+//	}
+//	
+//    // SSOVs
+//	private int contractsT12satisfied = 1;
+//	private int contractsT34satisfied = 1;
+//	private int totalNumberT12Contracts = 2;
+//	private int totalNumberT34Contracts = 2;
+//	private int numberOfDays = 5;
+//	private double fixedTotalCost = 100.00;
+//	private double overtimeCost = 30.00;
+//	
+//	
+//	protected double getSatisfactionLevelT12() {
+//		return contractsT12satisfied / totalNumberT12Contracts;
+//	}
+//	
+//	protected double getSatisfactionLevelT34() {
+//		return contractsT34satisfied / totalNumberT34Contracts;
+//	}
+//	
+//	protected double getSatisfactionLevelAll() {
+//		return (contractsT12satisfied + contractsT34satisfied) / (totalNumberT12Contracts + totalNumberT34Contracts);
+//	}
+//	
+//	public double getAverageDailyCost() { 
+//		return (fixedTotalCost + overtimeCost) / numberOfDays;
+//	}
+//}

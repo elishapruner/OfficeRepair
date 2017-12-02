@@ -10,7 +10,7 @@ public class Experiment2 {
 	   public static void main(String[] args)
 	   {
 	       int i, NUMRUNS = 30;
-	       double startTime=0.0, endTime=660.0;
+	       double startTime=0.0;
 	       Seeds[] sds = new Seeds[NUMRUNS];
 	       OfficeRepair mname;  // Simulation object
 
@@ -27,7 +27,7 @@ public class Experiment2 {
 	       System.out.println(" Case 1");
 	       for(i=0 ; i < NUMRUNS ; i++)
 	       {
-	          mname = new OfficeRepair(startTime,sds[i],numEmployeesT12,numEmployeesAll);
+	          mname = new OfficeRepair(startTime, sds[i], true, numEmployeesT12, numEmployeesAll);
 	          mname.runSimulation();
 	          // See examples for hints on collecting output
 	          // and developing code for analysis

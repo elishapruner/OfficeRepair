@@ -40,9 +40,8 @@ class Initialise extends ScheduledAction
 		
 		model.jobs[Constants.Job_1000_2000_P] = new JobQueue() ;
 		model.jobs[Constants.Job_1000_2000_B] = new JobQueue() ;
-		model.jobs[Constants.Job_1000_2000_P] = new JobQueue() ;
-		model.jobs[Constants.Job_1000_2000_B] = new JobQueue() ;
-		
+		model.jobs[Constants.Job_3000_4000_P] = new JobQueue() ;
+		model.jobs[Constants.Job_3000_4000_B] = new JobQueue() ;
 		
 		}
 		// System initialization
