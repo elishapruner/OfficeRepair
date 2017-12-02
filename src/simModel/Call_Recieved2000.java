@@ -3,10 +3,10 @@ package simModel;
 import simModel.Call.EquipmentTypes;
 import simulationModelling.ScheduledAction;
 
-class Call_Recieved1000 extends ScheduledAction {
+class Call_Recieved2000 extends ScheduledAction {
 	OfficeRepair model;
 
-	public Call_Recieved1000(OfficeRepair model) {
+	public Call_Recieved2000(OfficeRepair model) {
 		this.model = model;
 	}
 
@@ -18,8 +18,8 @@ class Call_Recieved1000 extends ScheduledAction {
 		// WArrival Action Sequence SCS
 		Call icCall = new Call();
 		
-		icCall.equipmentType = EquipmentTypes.E1000;
-		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E1000); // uServiceType needs to be
+		icCall.equipmentType = EquipmentTypes.E2000;
+		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E2000); // uServiceType needs to be
 												
 		//icCall.equipmentType = model.rvp.uEquipType();
 		icCall.timeIn = model.getClock();

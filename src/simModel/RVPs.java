@@ -4,6 +4,8 @@ import cern.jet.random.Exponential;
 import cern.jet.random.Normal;
 import cern.jet.random.engine.MersenneTwister;
 import dataModelling.TriangularVariate;
+import simModel.Call.EquipmentTypes;
+import simModel.Call.ServiceTypes;
 
 class RVPs 
 {
@@ -70,6 +72,11 @@ class RVPs
 	private double maxTravelTm = 45;
 	private double meanTravelTm = 30;
 	
+	private double percentBasicContracts1000 = 0.35;
+	private double percentBasicContracts2000 = 0.35;
+	private double percentBasicContracts3000 = 0.25;
+	private double percentBasicContracts4000 = 0.15;
+
 
 	protected double DuCallArrival1000()  // for getting next value of duInput
 	{
@@ -109,14 +116,37 @@ class RVPs
 	    return(nxtInterArr + model.getClock());
 	}
 	
-	protected double uServiceType()  // for getting next value of duInput
+	
+	protected ServiceTypes uServiceType(EquipmentTypes equipType)  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
-	    return(nxtInterArr + model.getClock());
+		double randNum = serviceType.nextDouble();
+		ServiceTypes serviceType = ServiceTypes.BASIC;
+		
+		if (equipType.equals(EquipmentTypes.E1000)) {
+			if (randNum < percentBasicContracts1000) {
+				serviceType = ServiceTypes.BASIC;
+			} else {
+				serviceType = ServiceTypes.PREMIUM;
+			}
+		} else if (equipType.equals(EquipmentTypes.E2000)) {
+			if (randNum < percentBasicContracts2000) {
+				serviceType = ServiceTypes.BASIC;
+			} else {
+				serviceType = ServiceTypes.PREMIUM;
+			}
+		} else if (equipType.equals(EquipmentTypes.E3000)) {
+			if (randNum < percentBasicContracts3000) {
+				serviceType = ServiceTypes.BASIC;
+			} else {
+				serviceType = ServiceTypes.PREMIUM;
+			}
+		} else if (equipType.equals(EquipmentTypes.E4000))
+			if (randNum < percentBasicContracts4000) {
+				serviceType = ServiceTypes.BASIC;
+			} else {
+				serviceType = ServiceTypes.PREMIUM;
+			}
+		return serviceType;
 	}
 	
 	protected double uServiceTime1000()  // for getting next value of duInput
