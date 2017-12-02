@@ -1,24 +1,26 @@
 package simModel;
 
 import static simModel.Call.serviceType.PREMIUM;
+
+import simulationModelling.ConditionalAction;
 import simulationModelling.ScheduledAction;
 
-public class EndDay {
+public class EndDay extends ConditionalAction {
     
-        protected static boolean precondition(OfficeRepair simModel)
-                {
-                        boolean returnValue = false;
+     
 
-
-                    if (((int)model.getClock())%1440 == 0 )
-                        returnValue = true;
-
-                        return(returnValue);
-                }
-
-	OfficeRepair model;
+		OfficeRepair model;
         public EndDay(OfficeRepair model) { this.model = model; }
+        protected static boolean precondition(OfficeRepair simModel)
+        {
+                boolean returnValue = false;
 
+
+            if (((int)model.getClock())%960 == 0 )
+                returnValue = true;
+
+                return(returnValue);
+        }
         public double timeSequence()
         {
                 return 0;				
@@ -30,10 +32,10 @@ public class EndDay {
         {
                 for(Employee e : model.rEmployees[model.constants.Employee_T12]){
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
-                        if(e.call.uType2 == PREMIUM){
+                        if(e.call.serviceType == PREMIUM){
                             //end the call
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                if(e.call.uType1 == E1000 || e.call.uType1 == E2000)
+                                if(e.call.equipmentType == E1000 || e.call.equipmentType == E2000)
                                     model.output.contractsT12satisfied+=1;
                                 }else{
                                     model.output.contractsT34satisfied+=1;
@@ -48,10 +50,10 @@ public class EndDay {
                 }
                 for(Employee e : model.rEmployees[model.constants.Employee_ALL]){
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
-                        if(e.call.uType2 == PREMIUM){
+                        if(e.call.serviceType == PREMIUM){
                             //
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                if(e.call.uType1 == E1000 || e.call.uType1 == E2000)
+                                if(e.call.equipmentType == E1000 || e.call.equipmentType == E2000)
                                     model.output.contractsT12satisfied+=1;
                                 }else{
                                     model.output.contractsT34satisfied+=1;
