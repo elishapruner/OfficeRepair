@@ -55,17 +55,14 @@ class RVPs
 	private MersenneTwister serviceType;
 	private TriangularVariate travelTime;
 	
-	
 	private double meanSrvTm1000 = 14.79;
-	private double stdDevSrvTm1000 = 5.85;
-	
 	private double meanSrvTm2000 = 44.36;
-	private double stdDevSrvTm2000 = 15.06;
-	
 	private double meanSrvTm3000 = 60.27;
-	private double stdDevSrvTm3000 = 27.40;
-	
 	private double meanSrvTm4000 = 130.17;
+	
+	private double stdDevSrvTm1000 = 5.85;
+	private double stdDevSrvTm2000 = 15.06;
+	private double stdDevSrvTm3000 = 27.40;
 	private double stdDevSrvTm4000 = 29.84;
 	
 	private double minTravelTm = 10;
@@ -76,35 +73,9 @@ class RVPs
 	private double percentBasicContracts2000 = 0.35;
 	private double percentBasicContracts3000 = 0.25;
 	private double percentBasicContracts4000 = 0.15;
-
-
-	protected double DuCallArrival1000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = callArrival1000.nextDouble();
-	    return(nxtInterArr + model.getClock());
-	}
-	
-	protected double DuCallArrival2000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = callArrival2000.nextDouble();
-	    return(nxtInterArr + model.getClock());
-	}
-	
-	protected double DuCallArrival3000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = callArrival3000.nextDouble();
-	    return(nxtInterArr + model.getClock());
-	}
-	
-	protected double DuCallArrival4000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = callArrival4000.nextDouble();
-	    return(nxtInterArr + model.getClock());
-	}
 	
 	
-	protected ServiceTypes uServiceType(EquipmentTypes equipType)  // for getting next value of duInput
-	{
+	protected ServiceTypes uServiceType(EquipmentTypes equipType) {
 		double randNum = serviceType.nextDouble();
 		ServiceTypes serviceType = ServiceTypes.BASIC;
 		
@@ -135,34 +106,42 @@ class RVPs
 		return serviceType;
 	}
 	
-	protected double uServiceTime1000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = serviceTime1000.nextDouble();
-	    return(nxtInterArr + model.getClock());
+	protected double DuCallArrival1000() {
+	    return (callArrival1000.nextDouble() + model.getClock());
 	}
 	
-	protected double uServiceTime2000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = serviceTime2000.nextDouble();
-	    return(nxtInterArr + model.getClock());
+	protected double DuCallArrival2000() {
+	    return(callArrival2000.nextDouble() + model.getClock());
 	}
 	
-	protected double uServiceTime3000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = serviceTime3000.nextDouble();
-
-	    return(nxtInterArr + model.getClock());
+	protected double DuCallArrival3000() {
+	    return (callArrival3000.nextDouble() + model.getClock());
 	}
 	
-	protected double uServiceTime4000()  // for getting next value of duInput
-	{
-	    double nxtInterArr = serviceTime4000.nextDouble();
-	    return(nxtInterArr + model.getClock());
+	protected double DuCallArrival4000() {
+	    return (callArrival4000.nextDouble() + model.getClock());
+	}
+	
+	
+	
+	protected double uServiceTime1000() {
+	    return (serviceTime1000.nextDouble() + model.getClock());
+	}
+	
+	protected double uServiceTime2000() {
+	    return (serviceTime2000.nextDouble() + model.getClock());
+	}
+	
+	protected double uServiceTime3000() {
+	    return (serviceTime3000.nextDouble() + model.getClock());
+	}
+	
+	protected double uServiceTime4000()  {
+	    return (serviceTime4000.nextDouble() + model.getClock());
 	}
 	
 	protected double uTravelTime() {
-	    double nxtInterArr = travelTime.next();
-	    return(nxtInterArr + model.getClock());
+	    return (travelTime.next() + model.getClock());
 	}
 	
 	

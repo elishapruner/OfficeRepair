@@ -13,5 +13,4 @@ public class Employee {
 	boolean LunchTaken;
 	public Call call;
 	protected static final Call NO_CALL = null; 
-	
 }

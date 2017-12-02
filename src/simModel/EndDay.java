@@ -27,18 +27,16 @@ public class EndDay extends ConditionalAction {
 		double numEmployeeT12 = (double) model.numEmployeesT12;
 		double numEmployeeALL = (double) model.numEmployeesALL;
 
-		for (Employee e : model.rEmployees[Constants.Employee_T12]) {
+		for (Employee e : model.rEmployees[Constants.EMPLOYEE_T12]) {
+			e.LunchTaken = false;
+		}
+		
+		for (Employee e : model.rEmployees[Constants.EMPLOYEE_ALL]) {
 			e.LunchTaken = false;
 		}
 
-		for (Employee e : model.rEmployees[Constants.Employee_T12]) {
-			e.LunchTaken = false;
-		}
-
-		model.output.fixedTotalCost = (int) ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE)
-				+ (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE)
-						* (Math.floor(((int) model.getClock()) / 1440)));
-		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost)
-				/ (Math.floor(((int) model.getClock()) / 1440));
+		model.output.fixedTotalCost = (int) ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
+		
+		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 	}
 }

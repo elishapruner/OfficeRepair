@@ -16,18 +16,13 @@ public class Constants {
 	protected final static double EMP_ALL_OVERTIME_WAGE = 71.75;
 	
 	//Employee types
-	protected final static int Employee_T12 = 0;
-	protected final static int Employee_ALL = 1;
-	
-	//Call status
-	protected final static int InProcess = 1;
-	protected final static int IsDone = 0;
+	protected final static int EMPLOYEE_T12 = 0;
+	protected final static int EMPLOYEE_ALL = 1;
 	
 	//Indices for types of job in JobQueue
 	protected final static int Job_1000_2000_P = 0 ; 
 	protected final static int Job_1000_2000_B = 1 ; 
 	protected final static int Job_3000_4000_P = 2 ; 
 	protected final static int Job_3000_4000_B = 3 ; 
-	
 	
 }

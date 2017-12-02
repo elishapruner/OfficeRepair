@@ -19,7 +19,7 @@ public class OfficeRepair extends AOSimulationModel
 	/*-------------Entity Data Structures-------------------*/
 	//Array of Employees with two indices : emp_type and emp_id 
 	protected Employee[][] rEmployees;
-	protected JobQueue[] jobs = new JobQueue[4] ; 
+	protected JobQueue[] qJobs = new JobQueue[4] ; 
 	
 
 	/* Group and Queue Entities */
@@ -32,8 +32,6 @@ public class OfficeRepair extends AOSimulationModel
 	
 	// References to RVP and DVP objects
 	protected RVPs rvp;  // Reference to rvp object - object created in constructor
-	protected DVPs dvp = new DVPs(this);  // Reference to dvp object
-	protected UDPs udp = new UDPs(this);  
 
 	// Output object
 	protected Output output = new Output(this);
@@ -59,8 +57,8 @@ public class OfficeRepair extends AOSimulationModel
 		this.numEmployeesALL = numEmployeesALL ; 
 		
 		rEmployees = new Employee[2][] ;
-		rEmployees[Constants.Employee_T12] = new Employee[numEmployeesT12] ;
-		rEmployees[Constants.Employee_ALL] = new Employee[numEmployeesALL] ; 
+		rEmployees[Constants.EMPLOYEE_T12] = new Employee[numEmployeesT12] ;
+		rEmployees[Constants.EMPLOYEE_ALL] = new Employee[numEmployeesALL] ; 
 
 		// rgCounter and qCustLine objects created in initialize Action
 		
@@ -73,13 +71,13 @@ public class OfficeRepair extends AOSimulationModel
 		// Schedule other scheduled actions and activities here
 		// Schedule other scheduled actions
 		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
-		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
-		Call_Recieved3000 callReceived3000 = new Call_Recieved3000(this);
-		Call_Recieved4000 callReceived4000 = new Call_Recieved4000(this);
+//		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
+//		Call_Recieved3000 callReceived3000 = new Call_Recieved3000(this);
+//		Call_Recieved4000 callReceived4000 = new Call_Recieved4000(this);
 		scheduleAction(callReceived1000);
-		scheduleAction(callReceived2000);
-		scheduleAction(callReceived3000);
-		scheduleAction(callReceived4000);
+//		scheduleAction(callReceived2000);
+//		scheduleAction(callReceived3000);
+//		scheduleAction(callReceived4000);
 	}
 
 	/************  implementation of Data Modules***********/	
@@ -108,11 +106,9 @@ public class OfficeRepair extends AOSimulationModel
 		
 		if (traceFlag)
 		{
-			 System.out.println("Clock: " + getClock() + ", contractsT12Satisfied " + output.contractsT12satisfied +
-					 ", contractsT34Satisfifed " + output.contractsT34satisfied +
-					 "\n\nSatisfactionT12: "+ output.getSatisfactionLevelT12() +
-					 ", SatisfactionT34: " + output.getSatisfactionLevelT34() +
-					 ", SatifactionLevelALl" + output.getSatisfactionLevelAll()); 
+			 System.out.println("Clock: " + getClock() + "\n" +
+					 "T12Satisfied: " + output.contractsT12satisfied + " , totalT12: " + output.totalNumberT12Contracts + " , T34Satisfifed " + output.contractsT34satisfied + " , totalT34: " + output.totalNumberT34Contracts + "\n" +
+					 "SatisfactionT12: "+ output.getSatisfactionLevelT12() + " , SatisfactionT34: " + output.getSatisfactionLevelT34() + " , SatifactionLevelALl" + output.getSatisfactionLevelAll() + "\n"); 
 			 showSBL();			
 		}
 	}
