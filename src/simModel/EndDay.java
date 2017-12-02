@@ -33,7 +33,7 @@ public class EndDay {
                         if(e.call.uType2 == PREMIUM){
                             //end the call
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                model.output.contractsT12satisfied++;
+                                model.output.contractsT12satisfied+=1;
                             }
 
                             //end call, Set employee status to normal
@@ -47,7 +47,7 @@ public class EndDay {
                         if(e.call.uType2 == PREMIUM){
                             //
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                model.output.contractsT12satisfied++;
+                                model.output.contractsT12satisfied+=1;
                             }
 
                             //end call, Set employee status to normal
