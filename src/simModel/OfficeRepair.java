@@ -44,14 +44,14 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	// Constructor
-	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int numEmployeesT12, int numEmployeesALL) {
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
-		this.numEmployeesT12 = numEmployeesT12;
-		this.numEmployeesALL = numEmployeesALL;
+		this.numEmployeesT12 = addEmployeesT12;
+		this.numEmployeesALL = addEmployeesALL;
 
 		rEmployees = new Employee[2][];
 		rEmployees[Constants.EMPLOYEE_T12] = new Employee[numEmployeesT12];
@@ -62,7 +62,6 @@ public class OfficeRepair extends AOSimulationModel {
 
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);
-
 		scheduleAction(init); // Should always be first one scheduled.
 
 		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
@@ -74,6 +73,9 @@ public class OfficeRepair extends AOSimulationModel {
 		scheduleAction(callReceived2000);
 		scheduleAction(callReceived3000);
 		scheduleAction(callReceived4000);
+
+		EndDay endDay = new EndDay(this);
+		scheduleAction(endDay);
 	}
 
 	/************ implementation of Data Modules ***********/
@@ -105,13 +107,6 @@ public class OfficeRepair extends AOSimulationModel {
 			scheduleActivity(lunch);
 			statusChanged = true;
 		}
-
-		// EndDay endDay = new EndDay(this);
-		// if (endDay.precondition(this) == true) {
-		// endDay.actionEvent();
-		// scheduleAction(endDay);
-		// statusChanged = true;
-		// }
 
 		return (statusChanged);
 	}
