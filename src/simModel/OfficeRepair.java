@@ -85,50 +85,52 @@ public class OfficeRepair extends AOSimulationModel {
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
 		// Check Activity Preconditions
-		while(scanPreconditions() == true) /* repeat */;
+		while (scanPreconditions() == true)
+			/* repeat */;
 	}
-	
+
 	private boolean scanPreconditions() {
 		boolean statusChanged = false;
-		
+
 		Travel travel = new Travel(this);
 		if (travel.precondition(this) == true) {
 			travel.startingEvent();
 			scheduleActivity(travel);
 			statusChanged = true;
 		}
-		
+
 		Lunch lunch = new Lunch(this);
 		if (lunch.precondition(this) == true) {
 			lunch.startingEvent();
 			scheduleActivity(lunch);
 			statusChanged = true;
 		}
-		
-//		EndDay endDay = new EndDay(this);
-//		if (endDay.precondition(this) == true) {
-//			endDay.actionEvent();
-//			scheduleAction(endDay);
-//			statusChanged = true;
-//		}
-		
+
+		// EndDay endDay = new EndDay(this);
+		// if (endDay.precondition(this) == true) {
+		// endDay.actionEvent();
+		// scheduleAction(endDay);
+		// statusChanged = true;
+		// }
+
 		return (statusChanged);
 	}
 
 	public void eventOccured() {
 		if (traceFlag) {
 			System.out.println("Clock: " + getClock());
-			
-			System.out.println("qJobs[0].size: " + qJobs[0].size() + ", qJobs[1].size: " + qJobs[1].size()
-					+ ", qJobs[2].size: " + qJobs[2].size() + ", qJobs[3].size: " + qJobs[3].size());
-			
-			System.out.println("T12Satisfied: " + output.contractsT12satisfied + " , totalT12: "
-					+ output.totalNumberT12Contracts + " , T34Satisfifed " + output.contractsT34satisfied
-					+ " , totalT34: " + output.totalNumberT34Contracts);
-			
-			System.out.println("SatisfactionLevelT12: " + output.getSatisfactionLevelT12() + " , SatisfactionLevelT34: "
-					+ output.getSatisfactionLevelT34() + " , SatisfactionLevelAll " + output.getSatisfactionLevelAll());
-			
+
+			System.out.println("rEmployees[0].length: " + rEmployees[0].length + ", rEmployees[1].length: "
+					+ rEmployees[1].length);
+
+			System.out.println("T12Satisfied: " + output.contractsT12satisfied + ", totalT12: "
+					+ output.totalNumberT12Contracts + ", T34Satisfifed " + output.contractsT34satisfied
+					+ ", totalT34: " + output.totalNumberT34Contracts);
+
+			System.out.println("SatisfactionLevelT12: " + (Math.round(output.getSatisfactionLevelT12() * 100))
+					+ "%, SatisfactionLevelT34: " + (Math.round(output.getSatisfactionLevelT34() * 100))
+					+ "%, SatisfactionLevelAll: " + (Math.round((output.getSatisfactionLevelAll() * 100))) + "%");
+
 			showSBL();
 		}
 	}
