@@ -33,7 +33,11 @@ public class EndDay {
                         if(e.call.uType2 == PREMIUM){
                             //end the call
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                model.output.contractsT12satisfied+=1;
+                                if(e.call.uType1 == E1000 || e.call.uType1 == E2000)
+                                    model.output.contractsT12satisfied+=1;
+                                }else{
+                                    model.output.contractsT34satisfied+=1;
+                                }
                             }
 
                             //end call, Set employee status to normal
@@ -47,7 +51,11 @@ public class EndDay {
                         if(e.call.uType2 == PREMIUM){
                             //
                             if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                                model.output.contractsT12satisfied+=1;
+                                if(e.call.uType1 == E1000 || e.call.uType1 == E2000)
+                                    model.output.contractsT12satisfied+=1;
+                                }else{
+                                    model.output.contractsT34satisfied+=1;
+                                }
                             }
 
                             //end call, Set employee status to normal
