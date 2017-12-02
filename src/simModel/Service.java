@@ -24,11 +24,11 @@ public class Service {
     {
             if(e.call.uType2 == PREMIUM){
                 if ((int)model.getClock() - (int)e.call.timeIn <=180){
-                    model.output.contractsT12satisfied = model.output.contractsT12satisfied++;
+                    model.output.contractsT12satisfied +=1;
                 }
             }else{
                 if ((int)model.getClock() - (int)e.call.timeIn <=1440){
-                    model.output.contractsT12satisfied = model.output.contractsT12satisfied++;
+                    model.output.contractsT12satisfied +=1;
                 }
             }
             e.Status = Employee.StatusValues.READY_FOR_CALL;
