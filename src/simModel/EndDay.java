@@ -10,7 +10,7 @@ public class EndDay {
                         boolean returnValue = false;
 
 
-                    if (((int)simModel.getClock())%1440 == 0 )   //	rEmployees[0][1] this needs to be fixed
+                    if (((int)simModel.getClock())%1440 == 0 )
                         returnValue = true;
 
                         return(returnValue);
@@ -31,9 +31,12 @@ public class EndDay {
                 for(Employee e : model.rEmployees[model.constants.Employee_T12]){
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
                         if(e.call.uType2 == PREMIUM){
-                            //ToDo: end the call
+                            //end the call
+                            if ((int)simModel.getClock() - (int)e.call.timeIn <=180){
+                                model.output.contractsT12satisfied++;
+                            }
 
-                            //Set employee status to normal
+                            //end call, Set employee status to normal
                             e.call = null;
                             e.Status = Employee.StatusValues.READY_FOR_CALL;
                         }
@@ -42,9 +45,12 @@ public class EndDay {
                 for(Employee e : model.rEmployees[model.constants.Employee_ALL]){
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
                         if(e.call.uType2 == PREMIUM){
-                            //ToDo: end the call
+                            //
+                            if ((int)simModel.getClock() - (int)e.call.timeIn <=180){
+                                model.output.contractsT12satisfied++;
+                            }
 
-                            //Set employee status to normal
+                            //end call, Set employee status to normal
                             e.call = null;
                             e.Status = Employee.StatusValues.READY_FOR_CALL;
                         }
