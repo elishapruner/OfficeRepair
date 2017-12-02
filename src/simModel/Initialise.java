@@ -38,6 +38,11 @@ class Initialise extends ScheduledAction
 			model.rEmployees[Constants.Employee_ALL][emp_id].Status = Employee.StatusValues.READY_FOR_CALL;	
 		}	
 		
+		model.jobs[Constants.Job_1000_2000_P] = new JobQueue() ;
+		model.jobs[Constants.Job_1000_2000_B] = new JobQueue() ;
+		model.jobs[Constants.Job_1000_2000_P] = new JobQueue() ;
+		model.jobs[Constants.Job_1000_2000_B] = new JobQueue() ;
+		
 		
 		}
 		// System initialization
