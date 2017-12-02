@@ -70,7 +70,7 @@ public class Travel extends ConditionalActivity {
     {
         //ToDo: instantiate service event
     	
-        Service s = new Service(model, emp); 
+        Service s = new Service(model, emp, empType); 
     	model.spStart(s) ;
 
     }
