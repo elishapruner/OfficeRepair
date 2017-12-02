@@ -32,7 +32,7 @@ public class EndDay {
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
                         if(e.call.uType2 == PREMIUM){
                             //end the call
-                            if ((int)simModel.getClock() - (int)e.call.timeIn <=180){
+                            if ((int)model.getClock() - (int)e.call.timeIn <=180){
                                 model.output.contractsT12satisfied++;
                             }
 
@@ -59,3 +59,5 @@ public class EndDay {
         }
 	
 }
+
+	
