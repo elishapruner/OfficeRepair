@@ -10,7 +10,7 @@ public class EndDay {
                         boolean returnValue = false;
 
 
-                    if (((int)simModel.getClock())%1440 == 0 )
+                    if (((int)model.getClock())%1440 == 0 )
                         returnValue = true;
 
                         return(returnValue);
@@ -46,7 +46,7 @@ public class EndDay {
                     if(e.Status == Employee.StatusValues.SERVICING_CALL){
                         if(e.call.uType2 == PREMIUM){
                             //
-                            if ((int)simModel.getClock() - (int)e.call.timeIn <=180){
+                            if ((int)model.getClock() - (int)e.call.timeIn <=180){
                                 model.output.contractsT12satisfied++;
                             }
 
@@ -59,5 +59,3 @@ public class EndDay {
         }
 	
 }
-
-	
