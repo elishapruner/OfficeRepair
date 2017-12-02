@@ -8,12 +8,12 @@ public class Service extends SequelActivity {
 
 	OfficeRepair model; // for referencing the model
 	Employee e;
-	String empType ; 
+	String empType;
 
-	public Service(OfficeRepair model, Employee emp , String empType) {
+	public Service(OfficeRepair model, Employee emp, String empType) {
 		this.model = model;
-		this.e = emp ; 
-		this.empType = empType ;
+		this.e = emp;
+		this.empType = empType;
 	}
 
 	public void startingEvent() {
@@ -22,7 +22,7 @@ public class Service extends SequelActivity {
 
 	protected double duration() {
 		double serviceTime = 0;
-		
+
 		if (e.call.equipmentType.equals((EquipmentTypes.E1000))) {
 			serviceTime = model.rvp.uServiceTime1000();
 		} else if (e.call.equipmentType.equals((EquipmentTypes.E2000))) {
@@ -32,47 +32,48 @@ public class Service extends SequelActivity {
 		} else if (e.call.equipmentType.equals((EquipmentTypes.E4000))) {
 			serviceTime = model.rvp.uServiceTime4000();
 		}
-		
+
 		return (serviceTime);
 	}
 
 	protected void terminatingEvent() {
-		if ((e.call.equipmentType.equals((EquipmentTypes.E1000))) || (e.call.equipmentType.equals((EquipmentTypes.E2000))) ){
-			model.output.totalNumberT12Contracts += 1 ; 
+		if ((e.call.equipmentType.equals((EquipmentTypes.E1000)))
+				|| (e.call.equipmentType.equals((EquipmentTypes.E2000)))) {
+			model.output.totalNumberT12Contracts += 1;
 			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {
 					model.output.contractsT12satisfied += 1;
 				}
-			}else{
+			} else {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 1440) {
 					model.output.contractsT12satisfied += 1;
 				}
 			}
 		}
-		
-		if ((e.call.equipmentType.equals((EquipmentTypes.E3000))) || (e.call.equipmentType.equals((EquipmentTypes.E4000))) ){
-			model.output.totalNumberT34Contracts += 1 ; 
+
+		if ((e.call.equipmentType.equals((EquipmentTypes.E3000)))
+				|| (e.call.equipmentType.equals((EquipmentTypes.E4000)))) {
+			model.output.totalNumberT34Contracts += 1;
 			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {
 					model.output.contractsT34satisfied += 1;
 				}
-			}else{
+			} else {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 1440) {
 					model.output.contractsT34satisfied += 1;
 				}
 			}
 		}
-		
-		if ((model.getClock() % 1440) > 570){
+
+		if ((model.getClock() % 1440) > 570) {
 			if (empType.equals("T12")) {
-				model.output.overtimeCost +=  ((int) (model.getClock() % 1440) - 570)*model.constants.EMP_T12_OVERTIME_WAGE ; 
-			}else{
-				model.output.overtimeCost +=  ((int) (model.getClock() % 1440) - 570)*model.constants.EMP_ALL_OVERTIME_WAGE ; 
+				model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_T12_OVERTIME_WAGE;
+			} else {
+				model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_ALL_OVERTIME_WAGE;
 			}
-			
+
 		}
-		
-		
+
 		e.Status = Employee.StatusValues.READY_FOR_CALL;
 
 	}

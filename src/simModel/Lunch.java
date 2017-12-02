@@ -1,7 +1,5 @@
 package simModel;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import simulationModelling.*;
 
 class Lunch extends ConditionalActivity 
@@ -39,5 +37,4 @@ class Lunch extends ConditionalActivity
 			
 	}
 
-	
 }

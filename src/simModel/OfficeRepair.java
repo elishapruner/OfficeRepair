@@ -108,11 +108,11 @@ public class OfficeRepair extends AOSimulationModel
 		
 		if (traceFlag)
 		{
-			 System.out.println("Clock: " + getClock()+"contractsT12Satisfied "+output.contractsT12satisfied +
-					 "contractsT34Satisfifed "+output.contractsT34satisfied +
+			 System.out.println("Clock: " + getClock() + ", contractsT12Satisfied " + output.contractsT12satisfied +
+					 ", contractsT34Satisfifed " + output.contractsT34satisfied +
 					 "\n\nSatisfactionT12: "+ output.getSatisfactionLevelT12() +
-					 "SatisfactionT34: "+ output.getSatisfactionLevelT34() +
-					 "SatifactionLevelALl"+output.getSatisfactionLevelAll()); 
+					 ", SatisfactionT34: " + output.getSatisfactionLevelT34() +
+					 ", SatifactionLevelALl" + output.getSatisfactionLevelAll()); 
 			 showSBL();			
 		}
 	}

@@ -1,12 +1,12 @@
 package simModel;
 
-import simModel.DVPs.Location;
-
 public class UDPs {
 	OfficeRepair model;  // for accessing the clock
 
 	// Constructor
-	protected UDPs(OfficeRepair model) { this.model = model; }
+	protected UDPs(OfficeRepair model) { 
+		this.model = model; 
+	}
 
 //	public double distance(Location origin, Location destination) {
 //		 Location next = null;

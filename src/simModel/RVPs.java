@@ -81,38 +81,24 @@ class RVPs
 	protected double DuCallArrival1000()  // for getting next value of duInput
 	{
 	    double nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double DuCallArrival2000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival2000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = callArrival2000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double DuCallArrival3000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival3000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = callArrival3000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double DuCallArrival4000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival4000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = callArrival4000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
@@ -151,51 +137,31 @@ class RVPs
 	
 	protected double uServiceTime1000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = serviceTime1000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double uServiceTime2000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = serviceTime2000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double uServiceTime3000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
+	    double nxtInterArr = serviceTime3000.nextDouble();
 
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
 	    return(nxtInterArr + model.getClock());
 	}
 	
 	protected double uServiceTime4000()  // for getting next value of duInput
 	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	    double nxtInterArr = serviceTime4000.nextDouble();
 	    return(nxtInterArr + model.getClock());
 	}
 	
-	protected double uTravelTime()  // for getting next value of duInput
-	{
-	    double nxtInterArr;
-
-        nxtInterArr = callArrival1000.nextDouble();
-	    // Note that interarrival time is added to current
-	    // clock value to get the next arrival time.
+	protected double uTravelTime() {
+	    double nxtInterArr = travelTime.next();
 	    return(nxtInterArr + model.getClock());
 	}
 	
