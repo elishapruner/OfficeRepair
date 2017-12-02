@@ -2,8 +2,9 @@ package simModel;
 
 import simModel.Call.EquipmentTypes;
 import simModel.Call.ServiceTypes;
+import simulationModelling.SequelActivity;
 
-public class Service {
+public class Service extends SequelActivity {
 
 	OfficeRepair model; // for referencing the model
 	Employee e;
