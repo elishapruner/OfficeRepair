@@ -63,6 +63,12 @@ public class OfficeRepair extends AOSimulationModel {
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
+		
+//		StaffChange staffChangeAction = new StaffChange(this);
+//		scheduleAction(staffChangeAction);
+		
+//		EndDay endDayAction = new EndDay(this);
+//		scheduleAction(endDayAction);
 
 		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
 		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
@@ -73,9 +79,6 @@ public class OfficeRepair extends AOSimulationModel {
 		scheduleAction(callReceived2000);
 		scheduleAction(callReceived3000);
 		scheduleAction(callReceived4000);
-
-		EndDay endDay = new EndDay(this);
-		scheduleAction(endDay);
 	}
 
 	/************ implementation of Data Modules ***********/
@@ -115,8 +118,8 @@ public class OfficeRepair extends AOSimulationModel {
 		if (traceFlag) {
 			System.out.println("Clock: " + getClock());
 
-			System.out.println("rEmployees[0].length: " + rEmployees[0].length + ", rEmployees[1].length: "
-					+ rEmployees[1].length);
+			System.out.println("Number of T12 Employees: " + numEmployeesT12 + ", Number of ALL Employees: "
+					+ numEmployeesALL);
 
 			System.out.println("T12Satisfied: " + output.contractsT12satisfied + ", totalT12: "
 					+ output.totalNumberT12Contracts + ", T34Satisfifed " + output.contractsT34satisfied

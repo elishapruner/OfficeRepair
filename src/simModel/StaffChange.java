@@ -8,25 +8,28 @@ public class StaffChange extends ScheduledAction {
 	public StaffChange(OfficeRepair model) { 
 		this.model = model; 
 	}
-
-	// Implementation of timeSequence
-	private double[] staffChangeTimeSeq = {0, 90, 210, 420, 540, -1 };
-	private int sctIx = 0;
-	public double timeSequence() 
-	{ 
-		double nxtTime = staffChangeTimeSeq[sctIx];
-		sctIx++;
-		return(nxtTime); 
+	
+	@Override
+	protected double timeSequence() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	// SchedEmp Event
+	@Override
 	protected void actionEvent()
 	{
-//	    if(model.getClock() == staffChangeTimeSeq[0]) model.rgCounter.numEmp = 2;
-//	    else if(model.getClock() == staffChangeTimeSeq[1]) model.rgCounter.numEmp += model.rgCounter.addEmp;
-//	    else if(model.getClock() == staffChangeTimeSeq[2]) model.rgCounter.numEmp -= model.rgCounter.addEmp;
-//	    else if(model.getClock() == staffChangeTimeSeq[3]) model.rgCounter.numEmp += model.rgCounter.addEmp;
-//	    else if(model.getClock() == staffChangeTimeSeq[4]) model.rgCounter.numEmp -= model.rgCounter.addEmp;
-//	    else System.out.println("Invalid time to schedule employees:"+model.getClock());
+		if ((((int) model.getClock()) % 1440) % 960 == 0) {
+			if (model.output.getSatisfactionLevelT12() < 0.85) {
+				model.numEmployeesT12 += 1;
+				System.out.println("Added 1 employee to EmployeeT12");
+			}
+			
+			if (model.output.getSatisfactionLevelT34() < 0.85) {
+				model.numEmployeesALL += 1;
+				System.out.println("Added 1 employee to EmployeeALL");
+			}
+		}
 	}
+
 }
