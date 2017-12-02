@@ -7,7 +7,7 @@ public class Travel extends ConditionalActivity {
 	Employee emp;
 	String empType = "none";
 
-	public Travel(OfficeRepair model, Employee emp) {
+	public Travel(OfficeRepair model) {
 		this.model = model;
 	}
 
@@ -67,6 +67,5 @@ public class Travel extends ConditionalActivity {
 	protected void terminatingEvent() {
 		Service s = new Service(model, emp, empType);
 		model.spStart(s);
-
 	}
 }

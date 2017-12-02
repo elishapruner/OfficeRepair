@@ -10,7 +10,7 @@ public class Service extends SequelActivity {
 	Employee e;
 	String empType;
 
-	public Service(OfficeRepair model, Employee emp, String empType) {
+	public Service (OfficeRepair model, Employee emp, String empType) {
 		this.model = model;
 		this.e = emp;
 		this.empType = empType;

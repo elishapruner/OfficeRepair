@@ -84,8 +84,35 @@ public class OfficeRepair extends AOSimulationModel {
 
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
-		// Check preconditions of Conditional Activities
-		// Check preconditions of interruptions in Extended Activities
+		// Check Activity Preconditions
+		while(scanPreconditions() == true) /* repeat */;
+	}
+	
+	private boolean scanPreconditions() {
+		boolean statusChanged = false;
+		
+		Travel travel = new Travel(this);
+		if (travel.precondition(this) == true) {
+			travel.startingEvent();
+			scheduleActivity(travel);
+			statusChanged = true;
+		}
+		
+		Lunch lunch = new Lunch(this);
+		if (lunch.precondition(this) == true) {
+			lunch.startingEvent();
+			scheduleActivity(lunch);
+			statusChanged = true;
+		}
+		
+//		EndDay endDay = new EndDay(this);
+//		if (endDay.precondition(this) == true) {
+//			endDay.actionEvent();
+//			scheduleAction(endDay);
+//			statusChanged = true;
+//		}
+		
+		return (statusChanged);
 	}
 
 	public void eventOccured() {

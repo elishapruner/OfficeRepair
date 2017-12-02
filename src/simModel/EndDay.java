@@ -1,9 +1,9 @@
 package simModel;
 
-import simulationModelling.ConditionalAction;
+import simulationModelling.ScheduledAction;
 
-public class EndDay extends ConditionalAction {
-
+public class EndDay extends ScheduledAction {
+	
 	OfficeRepair model;
 
 	public EndDay(OfficeRepair model) {
@@ -23,7 +23,8 @@ public class EndDay extends ConditionalAction {
 		return 0;
 	}
 
-	public void actionEvent() {
+	@Override
+	protected void actionEvent() {
 		double numEmployeeT12 = (double) model.numEmployeesT12;
 		double numEmployeeALL = (double) model.numEmployeesALL;
 
@@ -39,4 +40,6 @@ public class EndDay extends ConditionalAction {
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 	}
+	
 }
+
