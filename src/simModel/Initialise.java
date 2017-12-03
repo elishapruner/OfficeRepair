@@ -37,12 +37,12 @@ class Initialise extends ScheduledAction {
 		
 		for (int emp_id = 0; emp_id < model.numEmployeesT12; emp_id++) {
 			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
-			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 
 		}
 		for (int emp_id = 0; emp_id < model.numEmployeesALL; emp_id++) {
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 		}
 		
 		ArrayList<Call> qJob_1000_2000_P = new ArrayList<Call>();

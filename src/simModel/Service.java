@@ -17,7 +17,7 @@ public class Service extends SequelActivity {
 	}
 
 	public void startingEvent() {
-		e.Status = Employee.StatusValues.SERVICING_CALL;
+		e.status = Employee.StatusValues.SERVICING_CALL;
 	}
 
 	protected double duration() {
@@ -72,7 +72,7 @@ public class Service extends SequelActivity {
 
 		}
 
-		e.Status = Employee.StatusValues.READY_FOR_CALL;
+		e.status = Employee.StatusValues.READY_FOR_CALL;
 
 	}
 

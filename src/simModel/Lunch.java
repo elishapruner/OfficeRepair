@@ -19,10 +19,10 @@ class Lunch extends ConditionalActivity
 				Employee e = model.rEmployees.get(i).get(j);
 				
 				if (i == Constants.EMPLOYEE_T12) {
-					if (e.Status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
 				    	returnValue = true;
 				} else {
-					if (e.Status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
 				    	returnValue = true;
 				}
 			}
@@ -32,7 +32,7 @@ class Lunch extends ConditionalActivity
 	}
 
 	public void startingEvent() {
-		e.Status = Employee.StatusValues.TAKING_LUNCH;
+		e.status = Employee.StatusValues.TAKING_LUNCH;
 	}
 
 	protected double duration() {
@@ -40,8 +40,8 @@ class Lunch extends ConditionalActivity
 	}
 
 	protected void terminatingEvent() {
-		e.Status = Employee.StatusValues.READY_FOR_CALL;
-		e.LunchTaken = true;
+		e.status = Employee.StatusValues.READY_FOR_CALL;
+		e.lunchTaken = true;
 			
 	}
 

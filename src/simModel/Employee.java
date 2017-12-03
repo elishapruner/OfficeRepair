@@ -7,10 +7,9 @@ public class Employee {
 	
 	//Represents the current status of the employee.
 	public static enum StatusValues {READY_FOR_CALL, TAKING_LUNCH, SERVICING_CALL};
-	public StatusValues Status;
+	public StatusValues status;
 	
 	//Whether or not the employee has taken lunch that day
-	boolean LunchTaken;
+	boolean lunchTaken;
 	public Call call;
-	protected static final Call NO_CALL = null; 
 }

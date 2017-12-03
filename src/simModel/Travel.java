@@ -19,7 +19,7 @@ public class Travel extends ConditionalActivity {
 				Employee e = model.rEmployees.get(i).get(j);
 				
 				if (i == Constants.EMPLOYEE_T12) {
-					if (e.Status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0
 							|| model.qJobs.get(Constants.Job_1000_2000_B).size() > 0)) {
 						returnValue = true;
 						emp = e;
@@ -27,7 +27,7 @@ public class Travel extends ConditionalActivity {
 						return (returnValue);
 					}
 				} else {
-					if (e.Status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_3000_4000_P).size() > 0
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_3000_4000_P).size() > 0
 							|| model.qJobs.get(Constants.Job_3000_4000_B).size() > 0)) {
 						returnValue = true;
 						emp = e;
@@ -60,7 +60,7 @@ public class Travel extends ConditionalActivity {
 				emp.call = model.qJobs.get(Constants.Job_1000_2000_B).remove(0);
 			}
 		}
-		emp.Status = Employee.StatusValues.SERVICING_CALL;
+		emp.status = Employee.StatusValues.SERVICING_CALL;
 
 	}
 

@@ -19,10 +19,5 @@ public class Call {
 
 	// Time that the call was entered into the system.
 	double timeIn;
-
-	@Override
-	public String toString() {
-		return String.format(equipmentType.name(), serviceType.name(), "[timeIn: %s]");
-	}
-
+	
 }

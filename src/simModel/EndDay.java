@@ -31,7 +31,7 @@ public class EndDay extends ScheduledAction {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < model.rEmployees.get(i).size(); j++) {
 				Employee e = model.rEmployees.get(i).get(j);
-				e.LunchTaken = false;
+				e.lunchTaken = false;
 			}
 		}
 
@@ -49,7 +49,7 @@ public class EndDay extends ScheduledAction {
 			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
 			
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 			System.out.println("Added 1 employee to EmployeeT12");
 		} else {
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
@@ -61,7 +61,7 @@ public class EndDay extends ScheduledAction {
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
 			
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 			System.out.println("Added 1 employee to EmployeeALL");
 		} else {
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
