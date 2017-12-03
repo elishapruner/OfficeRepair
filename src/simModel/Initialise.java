@@ -26,7 +26,7 @@ class Initialise extends ScheduledAction {
 		model.output.fixedTotalCost = 0;
 		model.output.overtimeCost = 0;
 		model.output.averageDailyCost = 0.0; // this SSOV is a double
-
+		
 		for (int emp_id = 0; emp_id < model.numEmployeesT12; emp_id++) {
 			model.rEmployees[Constants.EMPLOYEE_T12][emp_id] = new Employee();
 			model.rEmployees[Constants.EMPLOYEE_T12][emp_id].Status = Employee.StatusValues.READY_FOR_CALL;
@@ -37,10 +37,10 @@ class Initialise extends ScheduledAction {
 			model.rEmployees[Constants.EMPLOYEE_ALL][emp_id].Status = Employee.StatusValues.READY_FOR_CALL;
 		}
 
-		model.qJobs[Constants.Job_1000_2000_P] = new JobQueue();
-		model.qJobs[Constants.Job_1000_2000_B] = new JobQueue();
-		model.qJobs[Constants.Job_3000_4000_P] = new JobQueue();
-		model.qJobs[Constants.Job_3000_4000_B] = new JobQueue();
+		model.qJobs[Constants.Job_1000_2000_P] = new ArrayOfQueues<Call>();
+		model.qJobs[Constants.Job_1000_2000_B] = new ArrayOfQueues<Call>();
+		model.qJobs[Constants.Job_3000_4000_P] = new ArrayOfQueues<Call>();
+		model.qJobs[Constants.Job_3000_4000_B] = new ArrayOfQueues<Call>();
 	}
 
 }

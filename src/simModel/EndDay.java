@@ -20,7 +20,7 @@ public class EndDay extends ScheduledAction {
 	}
 
 	public double timeSequence() {
-		return 0;
+		return model.getClock(); 
 	}
 
 	@Override

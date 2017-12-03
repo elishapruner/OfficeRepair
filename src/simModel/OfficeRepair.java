@@ -1,5 +1,7 @@
 package simModel;
 
+import java.util.ArrayList;
+
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
 import simulationModelling.SequelActivity;
@@ -17,7 +19,9 @@ public class OfficeRepair extends AOSimulationModel {
 	/*-------------Entity Data Structures-------------------*/
 	// Array of Employees with two indices : emp_type and emp_id
 	protected Employee[][] rEmployees;
-	protected JobQueue[] qJobs = new JobQueue[4];
+//	protected ArrayOfQueues<Employee>[] rEmployees;
+	protected ArrayOfQueues<Call>[] qJobs;
+//	<ArrayList<ArrayList<Double>> qJobs;
 
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
@@ -47,15 +51,20 @@ public class OfficeRepair extends AOSimulationModel {
 	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
-
-		// Create RVP object with given seed
-		rvp = new RVPs(this, sd);
+		
+		// Parameters
 		this.numEmployeesT12 = addEmployeesT12;
 		this.numEmployeesALL = addEmployeesALL;
 
+		// Create RVP object with given seed
+		rvp = new RVPs(this, sd);
+
+//		rEmployees = new ArrayOfQueues[2];
 		rEmployees = new Employee[2][];
 		rEmployees[Constants.EMPLOYEE_T12] = new Employee[numEmployeesT12];
 		rEmployees[Constants.EMPLOYEE_ALL] = new Employee[numEmployeesALL];
+		
+		qJobs = new ArrayOfQueues[4];
 
 		// initialize the simulation model
 		initAOSimulModel(t0time);
@@ -64,8 +73,8 @@ public class OfficeRepair extends AOSimulationModel {
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
 		
-//		StaffChange staffChangeAction = new StaffChange(this);
-//		scheduleAction(staffChangeAction);
+		UpdateNumEmp updateNumEmpAction = new UpdateNumEmp(this);
+		scheduleAction(updateNumEmpAction);
 		
 //		EndDay endDayAction = new EndDay(this);
 //		scheduleAction(endDayAction);

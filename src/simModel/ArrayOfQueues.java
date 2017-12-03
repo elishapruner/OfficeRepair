@@ -3,15 +3,15 @@ package simModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobQueue {
+public class ArrayOfQueues<T> {
 
-	List<Call> queue = new ArrayList<>();
+	List<T> queue = new ArrayList<T>();
 
-	public void spInsertJobQue(Call call) {
-		queue.add(call);
+	public void spInsertJobQue(T item) {
+		queue.add(item);
 	}
 
-	public Call spRemoveQue() {
+	public T spRemoveQue() {
 		if (queue.size() != 0) {
 			return queue.remove(0);
 		} else {
