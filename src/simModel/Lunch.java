@@ -16,7 +16,7 @@ class Lunch extends ConditionalActivity
 		
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < model.rEmployees.get(i).size(); j++) {
-				Employee e = model.rEmployees.get(i).get(j);
+				e = model.rEmployees.get(i).get(j);
 				
 				if (i == Constants.EMPLOYEE_T12) {
 					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   

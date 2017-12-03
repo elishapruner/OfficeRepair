@@ -10,17 +10,9 @@ public class EndDay extends ScheduledAction {
 		this.model = model;
 	}
 
-	protected boolean precondition(OfficeRepair simModel) {
-		boolean returnValue = false;
-
-		if ((((int) model.getClock()) % 1440) % 960 == 0)
-			returnValue = true;
-
-		return (returnValue);
-	}
-
 	public double timeSequence() {
-		return model.getClock() + 1; 
+		//return (double) ((int) model.getClock() % 1440) +960; 
+		return (double) (960 + 1440*(Math.floor(((int) model.getClock()) / 1440))) ;
 	}
 
 	@Override
@@ -39,25 +31,7 @@ public class EndDay extends ScheduledAction {
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 
-		updateNumEmployees();
 	}
 	
-	private void updateNumEmployees() {
-		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
-			model.numEmployeesALL += 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
-			
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
-			System.out.println("Added 1 employee to EmployeeALL");
-		} else if (model.output.getSatisfactionLevelT12() < model.satisfactionLevel) {
-			model.numEmployeesT12 += 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
-			
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
-			System.out.println("Added 1 employee to EmployeeT12");
-		}
-	}
 }
 

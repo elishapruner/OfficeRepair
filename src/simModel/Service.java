@@ -24,13 +24,17 @@ public class Service extends SequelActivity {
 		double serviceTime = 0;
 
 		if (e.call.equipmentType == EquipmentTypes.E1000) {
-			serviceTime = model.rvp.uServiceTime1000() / 60;
+			serviceTime = model.rvp.uServiceTime1000();
+			System.out.println("Service time 1000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E2000) {
-			serviceTime = model.rvp.uServiceTime2000() / 60;
+			serviceTime = model.rvp.uServiceTime2000();
+			System.out.println("Service time 2000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E3000) {
-			serviceTime = model.rvp.uServiceTime3000() / 60;
+			serviceTime = model.rvp.uServiceTime3000();
+			System.out.println("Service time 3000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
-			serviceTime = model.rvp.uServiceTime4000() / 60;
+			serviceTime = model.rvp.uServiceTime4000();
+			System.out.println("Service time 4000: " + serviceTime);
 		}
 
 		return (serviceTime);
@@ -73,27 +77,8 @@ public class Service extends SequelActivity {
 		}
 
 		e.status = Employee.StatusValues.READY_FOR_CALL;
-		
-//		updateNumEmployees();
-
-	}
 	
-	private void updateNumEmployees() {
-		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
-			model.numEmployeesALL += 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
-			
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
-			System.out.println("Added 1 employee to EmployeeALL");
-		} else if (model.output.getSatisfactionLevelT12() < model.satisfactionLevel) {
-			model.numEmployeesT12 += 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
-			
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
-			System.out.println("Added 1 employee to EmployeeT12");
-		}
+
 	}
 
 }

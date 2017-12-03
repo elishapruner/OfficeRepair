@@ -120,7 +120,7 @@ class RVPs
 	}
 
 	protected double uServiceTime1000() {
-	    return (serviceTime1000.nextDouble()  + model.getClock());
+	    return (serviceTime1000.nextDouble() + model.getClock());
 	}
 	
 	protected double uServiceTime2000() {
@@ -128,11 +128,11 @@ class RVPs
 	}
 	
 	protected double uServiceTime3000() {
-	    return (serviceTime3000.nextDouble()  + model.getClock());
+	    return (serviceTime3000.nextDouble() + model.getClock());
 	}
 	
 	protected double uServiceTime4000()  {
-	    return (serviceTime4000.nextDouble()  + model.getClock());
+	    return (serviceTime4000.nextDouble() + model.getClock());
 	}
 	
 	protected double uTravelTime() {
@@ -141,80 +141,80 @@ class RVPs
 	
 	
 	private double getMean1000() {
-		int timeCategory = (int)(model.getClock() / 60) % 24;
+		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 7; break;
-		case 1: mean = 12; break;
-		case 2: mean = 10; break;
-		case 3: mean = 7; break;
-		case 4: mean = 5; break;
-		case 5: mean = 4; break;
-		case 6: mean = 5; break;
-		case 7: mean = 4; break;
-		case 8: mean = 3; break;
-		default: mean = 0; break;
+		case 0: mean = 60 / 7; 	break;
+		case 1: mean = 60 / 12; 	break;
+		case 2: mean = 60 / 10; 	break;
+		case 3: mean = 60 / 7; 	break;
+		case 4: mean = 60 / 5; 	break;
+		case 5: mean = 60 / 4; 	break;
+		case 6: mean = 60 / 5; 	break;
+		case 7: mean = 60 / 40; 	break;
+		case 8: mean = 60 / 3; 	break;
+		default: mean = 1; 		break;
 		}
 		
 		return mean;
 	}
 	
 	private double getMean2000() {
-		int timeCategory = (int)(model.getClock() / 60) % 24;
+		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 8; break;
-		case 1: mean = 11; break;
-		case 2: mean = 8; break;
-		case 3: mean = 9; break;
-		case 4: mean = 6; break;
-		case 5: mean = 4; break;
-		case 6: mean = 3; break;
-		case 7: mean = 3; break;
-		case 8: mean = 2; break;
-		default: mean = 0; break;
+		case 0: mean = 60 / 8; 	break;
+		case 1: mean = 60 / 11; 	break;
+		case 2: mean = 60 / 8; 	break;
+		case 3: mean = 60 / 9; 	break;
+		case 4: mean = 60 / 6; 	break;
+		case 5: mean = 60 / 4; 	break;
+		case 6: mean = 60 / 3; 	break;
+		case 7: mean = 60 / 3; 	break;
+		case 8: mean = 60 / 2; 	break;
+		default: mean = 0; 		break;
 		}
 		
 		return mean;
 	}
 	
 	private double getMean3000() {
-		int timeCategory = (int)(model.getClock() / 60) % 24;
+		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 5; break;
-		case 1: mean = 6; break;
-		case 2: mean = 5; break;
-		case 3: mean = 4; break;
-		case 4: mean = 3; break;
-		case 5: mean = 3; break;
-		case 6: mean = 2; break;
-		case 7: mean = 2; break;
-		case 8: mean = 1; break;
-		default: mean = 0; break;
+		case 0: mean = 60 / 5; 	break;
+		case 1: mean = 60 / 6; 	break;
+		case 2: mean = 60 / 5; 	break;
+		case 3: mean = 60 / 4; 	break;
+		case 4: mean = 60 / 3; 	break;
+		case 5: mean = 60 / 3; 	break;
+		case 6: mean = 60 / 2; 	break;
+		case 7: mean = 60 / 2; 	break;
+		case 8: mean = 60 / 1; 	break;
+		default: mean = 0; 		break;
 		}
 		
 		return mean;
 	}
 	
 	private double getMean4000() {
-		int timeCategory = (int)(model.getClock() / 60) % 24;
+		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 2; break;
-		case 1: mean = 3; break;
-		case 2: mean = 4; break;
-		case 3: mean = 3; break;
-		case 4: mean = 2; break;
-		case 5: mean = 1; break;
-		case 6: mean = 1; break;
-		case 7: mean = 1; break;
-		case 8: mean = 1; break;
-		default: mean = 0; break;
+		case 0: mean = 60 / 2; 	break;
+		case 1: mean = 60 / 3; 	break;
+		case 2: mean = 60 / 4; 	break;
+		case 3: mean = 60 / 3; 	break;
+		case 4: mean = 60 / 2; 	break;
+		case 5: mean = 60 / 1; 	break;
+		case 6: mean = 60 / 1; 	break;
+		case 7: mean = 60 / 1; 	break;
+		case 8: mean = 60 / 1; 	break;
+		default: mean = 0; 		break;
 		}
 		
 		return mean;

@@ -9,7 +9,7 @@ import simModel.*;
 //
 public class Experiment {
 	public static void main(String[] args) {
-		int NUMRUNS = 2;
+		int NUMRUNS = 1;
 		double startTime = 0.0;
 		Seeds[] sds = new Seeds[NUMRUNS];
 		OfficeRepair officeRepair; // Simulation object
@@ -22,12 +22,12 @@ public class Experiment {
 		int initNumEmpT12 = 1;
 		int initNumEmpAll = 1;
 		double satisfaction = 0.85;
-		double simTime = 10;
+		double minSimTime = 100;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		
 		for (int i = 0; i < NUMRUNS; i++) {
-			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll, satisfaction, simTime);
+			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll, satisfaction, minSimTime);
 			officeRepair.runSimulation();
 			runOutput[i][0] = officeRepair.numEmployeesT12;
 			runOutput[i][1] = officeRepair.numEmployeesALL;

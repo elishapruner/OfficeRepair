@@ -16,7 +16,7 @@ public class OfficeRepair extends AOSimulationModel {
 	public int numEmployeesT12;
 	public int numEmployeesALL;
 	double satisfactionLevel;
-	double simTime;
+	double minSimTime;
 
 	/*-------------Entity Data Structures-------------------*/
 	protected ArrayList<ArrayList<Employee>> rEmployees;
@@ -46,7 +46,7 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	// Constructor
-	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction, double time) {
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction, double minTime) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 		
@@ -54,7 +54,7 @@ public class OfficeRepair extends AOSimulationModel {
 		numEmployeesT12 = addEmployeesT12;
 		numEmployeesALL = addEmployeesALL;
 		satisfactionLevel = satisfaction;
-		simTime = time;
+		minSimTime = minTime;
 
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
@@ -68,6 +68,9 @@ public class OfficeRepair extends AOSimulationModel {
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
+		
+		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
+		scheduleAction(updateNumEmp);
 
 		Call_Received1000 callReceived1000 = new Call_Received1000(this);
 		Call_Received2000 callReceived2000 = new Call_Received2000(this);
@@ -103,10 +106,10 @@ public class OfficeRepair extends AOSimulationModel {
 //			statusChanged = true;
 //		}
 		
-		EndDay endDayAction = new EndDay(this);
-		if (endDayAction.precondition(this) == true) {
-			scheduleAction(endDayAction);
-		}
+//		EndDay endDayAction = new EndDay(this);
+//		if (endDayAction.precondition(this) == true) {
+//			scheduleAction(endDayAction);
+//		}
 	}
 
 
@@ -127,12 +130,13 @@ public class OfficeRepair extends AOSimulationModel {
 			
 			System.out.println("----------------------------------------------------------------------------");
 
-			showSBL();
+//			showSBL();
 		}
 	}
 	
 	public boolean implicitStopCondition() {
-		return getClock() >= simTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
+//		return getClock() >= minSimTime;
+		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
