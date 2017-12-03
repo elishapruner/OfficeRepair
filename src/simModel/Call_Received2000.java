@@ -3,15 +3,17 @@ package simModel;
 import simModel.Call.EquipmentTypes;
 import simulationModelling.ScheduledAction;
 
-class Call_Recieved2000 extends ScheduledAction {
+class Call_Received2000 extends ScheduledAction {
 	OfficeRepair model;
 
-	public Call_Recieved2000(OfficeRepair model) {
+	public Call_Received2000(OfficeRepair model) {
 		this.model = model;
 	}
 
 	public double timeSequence() {
-		return model.rvp.DuCallArrival2000(); 
+		double time = model.rvp.DuCallArrival2000(); 
+		System.out.println("Call 2000: " + time);
+		return time; 
 	}
 
 	public void actionEvent() {

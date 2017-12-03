@@ -3,24 +3,26 @@ package simModel;
 import simModel.Call.EquipmentTypes;
 import simulationModelling.ScheduledAction;
 
-class Call_Recieved3000 extends ScheduledAction {
+class Call_Received4000 extends ScheduledAction {
 	OfficeRepair model;
 
-	public Call_Recieved3000(OfficeRepair model) {
+	public Call_Received4000(OfficeRepair model) {
 		this.model = model;
 	}
 
 	public double timeSequence() {
-		return model.rvp.DuCallArrival3000(); 
+		double time = model.rvp.DuCallArrival4000(); 
+		System.out.println("Call 4000: " + time);
+		return time;
 	}
 
 	public void actionEvent() {
 		Call icCall = new Call();
 		
-		icCall.equipmentType = EquipmentTypes.E3000;
-		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E3000); 
+		icCall.equipmentType = EquipmentTypes.E4000;
+		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E4000);
 		icCall.timeIn = model.getClock();
-
+		
 		if (icCall.serviceType == Call.ServiceTypes.BASIC){
 			model.qJobs.get(Constants.Job_3000_4000_B).add(icCall);
 		} else { 	

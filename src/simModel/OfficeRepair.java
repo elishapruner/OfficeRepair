@@ -67,10 +67,10 @@ public class OfficeRepair extends AOSimulationModel {
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
 
-		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
-		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
-		Call_Recieved3000 callReceived3000 = new Call_Recieved3000(this);
-		Call_Recieved4000 callReceived4000 = new Call_Recieved4000(this);
+		Call_Received1000 callReceived1000 = new Call_Received1000(this);
+		Call_Received2000 callReceived2000 = new Call_Received2000(this);
+		Call_Received3000 callReceived3000 = new Call_Received3000(this);
+		Call_Received4000 callReceived4000 = new Call_Received4000(this);
 
 		scheduleAction(callReceived1000);
 		scheduleAction(callReceived2000);
