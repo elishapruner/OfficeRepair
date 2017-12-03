@@ -50,7 +50,7 @@ public class Service extends SequelActivity {
 			}
 		}
 
-		if ((e.call.equipmentType == EquipmentTypes.E3000)|| (e.call.equipmentType == EquipmentTypes.E4000)) {
+		if ((e.call.equipmentType == EquipmentTypes.E3000) || (e.call.equipmentType == EquipmentTypes.E4000)) {
 			model.output.totalNumberT34Contracts += 1;
 			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {

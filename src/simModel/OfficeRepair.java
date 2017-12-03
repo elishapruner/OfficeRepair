@@ -17,11 +17,8 @@ public class OfficeRepair extends AOSimulationModel {
 	int numEmployeesALL;
 
 	/*-------------Entity Data Structures-------------------*/
-	// Array of Employees with two indices : emp_type and emp_id
-	protected Employee[][] rEmployees;
-//	protected ArrayOfQueues<Employee>[] rEmployees;
-	protected ArrayOfQueues<Call>[] qJobs;
-//	<ArrayList<ArrayList<Double>> qJobs;
+	protected ArrayList<ArrayList<Employee>> rEmployees;
+	protected ArrayList<ArrayList<Call>> qJobs;
 
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
@@ -29,8 +26,7 @@ public class OfficeRepair extends AOSimulationModel {
 	// Output object
 	protected Output output = new Output(this);
 
-	// Output values - define the public methods that return values required for
-	// experimentation.
+	// Output values - define the public methods that return values required for experimentation.
 	public double getSatisfactionLevelT12() {
 		return output.getSatisfactionLevelT12();
 	}
@@ -59,12 +55,8 @@ public class OfficeRepair extends AOSimulationModel {
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
 
-//		rEmployees = new ArrayOfQueues[2];
-		rEmployees = new Employee[2][];
-		rEmployees[Constants.EMPLOYEE_T12] = new Employee[numEmployeesT12];
-		rEmployees[Constants.EMPLOYEE_ALL] = new Employee[numEmployeesALL];
-		
-		qJobs = new ArrayOfQueues[4];
+		rEmployees = new ArrayList<>();
+		qJobs = new ArrayList<>();
 
 		// initialize the simulation model
 		initAOSimulModel(t0time);
@@ -72,12 +64,6 @@ public class OfficeRepair extends AOSimulationModel {
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
-		
-		UpdateNumEmp updateNumEmpAction = new UpdateNumEmp(this);
-		scheduleAction(updateNumEmpAction);
-		
-//		EndDay endDayAction = new EndDay(this);
-//		scheduleAction(endDayAction);
 
 		Call_Recieved1000 callReceived1000 = new Call_Recieved1000(this);
 		Call_Recieved2000 callReceived2000 = new Call_Recieved2000(this);
@@ -118,6 +104,15 @@ public class OfficeRepair extends AOSimulationModel {
 			lunch.startingEvent();
 			scheduleActivity(lunch);
 			statusChanged = true;
+		}
+		
+//		EndDay endDayAction = new EndDay(this);
+//		if (endDayAction.precondition(this) == true) {
+//			scheduleAction(endDayAction);
+//		}
+		
+		if (output.getSatisfactionLevelT12() > 0.85 && output.getSatisfactionLevelT34() > 0.85) {
+			statusChanged = false;
 		}
 
 		return (statusChanged);
