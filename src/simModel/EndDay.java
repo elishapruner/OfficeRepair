@@ -54,6 +54,7 @@ public class EndDay extends ScheduledAction {
 		} else {
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
 			model.rEmployees.get(Constants.EMPLOYEE_T12).remove(emp_id);
+			System.out.println("Removed 1 employee to EmployeeT12");
 		}
 		
 		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
@@ -66,6 +67,7 @@ public class EndDay extends ScheduledAction {
 		} else {
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).remove(emp_id);
+			System.out.println("Removed 1 employee to EmployeeALL");
 		}
 	}
 	
