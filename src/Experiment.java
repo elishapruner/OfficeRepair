@@ -19,10 +19,10 @@ public class Experiment {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 1;
-		int initNumEmpAll = 1;
+		int initNumEmpT12 = 10;
+		int initNumEmpAll = 10;
 		double satisfaction = 0.85;
-		double minSimTime = 1440;
+		double minSimTime = 1440 * 0.2;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		

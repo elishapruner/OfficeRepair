@@ -77,10 +77,12 @@ public class OfficeRepair extends AOSimulationModel {
 		Call_Received3000 callReceived3000 = new Call_Received3000(this);
 		Call_Received4000 callReceived4000 = new Call_Received4000(this);
 
-		scheduleAction(callReceived1000);
-		scheduleAction(callReceived2000);
-		scheduleAction(callReceived3000);
-		scheduleAction(callReceived4000);
+		if ((getClock() % 1440) >= 0 ||  (getClock() % 1440) < 540) {
+			scheduleAction(callReceived1000);
+			scheduleAction(callReceived2000);
+			scheduleAction(callReceived3000);
+			scheduleAction(callReceived4000);
+		}
 	}
 
 	/************ implementation of Data Modules ***********/
@@ -134,8 +136,8 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 	
 	public boolean implicitStopCondition() {
-//		return getClock() >= minSimTime;
-		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
+		return getClock() >= minSimTime;
+//		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters

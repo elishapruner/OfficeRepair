@@ -13,14 +13,14 @@ class Call_Received4000 extends ScheduledAction {
 	public double timeSequence() {
 		double time = model.rvp.DuCallArrival4000();
 		System.out.println("Arrival 4000: " + time);
-		return time;
+		return time + model.getClock();
 	}
 
 	public void actionEvent() {
 		Call icCall = new Call();
 		
 		icCall.equipmentType = EquipmentTypes.E4000;
-		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E4000);
+//		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E4000);
 		icCall.timeIn = model.getClock();
 		
 		if (icCall.serviceType == Call.ServiceTypes.BASIC){

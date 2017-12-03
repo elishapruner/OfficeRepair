@@ -25,16 +25,16 @@ public class Service extends SequelActivity {
 
 		if (e.call.equipmentType == EquipmentTypes.E1000) {
 			serviceTime = model.rvp.uServiceTime1000();
-			System.out.println("Service time 1000: " + serviceTime);
+//			System.out.println("Service time 1000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E2000) {
 			serviceTime = model.rvp.uServiceTime2000();
-			System.out.println("Service time 2000: " + serviceTime);
+//			System.out.println("Service time 2000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E3000) {
 			serviceTime = model.rvp.uServiceTime3000();
-			System.out.println("Service time 3000: " + serviceTime);
+//			System.out.println("Service time 3000: " + serviceTime);
 		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
 			serviceTime = model.rvp.uServiceTime4000();
-			System.out.println("Service time 4000: " + serviceTime);
+//			System.out.println("Service time 4000: " + serviceTime);
 		}
 
 		return (serviceTime);
@@ -52,11 +52,11 @@ public class Service extends SequelActivity {
 					model.output.contractsT12satisfied += 1;
 				}
 			}
-		}
-
+		} 
+		
 		if ((e.call.equipmentType == EquipmentTypes.E3000) || (e.call.equipmentType == EquipmentTypes.E4000)) {
 			model.output.totalNumberT34Contracts += 1;
-			if (e.call.serviceType.equals(ServiceTypes.PREMIUM)) {
+			if (e.call.serviceType == ServiceTypes.PREMIUM) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {
 					model.output.contractsT34satisfied += 1;
 				}
@@ -77,10 +77,10 @@ public class Service extends SequelActivity {
 		}
 
 		e.status = Employee.StatusValues.READY_FOR_CALL;
-	
+
 		updateNumEmployees();
 	}
-	
+
 	private void updateNumEmployees() {
 		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
 			model.numEmployeesALL += 1;
@@ -98,5 +98,4 @@ public class Service extends SequelActivity {
 			System.out.println("Added 1 employee to EmployeeT12");
 		}
 	}
-
 }

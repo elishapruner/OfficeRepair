@@ -10,25 +10,15 @@ import simModel.Call.ServiceTypes;
 class RVPs 
 {
 	OfficeRepair model; // for accessing the clock
+	Seeds seed;
 
 	// Constructor
 	protected RVPs(OfficeRepair model, Seeds sd) 
 	{ 
 		this.model = model; 
+		seed = sd;
 		
-		// Set up distribution functions		
-		double meanCallArr1000 = getMean1000();
-		callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(sd.callArrival1000));
-		
-		double meanCallArr2000 = getMean2000();
-		callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(sd.callArrival2000));
-		
-		double meanCallArr3000 = getMean3000();
-		callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(sd.callArrival3000));
-		
-		double meanCallArr4000 = getMean4000();
-		callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(sd.callArrival4000));
-		
+		// Set up distribution functions			
 		serviceTime1000 =  new Normal(meanSrvTm1000, stdDevSrvTm1000, new MersenneTwister(sd.serviceTime1000));
 		serviceTime2000 =  new Normal(meanSrvTm2000, stdDevSrvTm2000, new MersenneTwister(sd.serviceTime2000));
 		serviceTime3000 =  new Normal(meanSrvTm3000, stdDevSrvTm3000, new MersenneTwister(sd.serviceTime3000));
@@ -104,39 +94,51 @@ class RVPs
 	}
 	
 	protected double DuCallArrival1000() {
-	    return (callArrival1000.nextDouble() + model.getClock());
+		double meanCallArr1000 = getMean1000();
+		System.out.println("1000: " + meanCallArr1000);
+		callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
+		return callArrival1000.nextDouble();
 	}
 	
 	protected double DuCallArrival2000() {
-	    return(callArrival2000.nextDouble() + model.getClock());
+		double meanCallArr2000 = getMean2000();
+		System.out.println("2000: " + meanCallArr2000);
+		callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
+	    return callArrival2000.nextDouble();
 	}
 	
 	protected double DuCallArrival3000() {
-	    return (callArrival3000.nextDouble() + model.getClock());
+		double meanCallArr3000 = getMean3000();
+		System.out.println("3000: " + meanCallArr3000);
+		callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
+	    return callArrival3000.nextDouble();
 	}
 	
 	protected double DuCallArrival4000() {
-	    return (callArrival4000.nextDouble() + model.getClock());
+		double meanCallArr4000 = getMean4000();
+		System.out.println("4000: " + meanCallArr4000);
+		callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
+	    return callArrival4000.nextDouble();
 	}
 
 	protected double uServiceTime1000() {
-	    return (serviceTime1000.nextDouble() + model.getClock());
+	    return serviceTime1000.nextDouble();
 	}
 	
 	protected double uServiceTime2000() {
-	    return (serviceTime2000.nextDouble() + model.getClock());
+	    return serviceTime2000.nextDouble();
 	}
 	
 	protected double uServiceTime3000() {
-	    return (serviceTime3000.nextDouble() + model.getClock());
+	    return serviceTime3000.nextDouble();
 	}
 	
 	protected double uServiceTime4000()  {
-	    return (serviceTime4000.nextDouble() + model.getClock());
+	    return serviceTime4000.nextDouble();
 	}
 	
 	protected double uTravelTime() {
-	    return (travelTime.next() + model.getClock());
+	    return (travelTime.next());
 	}
 	
 	
@@ -154,7 +156,7 @@ class RVPs
 		case 6: mean = 60 / 5; 	break;
 		case 7: mean = 60 / 40; 	break;
 		case 8: mean = 60 / 3; 	break;
-		default: mean = 1; 		break;
+		default: mean = 0; 		break;
 		}
 		
 		return mean;

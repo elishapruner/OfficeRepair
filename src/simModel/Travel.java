@@ -53,8 +53,7 @@ public class Travel extends ConditionalActivity {
 				emp.call = model.qJobs.get(Constants.Job_3000_4000_P).remove(0);
 			} else if (model.qJobs.get(Constants.Job_3000_4000_B).size() > 0) {
 				emp.call = model.qJobs.get(Constants.Job_3000_4000_B).remove(0);
-			}
-			if (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0) {
+			} else if (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0) {
 				emp.call = model.qJobs.get(Constants.Job_1000_2000_P).remove(0);
 			} else if (model.qJobs.get(Constants.Job_1000_2000_B).size() > 0) {
 				emp.call = model.qJobs.get(Constants.Job_1000_2000_B).remove(0);
@@ -66,7 +65,7 @@ public class Travel extends ConditionalActivity {
 
 	protected double duration() {
 		double time = model.rvp.uTravelTime();
-		System.out.println("Travel Time: " + time);
+//		System.out.println("Travel Time: " + time);
 		return time;
 	}
 
