@@ -120,7 +120,7 @@ class RVPs
 	}
 
 	protected double uServiceTime1000() {
-	    return (serviceTime1000.nextDouble() + model.getClock());
+	    return (serviceTime1000.nextDouble()  + model.getClock());
 	}
 	
 	protected double uServiceTime2000() {
@@ -128,11 +128,11 @@ class RVPs
 	}
 	
 	protected double uServiceTime3000() {
-	    return (serviceTime3000.nextDouble() + model.getClock());
+	    return (serviceTime3000.nextDouble()  + model.getClock());
 	}
 	
 	protected double uServiceTime4000()  {
-	    return (serviceTime4000.nextDouble() + model.getClock());
+	    return (serviceTime4000.nextDouble()  + model.getClock());
 	}
 	
 	protected double uTravelTime() {

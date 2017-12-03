@@ -39,30 +39,34 @@ public class EndDay extends ScheduledAction {
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 		
+//		updateNumEmployees();
+
+	}
+	
+	private void updateNumEmployees() {
+		if (model.output.getSatisfactionLevelT12() < 0.85) {
+			model.numEmployeesT12 += 1;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
+			
+			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			System.out.println("Added 1 employee to EmployeeT12");
+		} else {
+			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).remove(emp_id);
+		}
 		
-//		if (model.output.getSatisfactionLevelT12() < 0.85) {
-//			model.numEmployeesT12 += 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
-//			
-//			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
-//			System.out.println("Added 1 employee to EmployeeT12");
-//		} else {
-//			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_T12).remove(emp_id);
-//		}
-//		
-//		if (model.output.getSatisfactionLevelT34() < 0.85) {
-//			model.numEmployeesALL += 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
-//			
-//			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
-//			System.out.println("Added 1 employee to EmployeeALL");
-//		} else {
-//			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-//			model.rEmployees.get(Constants.EMPLOYEE_ALL).remove(emp_id);
-//		}
+		if (model.output.getSatisfactionLevelT34() < 0.85) {
+			model.numEmployeesALL += 1;
+			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
+			
+			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
+			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).Status = Employee.StatusValues.READY_FOR_CALL;
+			System.out.println("Added 1 employee to EmployeeALL");
+		} else {
+			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
+			model.rEmployees.get(Constants.EMPLOYEE_ALL).remove(emp_id);
+		}
 	}
 	
 }

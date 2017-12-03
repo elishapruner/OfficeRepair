@@ -15,6 +15,7 @@ public class OfficeRepair extends AOSimulationModel {
 	// Define the parameters
 	int numEmployeesT12;
 	int numEmployeesALL;
+	double satisfactionLevel;
 
 	/*-------------Entity Data Structures-------------------*/
 	protected ArrayList<ArrayList<Employee>> rEmployees;
@@ -44,13 +45,14 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	// Constructor
-	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL) {
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 		
 		// Parameters
-		this.numEmployeesT12 = addEmployeesT12;
-		this.numEmployeesALL = addEmployeesALL;
+		numEmployeesT12 = addEmployeesT12;
+		numEmployeesALL = addEmployeesALL;
+		satisfactionLevel = satisfaction;
 
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
@@ -111,7 +113,7 @@ public class OfficeRepair extends AOSimulationModel {
 //			scheduleAction(endDayAction);
 //		}
 		
-		if (output.getSatisfactionLevelT12() > 0.85 && output.getSatisfactionLevelT34() > 0.85) {
+		if (output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel) {
 			statusChanged = false;
 		}
 
