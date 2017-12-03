@@ -22,7 +22,7 @@ public class Experiment {
 		int initNumEmpT12 = 1;
 		int initNumEmpAll = 1;
 		double satisfaction = 0.85;
-		double minSimTime = 100;
+		double minSimTime = 1440;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		

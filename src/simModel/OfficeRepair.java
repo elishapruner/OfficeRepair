@@ -69,8 +69,8 @@ public class OfficeRepair extends AOSimulationModel {
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
 		
-		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
-		scheduleAction(updateNumEmp);
+//		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
+//		scheduleAction(updateNumEmp);
 
 		Call_Received1000 callReceived1000 = new Call_Received1000(this);
 		Call_Received2000 callReceived2000 = new Call_Received2000(this);
@@ -103,7 +103,6 @@ public class OfficeRepair extends AOSimulationModel {
 //		if (lunch.precondition(this) == true) {
 //			lunch.startingEvent();
 //			scheduleActivity(lunch);
-//			statusChanged = true;
 //		}
 		
 //		EndDay endDayAction = new EndDay(this);
