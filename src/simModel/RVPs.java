@@ -95,28 +95,28 @@ class RVPs
 	
 	protected double DuCallArrival1000() {
 		double meanCallArr1000 = getMean1000();
-		System.out.println("1000: " + meanCallArr1000);
+//		System.out.println("1000: " + meanCallArr1000);
 		callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
 		return callArrival1000.nextDouble();
 	}
 	
 	protected double DuCallArrival2000() {
 		double meanCallArr2000 = getMean2000();
-		System.out.println("2000: " + meanCallArr2000);
+//		System.out.println("2000: " + meanCallArr2000);
 		callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
 	    return callArrival2000.nextDouble();
 	}
 	
 	protected double DuCallArrival3000() {
 		double meanCallArr3000 = getMean3000();
-		System.out.println("3000: " + meanCallArr3000);
+//		System.out.println("3000: " + meanCallArr3000);
 		callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
 	    return callArrival3000.nextDouble();
 	}
 	
 	protected double DuCallArrival4000() {
 		double meanCallArr4000 = getMean4000();
-		System.out.println("4000: " + meanCallArr4000);
+//		System.out.println("4000: " + meanCallArr4000);
 		callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
 	    return callArrival4000.nextDouble();
 	}
