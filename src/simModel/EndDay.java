@@ -44,7 +44,7 @@ public class EndDay extends ScheduledAction {
 	}
 	
 	private void updateNumEmployees() {
-		if (model.output.getSatisfactionLevelT12() < 0.85) {
+		if (model.output.getSatisfactionLevelT12() < model.satisfactionLevel) {
 			model.numEmployeesT12 += 1;
 			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
 			
@@ -56,7 +56,7 @@ public class EndDay extends ScheduledAction {
 			model.rEmployees.get(Constants.EMPLOYEE_T12).remove(emp_id);
 		}
 		
-		if (model.output.getSatisfactionLevelT34() < 0.85) {
+		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
 			model.numEmployeesALL += 1;
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
 			
