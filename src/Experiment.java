@@ -20,7 +20,7 @@ public class Experiment {
 			sds[i] = new Seeds(rsg);
 		
 		for (int i = 0; i < NUMRUNS; i++) {
-			officeRepair = new OfficeRepair(startTime, sds[i], true, 100, 100, 0.85);
+			officeRepair = new OfficeRepair(startTime, sds[i], true, 1, 1, 0.85);
 			officeRepair.runSimulation();
 			System.out.println("Terminated " + (i + 1) + ", " + officeRepair.getSatisfactionLevelAll());
 		}

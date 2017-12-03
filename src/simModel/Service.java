@@ -32,8 +32,6 @@ public class Service extends SequelActivity {
 		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
 			serviceTime = model.rvp.uServiceTime4000() / 60;
 		}
-		
-		System.out.println("Service time for " + e.call.equipmentType + ": " + serviceTime);
 
 		return (serviceTime);
 	}

@@ -101,12 +101,12 @@ public class OfficeRepair extends AOSimulationModel {
 			statusChanged = true;
 		}
 
-		Lunch lunch = new Lunch(this);
-		if (lunch.precondition(this) == true) {
-			lunch.startingEvent();
-			scheduleActivity(lunch);
-			statusChanged = true;
-		}
+//		Lunch lunch = new Lunch(this);
+//		if (lunch.precondition(this) == true) {
+//			lunch.startingEvent();
+//			scheduleActivity(lunch);
+//			statusChanged = true;
+//		}
 		
 //		EndDay endDayAction = new EndDay(this);
 //		if (endDayAction.precondition(this) == true) {
