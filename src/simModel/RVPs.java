@@ -2,6 +2,7 @@ package simModel;
 
 import cern.jet.random.Exponential;
 import cern.jet.random.Normal;
+import cern.jet.random.Uniform;
 import cern.jet.random.engine.MersenneTwister;
 import dataModelling.TriangularVariate;
 import simModel.Call.EquipmentTypes;
@@ -61,6 +62,16 @@ class RVPs
 	private double stdDevSrvTm2000 = 15.06;
 	private double stdDevSrvTm3000 = 27.40;
 	private double stdDevSrvTm4000 = 29.84;
+	
+	private double minSrvTm1000 = 0.07;
+	private double minSrvTm2000 = 0.02;
+	private double minSrvTm3000 = 3.15;
+	private double minSrvTm4000 = 20.18;
+	
+	private double maxSrvTm1000 = 32.51;
+	private double maxSrvTm2000 = 96.47;
+	private double maxSrvTm3000 = 129.68;
+	private double maxSrvTm4000 = 230.61;
 	
 	private double minTravelTm = 10;
 	private double maxTravelTm = 45;

@@ -24,14 +24,16 @@ public class Service extends SequelActivity {
 		double serviceTime = 0;
 
 		if (e.call.equipmentType == EquipmentTypes.E1000) {
-			serviceTime = model.rvp.uServiceTime1000();
+			serviceTime = model.rvp.uServiceTime1000() / 60;
 		} else if (e.call.equipmentType == EquipmentTypes.E2000) {
-			serviceTime = model.rvp.uServiceTime2000();
+			serviceTime = model.rvp.uServiceTime2000() / 60;
 		} else if (e.call.equipmentType == EquipmentTypes.E3000) {
-			serviceTime = model.rvp.uServiceTime3000();
+			serviceTime = model.rvp.uServiceTime3000() / 60;
 		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
-			serviceTime = model.rvp.uServiceTime4000();
+			serviceTime = model.rvp.uServiceTime4000() / 60;
 		}
+		
+		System.out.println("Service time for " + e.call.equipmentType + ": " + serviceTime);
 
 		return (serviceTime);
 	}

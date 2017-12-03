@@ -65,7 +65,7 @@ public class Travel extends ConditionalActivity {
 	}
 
 	protected double duration() {
-		return (model.rvp.uTravelTime());
+		return model.rvp.uTravelTime() / 60;
 	}
 
 	protected void terminatingEvent() {
