@@ -38,25 +38,11 @@ public class EndDay extends ScheduledAction {
 		model.output.fixedTotalCost = (int) ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
-		
-		updateNumEmployees();
 
+		updateNumEmployees();
 	}
 	
 	private void updateNumEmployees() {
-		if (model.output.getSatisfactionLevelT12() < model.satisfactionLevel) {
-			model.numEmployeesT12 += 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
-			
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
-			System.out.println("Added 1 employee to EmployeeT12");
-		} else {
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_T12).remove(emp_id);
-			System.out.println("Removed 1 employee to EmployeeT12");
-		}
-		
 		if (model.output.getSatisfactionLevelT34() < model.satisfactionLevel) {
 			model.numEmployeesALL += 1;
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).add(new Employee());
@@ -64,12 +50,14 @@ public class EndDay extends ScheduledAction {
 			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 			System.out.println("Added 1 employee to EmployeeALL");
-		} else {
-			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_ALL).size() - 1;
-			model.rEmployees.get(Constants.EMPLOYEE_ALL).remove(emp_id);
-			System.out.println("Removed 1 employee to EmployeeALL");
+		} else if (model.output.getSatisfactionLevelT12() < model.satisfactionLevel) {
+			model.numEmployeesT12 += 1;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).add(new Employee());
+			
+			int emp_id = model.rEmployees.get(Constants.EMPLOYEE_T12).size() - 1;
+			model.rEmployees.get(Constants.EMPLOYEE_T12).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
+			System.out.println("Added 1 employee to EmployeeT12");
 		}
 	}
-	
 }
 

@@ -13,9 +13,10 @@ public class OfficeRepair extends AOSimulationModel {
 	Constants constants = new Constants();
 	/* Parameter */
 	// Define the parameters
-	int numEmployeesT12;
-	int numEmployeesALL;
+	public int numEmployeesT12;
+	public int numEmployeesALL;
 	double satisfactionLevel;
+	double simTime;
 
 	/*-------------Entity Data Structures-------------------*/
 	protected ArrayList<ArrayList<Employee>> rEmployees;
@@ -45,7 +46,7 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	// Constructor
-	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction) {
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction, double time) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 		
@@ -53,6 +54,7 @@ public class OfficeRepair extends AOSimulationModel {
 		numEmployeesT12 = addEmployeesT12;
 		numEmployeesALL = addEmployeesALL;
 		satisfactionLevel = satisfaction;
+		simTime = time;
 
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
@@ -86,21 +88,14 @@ public class OfficeRepair extends AOSimulationModel {
 
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
+		
 		// Check Activity Preconditions
-		while (scanPreconditions() == true)
-			/* repeat */;
-	}
-
-	private boolean scanPreconditions() {
-		boolean statusChanged = false;
-
 		Travel travel = new Travel(this);
 		if (travel.precondition(this) == true) {
 			travel.startingEvent();
 			scheduleActivity(travel);
-			statusChanged = true;
 		}
-
+		
 //		Lunch lunch = new Lunch(this);
 //		if (lunch.precondition(this) == true) {
 //			lunch.startingEvent();
@@ -108,17 +103,12 @@ public class OfficeRepair extends AOSimulationModel {
 //			statusChanged = true;
 //		}
 		
-//		EndDay endDayAction = new EndDay(this);
-//		if (endDayAction.precondition(this) == true) {
-//			scheduleAction(endDayAction);
-//		}
-		
-		if (output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel) {
-			statusChanged = false;
+		EndDay endDayAction = new EndDay(this);
+		if (endDayAction.precondition(this) == true) {
+			scheduleAction(endDayAction);
 		}
-
-		return (statusChanged);
 	}
+
 
 	public void eventOccured() {
 		if (traceFlag) {
@@ -134,9 +124,15 @@ public class OfficeRepair extends AOSimulationModel {
 			System.out.println("SatisfactionLevelT12: " + (Math.round(output.getSatisfactionLevelT12() * 100))
 					+ "%, SatisfactionLevelT34: " + (Math.round(output.getSatisfactionLevelT34() * 100))
 					+ "%, SatisfactionLevelAll: " + (Math.round((output.getSatisfactionLevelAll() * 100))) + "%");
+			
+			System.out.println("----------------------------------------------------------------------------");
 
 			showSBL();
 		}
+	}
+	
+	public boolean implicitStopCondition() {
+		return getClock() >= simTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
