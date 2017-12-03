@@ -39,7 +39,7 @@ public class EndDay extends ScheduledAction {
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 		
-//		updateNumEmployees();
+		updateNumEmployees();
 
 	}
 	
