@@ -12,7 +12,7 @@ public class UpdateNumEmployees extends ScheduledAction {
 
 	@Override
 	protected double timeSequence() {
-		return model.getClock() + 0.1 * (960 + 1440*(Math.floor(((int) model.getClock()) / 1440)));
+		return model.getClock() + 240;
 	}
 
 	@Override

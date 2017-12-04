@@ -7,7 +7,7 @@ import simModel.*;
 
 // Main Method: Experiments
 //
-public class Experiment {
+public class Experiment2 {
 	public static void main(String[] args) {
 		int NUMRUNS = 1;
 		double startTime = 0.0;
@@ -21,8 +21,8 @@ public class Experiment {
 		
 		int initNumEmpT12 = 1;
 		int initNumEmpAll = 1;
-		double satisfaction = 0.85;
-		double minSimTime = 1440 * 0.2;
+		double satisfaction = 0.95;
+		double minSimTime = 1440 * 0.1;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		

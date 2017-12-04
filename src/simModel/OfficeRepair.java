@@ -69,20 +69,21 @@ public class OfficeRepair extends AOSimulationModel {
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
 		
-//		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
-//		scheduleAction(updateNumEmp);
+		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
+		scheduleAction(updateNumEmp);
+		
+		EndDay endDayAction = new EndDay(this);
+		scheduleAction(endDayAction);
 
 		Call_Received1000 callReceived1000 = new Call_Received1000(this);
 		Call_Received2000 callReceived2000 = new Call_Received2000(this);
 		Call_Received3000 callReceived3000 = new Call_Received3000(this);
 		Call_Received4000 callReceived4000 = new Call_Received4000(this);
 
-		if ((getClock() % 1440) >= 0 ||  (getClock() % 1440) < 540) {
-			scheduleAction(callReceived1000);
-			scheduleAction(callReceived2000);
-			scheduleAction(callReceived3000);
-			scheduleAction(callReceived4000);
-		}
+		scheduleAction(callReceived1000);
+		scheduleAction(callReceived2000);
+		scheduleAction(callReceived3000);
+		scheduleAction(callReceived4000);
 	}
 
 	/************ implementation of Data Modules ***********/
@@ -101,18 +102,12 @@ public class OfficeRepair extends AOSimulationModel {
 			scheduleActivity(travel);
 		}
 		
-//		Lunch lunch = new Lunch(this);
-//		if (lunch.precondition(this) == true) {
-//			lunch.startingEvent();
-//			scheduleActivity(lunch);
-//		}
-		
-//		EndDay endDayAction = new EndDay(this);
-//		if (endDayAction.precondition(this) == true) {
-//			scheduleAction(endDayAction);
-//		}
+		Lunch lunch = new Lunch(this);
+		if (lunch.precondition(this) == true) {
+			lunch.startingEvent();
+			scheduleActivity(lunch);
+		}
 	}
-
 
 	public void eventOccured() {
 		if (traceFlag) {
@@ -131,13 +126,12 @@ public class OfficeRepair extends AOSimulationModel {
 			
 			System.out.println("----------------------------------------------------------------------------");
 
-//			showSBL();
+			showSBL();
 		}
 	}
 	
 	public boolean implicitStopCondition() {
-		return getClock() >= minSimTime;
-//		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
+		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters

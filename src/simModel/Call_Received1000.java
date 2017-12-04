@@ -11,9 +11,7 @@ class Call_Received1000 extends ScheduledAction {
 	}
 
 	public double timeSequence() {
-		double time = model.rvp.DuCallArrival1000(); 
-		System.out.println("Arrival 1000: " + time);
-		return time + model.getClock();
+		return  model.rvp.DuCallArrival1000();
 	}
 
 	public void actionEvent() {

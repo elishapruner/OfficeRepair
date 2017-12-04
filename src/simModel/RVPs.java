@@ -94,31 +94,47 @@ class RVPs
 	}
 	
 	protected double DuCallArrival1000() {
-		double meanCallArr1000 = getMean1000();
-//		System.out.println("1000: " + meanCallArr1000);
-		callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
-		return callArrival1000.nextDouble();
+		if ((model.getClock() % 1440) < 480) {
+			double meanCallArr1000 = getMean1000();
+			callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
+			double time = callArrival1000.nextDouble() * 60;
+			return time + model.getClock();
+		} else {
+			return model.getClock() + 1440;
+		}
 	}
 	
 	protected double DuCallArrival2000() {
-		double meanCallArr2000 = getMean2000();
-//		System.out.println("2000: " + meanCallArr2000);
-		callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
-	    return callArrival2000.nextDouble();
+		if ((model.getClock() % 1440) < 480) {
+			double meanCallArr2000 = getMean2000();
+			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
+			double time = callArrival2000.nextDouble() * 60;
+		    return time + model.getClock();
+		} else {
+			return model.getClock() + 1440;
+		}
 	}
 	
 	protected double DuCallArrival3000() {
-		double meanCallArr3000 = getMean3000();
-//		System.out.println("3000: " + meanCallArr3000);
-		callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
-	    return callArrival3000.nextDouble();
+		if ((model.getClock() % 1440) < 480) {
+			double meanCallArr3000 = getMean3000();
+			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
+			double time = callArrival3000.nextDouble() * 60;
+		    return time + model.getClock();
+		} else {
+			return model.getClock() + 1440;
+		}
 	}
 	
 	protected double DuCallArrival4000() {
-		double meanCallArr4000 = getMean4000();
-//		System.out.println("4000: " + meanCallArr4000);
-		callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
-	    return callArrival4000.nextDouble();
+		if ((model.getClock() % 1440) < 480) {
+			double meanCallArr4000 = getMean4000();
+			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
+			double time = callArrival4000.nextDouble() * 60;
+		    return time + model.getClock();
+		} else {
+			return model.getClock() + 1440;
+		}
 	}
 
 	protected double uServiceTime1000() {
@@ -147,16 +163,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 60 / 7; 	break;
-		case 1: mean = 60 / 12; 	break;
-		case 2: mean = 60 / 10; 	break;
-		case 3: mean = 60 / 7; 	break;
-		case 4: mean = 60 / 5; 	break;
-		case 5: mean = 60 / 4; 	break;
-		case 6: mean = 60 / 5; 	break;
-		case 7: mean = 60 / 40; 	break;
-		case 8: mean = 60 / 3; 	break;
-		default: mean = 0; 		break;
+		case 0: mean = 7; 	break;
+		case 1: mean = 12; 	break;
+		case 2: mean = 10; 	break;
+		case 3: mean = 7; 	break;
+		case 4: mean = 5; 	break;
+		case 5: mean = 4; 	break;
+		case 6: mean = 5; 	break;
+		case 7: mean = 4; 	break;
+		case 8: mean = 3; 	break;
+		default: mean = 60; 	break;
 		}
 		
 		return mean;
@@ -167,16 +183,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 60 / 8; 	break;
-		case 1: mean = 60 / 11; 	break;
-		case 2: mean = 60 / 8; 	break;
-		case 3: mean = 60 / 9; 	break;
-		case 4: mean = 60 / 6; 	break;
-		case 5: mean = 60 / 4; 	break;
-		case 6: mean = 60 / 3; 	break;
-		case 7: mean = 60 / 3; 	break;
-		case 8: mean = 60 / 2; 	break;
-		default: mean = 0; 		break;
+		case 0: mean = 8; 	break;
+		case 1: mean = 11; 	break;
+		case 2: mean = 8; 	break;
+		case 3: mean = 9; 	break;
+		case 4: mean = 6; 	break;
+		case 5: mean = 4; 	break;
+		case 6: mean = 3; 	break;
+		case 7: mean = 3; 	break;
+		case 8: mean = 2; 	break;
+		default: mean = 60; 	break;
 		}
 		
 		return mean;
@@ -187,16 +203,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 60 / 5; 	break;
-		case 1: mean = 60 / 6; 	break;
-		case 2: mean = 60 / 5; 	break;
-		case 3: mean = 60 / 4; 	break;
-		case 4: mean = 60 / 3; 	break;
-		case 5: mean = 60 / 3; 	break;
-		case 6: mean = 60 / 2; 	break;
-		case 7: mean = 60 / 2; 	break;
-		case 8: mean = 60 / 1; 	break;
-		default: mean = 0; 		break;
+		case 0: mean = 5; 	break;
+		case 1: mean = 6; 	break;
+		case 2: mean = 5; 	break;
+		case 3: mean = 4; 	break;
+		case 4: mean = 3; 	break;
+		case 5: mean = 3; 	break;
+		case 6: mean = 2; 	break;
+		case 7: mean = 2; 	break;
+		case 8: mean = 1; 	break;
+		default: mean = 60; 	break;
 		}
 		
 		return mean;
@@ -207,16 +223,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 60 / 2; 	break;
-		case 1: mean = 60 / 3; 	break;
-		case 2: mean = 60 / 4; 	break;
-		case 3: mean = 60 / 3; 	break;
-		case 4: mean = 60 / 2; 	break;
-		case 5: mean = 60 / 1; 	break;
-		case 6: mean = 60 / 1; 	break;
-		case 7: mean = 60 / 1; 	break;
-		case 8: mean = 60 / 1; 	break;
-		default: mean = 0; 		break;
+		case 0: mean = 2; 	break;
+		case 1: mean = 3; 	break;
+		case 2: mean = 4; 	break;
+		case 3: mean = 3; 	break;
+		case 4: mean = 2; 	break;
+		case 5: mean = 1; 	break;
+		case 6: mean = 1; 	break;
+		case 7: mean = 1; 	break;
+		case 8: mean = 1; 	break;
+		default: mean = 60; 	break;
 		}
 		
 		return mean;
