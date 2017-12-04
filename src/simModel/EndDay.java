@@ -11,7 +11,7 @@ public class EndDay extends ScheduledAction {
 	}
 
 	public double timeSequence() {
-		return (double) (960 + 1440*(Math.floor(((int) model.getClock()) / 1440)));
+		return (double) (960 + 1440*(Math.floor(((int) model.getClock()) / 1440))) + model.getClock();
 	}
 
 	@Override

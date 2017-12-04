@@ -9,7 +9,7 @@ import simModel.*;
 //
 public class Experiment1 {
 	public static void main(String[] args) {
-		int NUMRUNS = 6;
+		int NUMRUNS = 30;
 		double startTime = 0.0;
 		Seeds[] sds = new Seeds[NUMRUNS];
 		OfficeRepair officeRepair; // Simulation object
@@ -19,10 +19,10 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 1;
-		int initNumEmpAll = 1;
+		int initNumEmpT12 = 10;
+		int initNumEmpAll = 10;
 		double satisfaction = 0.85;
-		double minSimTime = 60;
+		double minSimTime = 1440 * 21;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		

@@ -97,7 +97,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr1000 = getMean1000();
 			callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
-			double time = callArrival1000.nextDouble() * 60;
+			double time = 60 / meanCallArr1000;
 			return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -108,7 +108,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr2000 = getMean2000();
 			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
-			double time = callArrival2000.nextDouble() * 60;
+			double time = 60 / meanCallArr2000;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -119,7 +119,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr3000 = getMean3000();
 			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
-			double time = callArrival3000.nextDouble() * 60;
+			double time = 60 / meanCallArr3000;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -130,7 +130,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr4000 = getMean4000();
 			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
-			double time = callArrival4000.nextDouble() * 60;
+			double time = 60 / meanCallArr4000;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
