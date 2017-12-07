@@ -93,48 +93,56 @@ class RVPs
 		return serviceType;
 	}
 	
+	int count1000 = 0;
 	protected double DuCallArrival1000() {
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr1000 = getMean1000();
-			callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
-			double time = 60 / meanCallArr1000;
-			return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
+		double mean = getMean1000();
+		MersenneTwister seed1000 = new MersenneTwister(seed.callArrival1000);
+		callArrival1000 = new Exponential(1.0/(60/mean), seed1000);
+		double time = callArrival1000.nextDouble();
+		if (count1000 < 1) {
+			System.out.println("1000 mean: " + mean + "\tarr: " + Math.round(time*100)/100.0);
+			count1000++;
 		}
+		return time + model.getClock();
 	}
 	
+	int count2000 = 0;
 	protected double DuCallArrival2000() {
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr2000 = getMean2000();
-			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
-			double time = 60 / meanCallArr2000;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
+		double mean = getMean2000();
+		MersenneTwister seed2000 = new MersenneTwister(seed.callArrival2000);
+		callArrival2000 = new Exponential(1.0/(60/mean), seed2000);
+		double time = callArrival2000.nextDouble();
+		if (count2000 < 1) {
+			System.out.println("2000 mean: " + mean + "\tarr: " + Math.round(time*100)/100.0);
+			count2000++;
 		}
+		return time + model.getClock();
 	}
 	
+	int count3000 = 0;
 	protected double DuCallArrival3000() {
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr3000 = getMean3000();
-			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
-			double time = 60 / meanCallArr3000;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
+		double mean = getMean3000();
+		MersenneTwister seed3000 = new MersenneTwister(seed.callArrival3000);
+		callArrival3000 = new Exponential(1.0/(60/mean), seed3000);
+		double time = callArrival3000.nextDouble();
+		if (count3000 < 1) {
+			System.out.println("3000 mean: " + mean + "\tarr: " + Math.round(time*100)/100.0);
+			count3000++;
 		}
+		return time + model.getClock();
 	}
 	
+	int count4000 = 0;
 	protected double DuCallArrival4000() {
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr4000 = getMean4000();
-			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
-			double time = 60 / meanCallArr4000;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
+		double mean = getMean4000();
+		MersenneTwister seed4000 = new MersenneTwister(seed.callArrival4000);
+		callArrival4000 = new Exponential(1.0/(60/mean), seed4000);
+		double time = callArrival4000.nextDouble();
+		if (count4000 < 1) {
+			System.out.println("4000 mean: " + mean + "\tarr: " + Math.round(time*100)/100.0);
+			count4000++;
 		}
+		return time + model.getClock();
 	}
 
 	protected double uServiceTime1000() {

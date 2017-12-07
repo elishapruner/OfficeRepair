@@ -126,7 +126,7 @@ public class OfficeRepair extends AOSimulationModel {
 			
 			System.out.println("----------------------------------------------------------------------------");
 
-//			showSBL();
+			showSBL();
 		}
 	}
 	
