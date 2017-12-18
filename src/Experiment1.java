@@ -24,7 +24,7 @@ public class Experiment1 {
 		double satisfaction = 0.85;
 
 		//double minSimTime = 60;
-		// decided to use minSimtime = 1 
+		double minSimTime = 1 ;
 		
 
 		

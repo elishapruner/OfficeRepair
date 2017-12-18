@@ -17,10 +17,10 @@ class RVPs
 	{ 
 		this.model = model; 
 		seed = sd;
-<<<<<<< HEAD
+
 		// GAcomment: where is the initialisation for the callArrival... Random variate procedures.
 		// Set up distribution functions			
-=======
+
 		
 		// Set up distribution functions	
 		callArrival1000 = new Exponential(1.0/(60/getMean1000()), new MersenneTwister(seed.callArrival1000));
@@ -28,7 +28,7 @@ class RVPs
 		callArrival3000 = new Exponential(1.0/(60/getMean3000()), new MersenneTwister(seed.callArrival3000));
 		callArrival4000 = new Exponential(1.0/(60/getMean4000()), new MersenneTwister(seed.callArrival4000));
 		
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+
 		serviceTime1000 =  new Normal(meanSrvTm1000, stdDevSrvTm1000, new MersenneTwister(sd.serviceTime1000));
 		serviceTime2000 =  new Normal(meanSrvTm2000, stdDevSrvTm2000, new MersenneTwister(sd.serviceTime2000));
 		serviceTime3000 =  new Normal(meanSrvTm3000, stdDevSrvTm3000, new MersenneTwister(sd.serviceTime3000));
@@ -104,7 +104,7 @@ class RVPs
 	}
 	
 	protected double DuCallArrival1000() {
-<<<<<<< HEAD
+
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr1000 = getMean1000();
 			// GAComment: This will not work. The Exponential object must be created in the constructor.
@@ -117,14 +117,15 @@ class RVPs
 		} else {
 			return model.getClock() + 1440;
 		}
-=======
-		return callArrival1000.nextDouble() + model.getClock();
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+
+		// code that was on github , 
+		//return callArrival1000.nextDouble() + model.getClock();
+
 	}
 	
 	int count2000 = 0;
 	protected double DuCallArrival2000() {
-<<<<<<< HEAD
+
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr2000 = getMean2000();
 			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
@@ -133,14 +134,15 @@ class RVPs
 		} else {
 			return model.getClock() + 1440;
 		}
-=======
-		return callArrival2000.nextDouble() + model.getClock();
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+
+// code that was on github , 
+	//return callArrival2000.nextDouble() + model.getClock();
+
 	}
 	
 	int count3000 = 0;
 	protected double DuCallArrival3000() {
-<<<<<<< HEAD
+
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr3000 = getMean3000();
 			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
@@ -149,14 +151,15 @@ class RVPs
 		} else {
 			return model.getClock() + 1440;
 		}
-=======
-		return callArrival3000.nextDouble() + model.getClock();
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+
+// code that was on github , 
+		//return callArrival3000.nextDouble() + model.getClock();
+
 	}
 	
 	int count4000 = 0;
 	protected double DuCallArrival4000() {
-<<<<<<< HEAD
+
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr4000 = getMean4000();
 			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
@@ -165,9 +168,9 @@ class RVPs
 		} else {
 			return model.getClock() + 1440;
 		}
-=======
-		return callArrival4000.nextDouble() + model.getClock();
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+// code that was on github , 
+		//return callArrival4000.nextDouble() + model.getClock();
+
 	}
 
 	protected double uServiceTime1000() {

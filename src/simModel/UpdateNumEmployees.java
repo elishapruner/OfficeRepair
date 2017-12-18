@@ -12,11 +12,12 @@ public class UpdateNumEmployees extends ScheduledAction {
 
 	@Override
 	protected double timeSequence() {
-<<<<<<< HEAD
+
 		return model.getClock() + 240;
-=======
-		return model.getClock() + 60;
->>>>>>> 5ffd60256a4a159a054cfd7545a7082f03bcb90b
+		// We submitted "+ 240" , however on the github "+ 60" was currently stored ,
+		// I resolved the conflcit by keeping +240 
+
+
 	}
 
 	@Override
