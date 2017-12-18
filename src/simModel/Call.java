@@ -5,7 +5,7 @@ public class Call {
 	// Denotes the type of Equipment that must be repaired.
 	// GAComment: Not consistent with CM that specifies equipement types as Type1000, Type2000, ...
 	public static enum EquipmentTypes {
-		E1000, E2000, E3000, E4000
+		TYPE1000, TYPE2000, TYPE3000, TYPE4000
 	};
 
 	EquipmentTypes equipmentType; // Type of equipment

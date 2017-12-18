@@ -27,13 +27,13 @@ public class Service extends SequelActivity {
 		double serviceTime = 0;
         // GAComment:  Parameterize the the RVP.  
 		// Should be model.rvp.uServiceTime(icCall.equipmentType)
-		if (e.call.equipmentType == EquipmentTypes.E1000) {
+		if (e.call.equipmentType == EquipmentTypes.TYPE1000) {
 			serviceTime = model.rvp.uServiceTime1000();
-		} else if (e.call.equipmentType == EquipmentTypes.E2000) {
+		} else if (e.call.equipmentType == EquipmentTypes.TYPE2000) {
 			serviceTime = model.rvp.uServiceTime2000();
-		} else if (e.call.equipmentType == EquipmentTypes.E3000) {
+		} else if (e.call.equipmentType == EquipmentTypes.TYPE3000) {
 			serviceTime = model.rvp.uServiceTime3000();
-		} else if (e.call.equipmentType == EquipmentTypes.E4000) {
+		} else if (e.call.equipmentType == EquipmentTypes.TYPE4000) {
 			serviceTime = model.rvp.uServiceTime4000();
 		}
 
@@ -41,7 +41,7 @@ public class Service extends SequelActivity {
 	}
 
 	protected void terminatingEvent() {
-		if ((e.call.equipmentType == EquipmentTypes.E1000) || (e.call.equipmentType == EquipmentTypes.E2000)) {
+		if ((e.call.equipmentType == EquipmentTypes.TYPE1000) || (e.call.equipmentType == EquipmentTypes.TYPE2000)) {
 			model.output.totalNumberT12Contracts += 1;
 			if (e.call.serviceType == ServiceTypes.PREMIUM) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {
@@ -54,7 +54,7 @@ public class Service extends SequelActivity {
 			}
 		} 
 		
-		if ((e.call.equipmentType == EquipmentTypes.E3000) || (e.call.equipmentType == EquipmentTypes.E4000)) {
+		if ((e.call.equipmentType == EquipmentTypes.TYPE3000) || (e.call.equipmentType == EquipmentTypes.TYPE4000)) {
 			model.output.totalNumberT34Contracts += 1;
 			if (e.call.serviceType == ServiceTypes.PREMIUM) {
 				if ((int) model.getClock() - (int) e.call.timeIn <= 180) {

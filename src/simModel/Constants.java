@@ -15,6 +15,9 @@ public class Constants {
 	/*Overtime wage to EMP_ALL*/
 	protected final static double EMP_ALL_OVERTIME_WAGE = 71.75;
 	
+	/*The duration of lunch given to employees*/
+	protected final static double LUNCH_DURATION = 60;
+	
 	//Employee types
 	protected final static int EMPLOYEE_T12 = 0;
 	protected final static int EMPLOYEE_ALL = 1;

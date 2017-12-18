@@ -17,7 +17,7 @@ class Call_Received4000 extends ScheduledAction {
 	public void actionEvent() {
 		Call icCall = new Call();
 		
-		icCall.equipmentType = EquipmentTypes.E4000;
+		icCall.equipmentType = EquipmentTypes.TYPE4000;
 //		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E4000);
 		icCall.timeIn = model.getClock();
 		

@@ -76,25 +76,25 @@ class RVPs
 		double randNum = serviceType.nextDouble();
 		ServiceTypes serviceType = ServiceTypes.BASIC;
 		
-		if (equipType == EquipmentTypes.E1000) {
+		if (equipType == EquipmentTypes.TYPE1000) {
 			if (randNum < percentBasicContracts1000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType == EquipmentTypes.E2000) {
+		} else if (equipType == EquipmentTypes.TYPE2000) {
 			if (randNum < percentBasicContracts2000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType == EquipmentTypes.E3000) {
+		} else if (equipType == EquipmentTypes.TYPE3000) {
 			if (randNum < percentBasicContracts3000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
 				serviceType = ServiceTypes.PREMIUM;
 			}
-		} else if (equipType == EquipmentTypes.E4000)
+		} else if (equipType == EquipmentTypes.TYPE4000)
 			if (randNum < percentBasicContracts4000) {
 				serviceType = ServiceTypes.BASIC;
 			} else {
