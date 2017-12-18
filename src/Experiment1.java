@@ -22,7 +22,11 @@ public class Experiment1 {
 		int initNumEmpT12 = 1;
 		int initNumEmpAll = 1;
 		double satisfaction = 0.85;
-		double minSimTime = 60;
+
+		//double minSimTime = 60;
+		// decided to use minSimtime = 1 
+		
+
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		
@@ -35,7 +39,7 @@ public class Experiment1 {
 		}
 		
 		for (int i = 0; i < NUMRUNS; i++) {
-			System.out.println("(" + (i+1) + ") numEmployeesT12: " + runOutput[i][0] + ", numEmployeesAll: " + runOutput[i][1]);
+			System.out.println("(" + (i+1) + ") \tnumEmployeesT12: " + runOutput[i][0] + ", numEmployeesAll: " + runOutput[i][1]);
 		}
 		
 

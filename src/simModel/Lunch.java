@@ -39,7 +39,7 @@ class Lunch extends ConditionalActivity
 	}
 
 	protected double duration() {
-		return (model.getClock() + 60);
+		return model.getClock() + 60;
 	}
 
 	protected void terminatingEvent() {
