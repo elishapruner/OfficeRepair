@@ -12,6 +12,9 @@ public class Service extends SequelActivity {
 
 	public Service (OfficeRepair model, Employee emp, String empType) {
 		this.model = model;
+		// GAComment: the ABCmod paradigm used identifiers for SET entities.  Using object references
+		//            does not reflect the model.  Should be passing two ids, one for employee type and the other
+		//            for employee id.
 		this.e = emp;
 		this.empType = empType;
 	}
@@ -22,7 +25,8 @@ public class Service extends SequelActivity {
 
 	protected double duration() {
 		double serviceTime = 0;
-
+        // GAComment:  Parameterize the the RVP.  
+		// Should be model.rvp.uServiceTime(icCall.equipmentType)
 		if (e.call.equipmentType == EquipmentTypes.E1000) {
 			serviceTime = model.rvp.uServiceTime1000();
 		} else if (e.call.equipmentType == EquipmentTypes.E2000) {

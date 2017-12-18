@@ -16,9 +16,12 @@ public class OfficeRepair extends AOSimulationModel {
 	public int numEmployeesT12;
 	public int numEmployeesALL;
 	double satisfactionLevel;
-	double minSimTime;
+	double minSimTime;  // GAComment: see comment in CM.
 
 	/*-------------Entity Data Structures-------------------*/
+	// GAComment: Please use real arrays rather than Array lists for representing Sets. that is:
+	// Employee rEmployees[][];
+	// ArrayList<Call> qJobs[];
 	protected ArrayList<ArrayList<Employee>> rEmployees;
 	protected ArrayList<ArrayList<Call>> qJobs;
 
@@ -59,8 +62,8 @@ public class OfficeRepair extends AOSimulationModel {
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
 
-		rEmployees = new ArrayList<>();
-		qJobs = new ArrayList<>();
+		rEmployees = new ArrayList<>(); // GAComment: rRemployees = new Employee[2][numEmployeesT12+numEmpoyeesAll]; Need to instantiate objects in Initialise
+		qJobs = new ArrayList<>();  // GAComment: quJobs = new ArrayList[4];  // Need to instantiate objects in Initialise
 
 		// initialize the simulation model
 		initAOSimulModel(t0time);
@@ -94,14 +97,19 @@ public class OfficeRepair extends AOSimulationModel {
 
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
-		
+
+		// GAComment: Should instantiate the objects only if precondition is true.
+		//            Need to repeat testing of preconditions until all are false.  
+		//            May have multiple activites instatiated (e.g. Lunch).
+		// Preconditions should be static methods.
 		// Check Activity Preconditions
 		Travel travel = new Travel(this);
+		// GAComment:  Travel.precondition(this) == true
 		if (travel.precondition(this) == true) {
 			travel.startingEvent();
 			scheduleActivity(travel);
 		}
-		
+		// GAComment:  Lunch.precondition(this) == true
 		Lunch lunch = new Lunch(this);
 		if (lunch.precondition(this) == true) {
 			lunch.startingEvent();
@@ -126,7 +134,7 @@ public class OfficeRepair extends AOSimulationModel {
 			
 			System.out.println("----------------------------------------------------------------------------");
 
-//			showSBL();
+			showSBL();
 		}
 	}
 	

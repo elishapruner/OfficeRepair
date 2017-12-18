@@ -16,7 +16,7 @@ class Call_Received1000 extends ScheduledAction {
 
 	public void actionEvent() {
 		Call icCall = new Call();
-		
+		// GAComment: E1000 Shoud be TYPE1000
 		icCall.equipmentType = EquipmentTypes.E1000;
 		icCall.serviceType = model.rvp.uServiceType(EquipmentTypes.E1000); 
 		icCall.timeIn = model.getClock();

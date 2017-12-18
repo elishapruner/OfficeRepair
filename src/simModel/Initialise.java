@@ -29,9 +29,10 @@ class Initialise extends ScheduledAction {
 		model.output.overtimeCost = 0;
 		model.output.averageDailyCost = 0.0; // this SSOV is a double
 
+		// GAComment: The following does not reflect the 2D nature of the SEt of employees as specified in the CM
+		// Arrays of objects better reflects SET. See the comments in OfficeRepair class.
 		ArrayList<Employee> rEmployee_T12 = new ArrayList<Employee>();
-		ArrayList<Employee> rEmployee_ALL = new ArrayList<Employee>();
-		
+		ArrayList<Employee> rEmployee_ALL = new ArrayList<Employee>();		
 		model.rEmployees.add(rEmployee_T12);
 		model.rEmployees.add(rEmployee_ALL);
 		
@@ -45,6 +46,9 @@ class Initialise extends ScheduledAction {
 			model.rEmployees.get(Constants.EMPLOYEE_ALL).get(emp_id).status = Employee.StatusValues.READY_FOR_CALL;
 		}
 		
+		// GAComment: See comments in OfficeRepair class
+		// Can use ArrayList[Constants.Job_1000_2000_P] = new ArrayList<Call>();
+		// Much better reflection of the SET concept of the CM.
 		ArrayList<Call> qJob_1000_2000_P = new ArrayList<Call>();
 		ArrayList<Call> qJob_1000_2000_B = new ArrayList<Call>();
 		ArrayList<Call> qJob_3000_4000_P = new ArrayList<Call>();

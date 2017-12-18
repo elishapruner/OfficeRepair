@@ -17,7 +17,7 @@ class RVPs
 	{ 
 		this.model = model; 
 		seed = sd;
-		
+		// GAcomment: where is the initialisation for the callArrival... Random variate procedures.
 		// Set up distribution functions			
 		serviceTime1000 =  new Normal(meanSrvTm1000, stdDevSrvTm1000, new MersenneTwister(sd.serviceTime1000));
 		serviceTime2000 =  new Normal(meanSrvTm2000, stdDevSrvTm2000, new MersenneTwister(sd.serviceTime2000));
@@ -96,8 +96,12 @@ class RVPs
 	protected double DuCallArrival1000() {
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr1000 = getMean1000();
+			// GAComment: This will not work. The Exponential object must be created in the constructor.
+			// If you examine your log, you will note that the interarrival times are always the same and not random.
+			// Same comment applies for other arrival methods.
+			// Also the mean is changed as the argument to nextDouble method, not by creating a new Exponential object.
 			callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
-			double time = 60 / meanCallArr1000;
+			double time = callArrival1000.nextDouble() * 60;
 			return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -108,7 +112,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr2000 = getMean2000();
 			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
-			double time = 60 / meanCallArr2000;
+			double time = callArrival2000.nextDouble() * 60;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -119,7 +123,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr3000 = getMean3000();
 			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
-			double time = 60 / meanCallArr3000;
+			double time = callArrival3000.nextDouble() * 60;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -130,7 +134,7 @@ class RVPs
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr4000 = getMean4000();
 			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
-			double time = 60 / meanCallArr4000;
+			double time = callArrival4000.nextDouble() * 60;
 		    return time + model.getClock();
 		} else {
 			return model.getClock() + 1440;
@@ -161,7 +165,8 @@ class RVPs
 	private double getMean1000() {
 		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
-		
+		// GAComment: the following are rates, not interarrival times.  
+		// FOr example 7 should be 60.0/7.0 which gives average interarrival times in minutes.
 		switch (timeCategory) {
 		case 0: mean = 7; 	break;
 		case 1: mean = 12; 	break;

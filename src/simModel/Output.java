@@ -12,10 +12,12 @@ public class Output {
 	int totalNumberT12Contracts;
 	int contractsT34satisfied;
 	int totalNumberT34Contracts;
+	// GAComment: Why should first Cost variables are integers?
 	int fixedTotalCost;
 	int overtimeCost;
 	double averageDailyCost;
 
+	// GAcomment: Please cast to double instead of float, much better precision.
 	protected double getSatisfactionLevelT12() {
 		if (totalNumberT12Contracts != 0) {
 			return (float)contractsT12satisfied / (float)totalNumberT12Contracts;
@@ -36,5 +38,7 @@ public class Output {
 		}
 		return 0;
 	}
+	// GAcomment: why not provide method to compute the averageDailyCost at the end of the observation interval
+	//            as specified in the CM Output specs.
 
 }

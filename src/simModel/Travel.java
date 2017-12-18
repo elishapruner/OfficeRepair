@@ -4,7 +4,7 @@ import simulationModelling.ConditionalActivity;
 
 public class Travel extends ConditionalActivity {
 	OfficeRepair model; // for referencing the model
-	Employee emp;
+	Employee emp;  // Need to use identifiers to find employee and there are 2 - one for type and other for id.
 	String empType = "none";
 
 	public Travel(OfficeRepair model) {
@@ -13,7 +13,9 @@ public class Travel extends ConditionalActivity {
 
 	protected boolean precondition(OfficeRepair simModel) {
 		boolean returnValue = false;
-		
+		// GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
+		// Be sure to provide a proper specification of the CM and then translate to SM.
+		// See comments on the Lunch Activity and adjust accordingly.
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < model.rEmployees.get(i).size(); j++) {
 				Employee e = model.rEmployees.get(i).get(j);
@@ -42,6 +44,7 @@ public class Travel extends ConditionalActivity {
 	}
 
 	public void startingEvent() {
+		// GAComment: does not reflect CM.
 		if (empType == "T12") {
 			if (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0) {
 				emp.call = model.qJobs.get(Constants.Job_1000_2000_P).remove(0);
@@ -70,6 +73,7 @@ public class Travel extends ConditionalActivity {
 	}
 
 	protected void terminatingEvent() {
+		// GAcomment:  CM does not reflect passing of 
 		Service s = new Service(model, emp, empType);
 		model.spStart(s);
 	}
