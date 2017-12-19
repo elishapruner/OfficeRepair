@@ -20,31 +20,31 @@ public class Service extends SequelActivity {
 	}
 
 	protected double duration() {
-		return model.rvp.uServiceTime(e.icCall.equipmentType);
+		return model.rvp.uServiceTime(e.callServicing.equipmentType);
 	}
 
 	protected void terminatingEvent() {
-		if ((e.icCall.equipmentType == EquipmentTypes.TYPE1000) || (e.icCall.equipmentType == EquipmentTypes.TYPE2000)) {
+		if ((e.callServicing.equipmentType == EquipmentTypes.TYPE1000) || (e.callServicing.equipmentType == EquipmentTypes.TYPE2000)) {
 			model.output.totalNumberT12Contracts += 1;
-			if (e.icCall.serviceType == ServiceTypes.PREMIUM) {
-				if ((int) model.getClock() - (int) e.icCall.timeIn <= 180) {
+			if (e.callServicing.serviceType == ServiceTypes.PREMIUM) {
+				if ((int) model.getClock() - (int) e.callServicing.timeIn <= 180) {
 					model.output.contractsT12satisfied += 1;
 				}
 			} else {
-				if ((int) model.getClock() - (int) e.icCall.timeIn <= 1440) {
+				if ((int) model.getClock() - (int) e.callServicing.timeIn <= 1440) {
 					model.output.contractsT12satisfied += 1;
 				}
 			}
 		} 
 		
-		if ((e.icCall.equipmentType == EquipmentTypes.TYPE3000) || (e.icCall.equipmentType == EquipmentTypes.TYPE4000)) {
+		if ((e.callServicing.equipmentType == EquipmentTypes.TYPE3000) || (e.callServicing.equipmentType == EquipmentTypes.TYPE4000)) {
 			model.output.totalNumberT34Contracts += 1;
-			if (e.icCall.serviceType == ServiceTypes.PREMIUM) {
-				if ((int) model.getClock() - (int) e.icCall.timeIn <= 180) {
+			if (e.callServicing.serviceType == ServiceTypes.PREMIUM) {
+				if ((int) model.getClock() - (int) e.callServicing.timeIn <= 180) {
 					model.output.contractsT34satisfied += 1;
 				}
 			} else {
-				if ((int) model.getClock() - (int) e.icCall.timeIn <= 1440) {
+				if ((int) model.getClock() - (int) e.callServicing.timeIn <= 1440) {
 					model.output.contractsT34satisfied += 1;
 				}
 			}
