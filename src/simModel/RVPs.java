@@ -107,7 +107,7 @@ class RVPs
 
 		if ((model.getClock() % 1440) < 480) {
 			double meanCallArr1000 = getMean1000();
-			// GAComment: This will not work. The Exponential object must be created in the constructor.
+			// TODO: GAComment: This will not work. The Exponential object must be created in the constructor.
 			// If you examine your log, you will note that the interarrival times are always the same and not random.
 			// Same comment applies for other arrival methods.
 			// Also the mean is changed as the argument to nextDouble method, not by creating a new Exponential object.
@@ -172,25 +172,25 @@ class RVPs
 		//return callArrival4000.nextDouble() + model.getClock();
 
 	}
-
-	protected double uServiceTime1000() {
-	    return serviceTime1000.nextDouble();
-	}
 	
-	protected double uServiceTime2000() {
-	    return serviceTime2000.nextDouble();
-	}
-	
-	protected double uServiceTime3000() {
-	    return serviceTime3000.nextDouble();
-	}
-	
-	protected double uServiceTime4000()  {
-	    return serviceTime4000.nextDouble();
+	protected double uServiceTime(EquipmentTypes equipType) {
+		double serviceTime = 0;
+		
+		if (equipType == EquipmentTypes.TYPE1000) {
+			serviceTime =  serviceTime1000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE2000) {
+			serviceTime =  serviceTime2000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE3000) {
+			serviceTime =  serviceTime3000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE4000) {
+			serviceTime =  serviceTime4000.nextDouble();
+		}
+		
+		return serviceTime;
 	}
 	
 	protected double uTravelTime() {
-	    return (travelTime.next());
+	    return travelTime.next();
 	}
 	
 	

@@ -12,24 +12,24 @@ class Lunch extends ConditionalActivity
 	}
 	
 	// GAComment: the precondition method must be static to allow testing before instantiating the object.
-	protected boolean precondition(OfficeRepair simModel) {
+	protected static boolean precondition(OfficeRepair simModel) {
 		boolean returnValue = false;
-		// GAComment: The following is not consistant with the CM.  Need to use UDP to reflect ABCmod paradigm.
+		// TODO: GAComment: The following is not consistant with the CM.  Need to use UDP to reflect ABCmod paradigm.
 		// Use UDPs as specified in the comments in the CM.
 		
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < model.rEmployees[i].length; j++) {
-				e = model.rEmployees[i][j];
-				
-				if (i == Constants.EMPLOYEE_T12) {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
-				    	returnValue = true;
-				} else {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
-				    	returnValue = true;
-				}
-			}
-		}
+//		for (int i = 0; i < 2; i++) {
+//			for (int j = 0; j < model.rEmployees[i].length; j++) {
+//				e = model.rEmployees[i][j];
+//				
+//				if (i == Constants.EMPLOYEE_T12) {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+//				    	returnValue = true;
+//				} else {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+//				    	returnValue = true;
+//				}
+//			}
+//		}
 	    
 		return (returnValue);
 	}

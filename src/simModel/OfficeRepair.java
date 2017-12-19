@@ -17,11 +17,8 @@ public class OfficeRepair extends AOSimulationModel {
 	public int numEmployeesALL;
 
 	/*-------------Entity Data Structures-------------------*/
-	// GAComment: Please use real arrays rather than Array lists for representing Sets. that is:
 	 Employee rEmployees[][];
 	 ArrayList<Call> qJobs[];
-//	protected ArrayList<ArrayList<Employee>> rEmployees;
-//	protected ArrayList<ArrayList<Call>> qJobs;
 
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
@@ -84,24 +81,19 @@ public class OfficeRepair extends AOSimulationModel {
 	/*
 	 * Testing preconditions
 	 */
-
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
 
-		// GAComment: Should instantiate the objects only if precondition is true.
-		//            Need to repeat testing of preconditions until all are false.  
-		//            May have multiple activites instatiated (e.g. Lunch).
-		// Preconditions should be static methods.
-		// Check Activity Preconditions
-		Travel travel = new Travel(this);
-		// GAComment:  Travel.precondition(this) == true
-		if (travel.precondition(this) == true) {
+		// TODO: Fix precondition in Travel
+		if (Travel.precondition(this) == true) {
+			Travel travel = new Travel(this);
 			travel.startingEvent();
 			scheduleActivity(travel);
 		}
-		// GAComment:  Lunch.precondition(this) == true
-		Lunch lunch = new Lunch(this);
-		if (lunch.precondition(this) == true) {
+		
+		// TODO: Fix precondition in Lunch
+		if (Lunch.precondition(this) == true) {
+			Lunch lunch = new Lunch(this);
 			lunch.startingEvent();
 			scheduleActivity(lunch);
 		}

@@ -14,7 +14,7 @@ public class Experiment1 {
 		Seeds[] sds = new Seeds[NUMRUNS];
 		OfficeRepair officeRepair; // Simulation object
 
-		// Lets get a set of uncorrelated seeds
+		// Get a set of uncorrelated seeds
 		RandomSeedGenerator rsg = new RandomSeedGenerator();
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
