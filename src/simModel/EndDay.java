@@ -37,7 +37,7 @@ public class EndDay extends ScheduledAction {
         // TODO: GAComment:  Why should fixed costs by integer values?
 		//             See comments in CM, the following computation is not required and the averageDailyCost can be 
 		//             computed at the end of the run in the Output class.
-		model.output.fixedTotalCost = (int) ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
+		model.output.fixedTotalCost =  ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
 		
 		model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 

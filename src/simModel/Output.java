@@ -42,5 +42,12 @@ public class Output {
 	}
 	// TODO: GAcomment: why not provide method to compute the averageDailyCost at the end of the observation interval
 	//            as specified in the CM Output specs.
+	
+	public double getFixedTotalCost = 
+	
+	model.output.fixedTotalCost =  ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
+	
+	model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
+
 
 }

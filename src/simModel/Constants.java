@@ -4,10 +4,10 @@ public class Constants {
 /** Constants **/
 	
 	/*Hourly wage paid to EMP_T12 employees*/
-	protected final static double EMP_T12_HOURLY_WAGE = 26;
+	protected final static double EMP_T12_HOURLY_WAGE = 26.0;
 	
 	/*Hourly wage paid to EMP_ALL employees*/
-	protected final static double EMP_ALL_HOURLY_WAGE = 41;
+	protected final static double EMP_ALL_HOURLY_WAGE = 41.0;
 	
 	/*Overtime wage to EMP_T12*/
 	protected final static double EMP_T12_OVERTIME_WAGE = 45.5;

@@ -26,8 +26,8 @@ class Initialise extends ScheduledAction {
 		model.output.contractsT34satisfied = 0;
 		model.output.totalNumberT12Contracts = 0;
 		model.output.totalNumberT34Contracts = 0;
-		model.output.fixedTotalCost = 0;
-		model.output.overtimeCost = 0;
+		model.output.fixedTotalCost = 0.0;
+		model.output.overtimeCost = 0.0;
 		model.output.averageDailyCost = 0.0; // this SSOV is a double
 
 

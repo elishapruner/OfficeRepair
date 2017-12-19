@@ -12,7 +12,7 @@ public class Experiment1 {
 		int NUMRUNS = 6;
 		double startTime = 0.0;
 
-		double endTime=(1500) ; 
+		double endTime=(24*60)*7 ; 
 
 		Seeds[] sds = new Seeds[NUMRUNS];
 		OfficeRepair officeRepair; // Simulation object
@@ -22,8 +22,8 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 3;
-		int initNumEmpAll = 3;
+		int initNumEmpT12 = 8;
+		int initNumEmpAll = 11;
 		
 		for (int i = 0; i < NUMRUNS; i++) {
 			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll);
