@@ -15,7 +15,9 @@ public class Travel extends ConditionalActivity {
 
 	protected static boolean precondition(OfficeRepair simModel) {
 		boolean returnValue = simModel.udp.ReadyToTakeCall();
+		int dayNumber = (int) simModel.getClock() / 1440  ;
 		
+		System.out.println("Day Number --- " + dayNumber );
 		System.out.println("/*******\nget clock in TRVAEL PreCond " + ((int) simModel.getClock()) + "\n*********/");
 		// TODO: GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
 		// Be sure to provide a proper specification of the CM and then translate to SM.
