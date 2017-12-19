@@ -12,7 +12,4 @@ public class Employee {
 	
 	// Whether or not the employee has taken lunch that day
 	boolean lunchTaken;
-	
-	// TODO: GAComment: not consisted with CM, attribute specified as call_Servicing
-	public Call callServicing;  
 }
