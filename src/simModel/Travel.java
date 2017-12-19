@@ -11,34 +11,34 @@ public class Travel extends ConditionalActivity {
 		this.model = model;
 	}
 
-	protected boolean precondition(OfficeRepair simModel) {
+	protected static boolean precondition(OfficeRepair simModel) {
 		boolean returnValue = false;
-		// GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
+		// TODO: GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
 		// Be sure to provide a proper specification of the CM and then translate to SM.
 		// See comments on the Lunch Activity and adjust accordingly.
 		
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < model.rEmployees[i].length; j++) {
-				Employee e = model.rEmployees[i][j];
-				
-				if (i == Constants.EMPLOYEE_T12) {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
-						returnValue = true;
-						emp = e;
-						this.empType = "T12";
-						return (returnValue);
-					}
-				} else {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
-							|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
-						returnValue = true;
-						emp = e;
-						this.empType = "ALL";
-						return (returnValue);
-					}
-				}
-			}
-		}
+//		for (int i = 0; i < 2; i++) {
+//			for (int j = 0; j < model.rEmployees[i].length; j++) {
+//				Employee e = model.rEmployees[i][j];
+//				
+//				if (i == Constants.EMPLOYEE_T12) {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
+//						returnValue = true;
+//						emp = e;
+//						this.empType = "T12";
+//						return (returnValue);
+//					}
+//				} else {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
+//							|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
+//						returnValue = true;
+//						emp = e;
+//						this.empType = "ALL";
+//						return (returnValue);
+//					}
+//				}
+//			}
+//		}
 
 		return (returnValue);
 	}
@@ -47,19 +47,19 @@ public class Travel extends ConditionalActivity {
 		// GAComment: does not reflect CM.
 		if (empType == "T12") {
 			if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		} else {// all
 			if (model.qJobs[Constants.Job_3000_4000_P].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_3000_4000_P].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_3000_4000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_3000_4000_B].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_3000_4000_B].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_3000_4000_B].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
-				emp.call = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+				emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		}
 		emp.status = Employee.StatusValues.SERVICING_CALL;
@@ -67,14 +67,12 @@ public class Travel extends ConditionalActivity {
 	}
 
 	protected double duration() {
-		double time = model.rvp.uTravelTime();
-//		System.out.println("Travel Time: " + time);
-		return time;
+		return model.rvp.uTravelTime();
 	}
 
 	protected void terminatingEvent() {
-		// GAcomment:  CM does not reflect passing of 
-		Service s = new Service(model, emp, empType);
+		// TODO: GAcomment:  CM does not reflect passing of 
+		Service s = new Service(model, emp);
 		model.spStart(s);
 	}
 }

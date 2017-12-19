@@ -22,8 +22,7 @@ public class Constants {
 	protected final static int EMPLOYEE_T12 = 0;
 	protected final static int EMPLOYEE_ALL = 1;
 	
-	//GAComment: Identifiers instead of Indices for types of job in JobQueue
-	//GAComment: These are not defined as part of the Constants in the CM, please add to CM.
+	//Job types
 	protected final static int Job_1000_2000_P = 0; 
 	protected final static int Job_1000_2000_B = 1; 
 	protected final static int Job_3000_4000_P = 2; 
