@@ -21,13 +21,11 @@ public class Experiment2 {
 		
 		int initNumEmpT12 = 1;
 		int initNumEmpAll = 1;
-		double satisfaction = 0.95;
-		double minSimTime = 1440 * 0.1;
 		
 		int[][] runOutput = new int[NUMRUNS][2];
 		
 		for (int i = 0; i < NUMRUNS; i++) {
-			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll, satisfaction, minSimTime);
+			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll);
 			officeRepair.runSimulation();
 			runOutput[i][0] = officeRepair.numEmployeesT12;
 			runOutput[i][1] = officeRepair.numEmployeesALL;

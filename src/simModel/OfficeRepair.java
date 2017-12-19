@@ -15,8 +15,6 @@ public class OfficeRepair extends AOSimulationModel {
 	// Define the parameters
 	public int numEmployeesT12;
 	public int numEmployeesALL;
-	double satisfactionLevel;
-	double minSimTime;  // GAComment: see comment in CM.
 
 	/*-------------Entity Data Structures-------------------*/
 	// GAComment: Please use real arrays rather than Array lists for representing Sets. that is:
@@ -49,15 +47,13 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	// Constructor
-	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL, double satisfaction, double minTime) {
+	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL) {
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 		
 		// Parameters
 		numEmployeesT12 = addEmployeesT12;
 		numEmployeesALL = addEmployeesALL;
-		satisfactionLevel = satisfaction;
-		minSimTime = minTime;
 
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
@@ -133,7 +129,8 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 	
 	public boolean implicitStopCondition() {
-		return getClock() >= minSimTime && output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
+		double satisfactionLevel = 0.85;
+		return output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
 	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
