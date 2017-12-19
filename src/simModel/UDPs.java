@@ -10,31 +10,18 @@ class UDPs
 		}
 	
 	protected Employee GetEmployeeForLunch () {
-		Employee currEmployee;
+		Employee employeeGoingToLunch = new Employee();
 		
-		for (int i = 0; i < model.numEmployeesT12 + model.numEmployeesALL; i++) {
-			if (i < model.numEmployeesT12) {
-				currEmployee = model.rEmployees.get(Constants.EMPLOYEE_T12).get(i);
+		for (int i = 0; i < 2; i++) {			
+			for (int j = 0; j < model.rEmployees[i].length; j++) {
+				Employee currEmployee = model.rEmployees[i][j];
 				if (currEmployee.lunchTaken == false) {
-					return currEmployee;
-				}
-			} else {
-				i = i - model.numEmployeesT12;
-				currEmployee = model.rEmployees.get(Constants.EMPLOYEE_ALL).get(i);
-				if (currEmployee.lunchTaken == false) {
-					return currEmployee;
+					employeeGoingToLunch = currEmployee;
 				}
 			}
 		}
 		
-		for (int i = 0; i < model.numEmployeesALL; i++) {
-			
-		}
-		
-		int EMP_TYPE = Constants.EMPLOYEE_T12;
-		int EMP_ID = 0;
-		
-		return model.rEmployees.get(EMP_TYPE).get(EMP_ID);
+		return employeeGoingToLunch;
 	}
 
 	// Translate User Defined Procedures into methods

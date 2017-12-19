@@ -16,27 +16,28 @@ public class Travel extends ConditionalActivity {
 		// GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
 		// Be sure to provide a proper specification of the CM and then translate to SM.
 		// See comments on the Lunch Activity and adjust accordingly.
+		
 		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < model.rEmployees.get(i).size(); j++) {
-				Employee e = model.rEmployees.get(i).get(j);
+			for (int j = 0; j < model.rEmployees[i].length; j++) {
+				Employee e = model.rEmployees[i][j];
 				
-				if (i == Constants.EMPLOYEE_T12) {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0
-							|| model.qJobs.get(Constants.Job_1000_2000_B).size() > 0)) {
-						returnValue = true;
-						emp = e;
-						this.empType = "T12";
-						return (returnValue);
-					}
-				} else {
-					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs.get(Constants.Job_3000_4000_P).size() > 0
-							|| model.qJobs.get(Constants.Job_3000_4000_B).size() > 0)) {
-						returnValue = true;
-						emp = e;
-						this.empType = "ALL";
-						return (returnValue);
-					}
-				}
+				
+//				if (i == Constants.EMPLOYEE_T12) {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
+//						returnValue = true;
+//						emp = e;
+//						this.empType = "T12";
+//						return (returnValue);
+//					}
+//				} else {
+//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
+//							|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
+//						returnValue = true;
+//						emp = e;
+//						this.empType = "ALL";
+//						return (returnValue);
+//					}
+//				}
 			}
 		}
 
@@ -46,20 +47,20 @@ public class Travel extends ConditionalActivity {
 	public void startingEvent() {
 		// GAComment: does not reflect CM.
 		if (empType == "T12") {
-			if (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_1000_2000_P).remove(0);
-			} else if (model.qJobs.get(Constants.Job_1000_2000_B).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_1000_2000_B).remove(0);
+			if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		} else {// all
-			if (model.qJobs.get(Constants.Job_3000_4000_P).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_3000_4000_P).remove(0);
-			} else if (model.qJobs.get(Constants.Job_3000_4000_B).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_3000_4000_B).remove(0);
-			} else if (model.qJobs.get(Constants.Job_1000_2000_P).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_1000_2000_P).remove(0);
-			} else if (model.qJobs.get(Constants.Job_1000_2000_B).size() > 0) {
-				emp.call = model.qJobs.get(Constants.Job_1000_2000_B).remove(0);
+			if (model.qJobs[Constants.Job_3000_4000_P].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_3000_4000_P].remove(0);
+			} else if (model.qJobs[Constants.Job_3000_4000_B].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_3000_4000_B].remove(0);
+			} else if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
+				emp.call = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		}
 		emp.status = Employee.StatusValues.SERVICING_CALL;

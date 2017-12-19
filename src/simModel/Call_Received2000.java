@@ -22,9 +22,9 @@ class Call_Received2000 extends ScheduledAction {
 		icCall.timeIn = model.getClock();
 
 		if (icCall.serviceType == Call.ServiceTypes.BASIC){
-			model.qJobs.get(Constants.Job_1000_2000_B).add(icCall);
+			model.qJobs[Constants.Job_1000_2000_B].add(icCall);
 		} else { 	
-			model.qJobs.get(Constants.Job_1000_2000_P).add(icCall);
+			model.qJobs[Constants.Job_1000_2000_P].add(icCall);
 		}
 	}
 }

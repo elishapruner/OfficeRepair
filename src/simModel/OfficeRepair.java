@@ -20,10 +20,10 @@ public class OfficeRepair extends AOSimulationModel {
 
 	/*-------------Entity Data Structures-------------------*/
 	// GAComment: Please use real arrays rather than Array lists for representing Sets. that is:
-	// Employee rEmployees[][];
-	// ArrayList<Call> qJobs[];
-	protected ArrayList<ArrayList<Employee>> rEmployees;
-	protected ArrayList<ArrayList<Call>> qJobs;
+	 Employee rEmployees[][];
+	 ArrayList<Call> qJobs[];
+//	protected ArrayList<ArrayList<Employee>> rEmployees;
+//	protected ArrayList<ArrayList<Call>> qJobs;
 
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
@@ -62,18 +62,12 @@ public class OfficeRepair extends AOSimulationModel {
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
 
-		rEmployees = new ArrayList<>(); // GAComment: rRemployees = new Employee[2][numEmployeesT12+numEmpoyeesAll]; Need to instantiate objects in Initialise
-		qJobs = new ArrayList<>();  // GAComment: quJobs = new ArrayList[4];  // Need to instantiate objects in Initialise
-
 		// initialize the simulation model
 		initAOSimulModel(t0time);
 
 		// Schedule the first arrivals and employee scheduling
 		Initialise init = new Initialise(this);
 		scheduleAction(init); // Should always be first one scheduled.
-		
-		UpdateNumEmployees updateNumEmp = new UpdateNumEmployees(this);
-		scheduleAction(updateNumEmp);
 		
 		EndDay endDayAction = new EndDay(this);
 		scheduleAction(endDayAction);

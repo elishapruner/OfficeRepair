@@ -19,8 +19,8 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 1;
-		int initNumEmpAll = 1;
+		int initNumEmpT12 = 5;
+		int initNumEmpAll = 10;
 		double satisfaction = 0.85;
 
 		//double minSimTime = 60;

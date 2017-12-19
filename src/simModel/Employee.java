@@ -4,7 +4,7 @@ public class Employee {
 
 	// Number of employees - this attribute is an input variable
 	// GAComment: the following is neither specified in the Entity structur, nor as an input in the CM.
-	int NumEmployees;
+//	int numEmployees;
 	
 	//Represents the current status of the employee.
 	public static enum StatusValues {READY_FOR_CALL, TAKING_LUNCH, SERVICING_CALL};

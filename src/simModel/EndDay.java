@@ -21,9 +21,9 @@ public class EndDay extends ScheduledAction {
 		double numEmployeeALL = (double) model.numEmployeesALL;
 		
 		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < model.rEmployees.get(i).size(); j++) {
-				Employee e = model.rEmployees.get(i).get(j);
-				e.lunchTaken = false;
+			for (int j = 0; j < model.rEmployees[i].length; j++) {
+				Employee e = model.rEmployees[i][j];
+//				e.lunchTaken = false;
 			}
 		}
         // GAComment:  Why should fixed costs by integer values?
