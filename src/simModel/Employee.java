@@ -14,5 +14,5 @@ public class Employee {
 	boolean lunchTaken;
 	
 	// TODO: GAComment: not consisted with CM, attribute specified as call_Servicing
-	public Call icCall;  
+	public Call callServicing;  
 }

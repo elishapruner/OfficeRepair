@@ -44,22 +44,22 @@ public class Travel extends ConditionalActivity {
 	}
 
 	public void startingEvent() {
-		// GAComment: does not reflect CM.
+		// TODO: GAComment: does not reflect CM.
 		if (empType == "T12") {
 			if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_1000_2000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		} else {// all
 			if (model.qJobs[Constants.Job_3000_4000_P].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_3000_4000_P].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_3000_4000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_3000_4000_B].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_3000_4000_B].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_3000_4000_B].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_1000_2000_P].remove(0);
 			} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
-				emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+				emp.callServicing = model.qJobs[Constants.Job_1000_2000_B].remove(0);
 			}
 		}
 		emp.status = Employee.StatusValues.SERVICING_CALL;
