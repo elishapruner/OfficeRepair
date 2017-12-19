@@ -11,7 +11,7 @@ public class Experiment1 {
 	public static void main(String[] args) {
 		int NUMRUNS = 6;
 		double startTime = 0.0;
-		double endTime=(950) ; 
+		double endTime=(1500) ; 
 		Seeds[] sds = new Seeds[NUMRUNS];
 		OfficeRepair officeRepair; // Simulation object
 
@@ -23,18 +23,13 @@ public class Experiment1 {
 		int initNumEmpT12 = 5;
 		int initNumEmpAll = 10;
 		
-		
-		
 		for (int i = 0; i < NUMRUNS; i++) {
 			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll);
 			officeRepair.setTimef(endTime);
 			officeRepair.runSimulation();
 			
-
 			System.out.println("Terminated " + (i + 1) + " cases");
 		}
 		
-
-
 	}
 }
