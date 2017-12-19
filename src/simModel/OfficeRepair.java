@@ -22,7 +22,8 @@ public class OfficeRepair extends AOSimulationModel {
 
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
-	protected UDPs udp; 
+	protected UDPs udp;
+	protected DVPs dvp ; 
 	
 
 	// Output object
@@ -57,6 +58,7 @@ public class OfficeRepair extends AOSimulationModel {
 		// Create RVP object with given seed
 		rvp = new RVPs(this, sd);
 		udp = new UDPs(this) ; 
+		dvp = new DVPs(this) ; 
 
 		// initialize the simulation model
 		initAOSimulModel(t0time);

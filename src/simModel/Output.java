@@ -16,6 +16,8 @@ public class Output {
 	int fixedTotalCost;
 	double overtimeCost;
 	double averageDailyCost;
+	
+	int degbuggerCounter = 0 ; 
 
 	// GAcomment: Please cast to double instead of float, much better precision.
 	protected double getSatisfactionLevelT12() {

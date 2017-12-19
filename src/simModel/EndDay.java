@@ -5,19 +5,24 @@ import simulationModelling.ScheduledAction;
 public class EndDay extends ScheduledAction {
 	
 	OfficeRepair model;
-
+	
 	public EndDay(OfficeRepair model) {
 		this.model = model;
 	}
 
 	public double timeSequence() { // GAComment: Please integrate into a DVP.
-		return (double) (960 + 1440*(Math.floor(((int) model.getClock()) / 1440)));
+		System.out.println("get clock from end day value TimeSequence " + ((int) model.getClock()));
+		System.out.println("degbugger counter" + model.output.degbuggerCounter);
+		model.output.degbuggerCounter++ ; 
+		return model.dvp.EndDay() ; 
 	}
 
 	@Override
 	protected void actionEvent() {
 		// GAComment: the following does not reflect the 2D nature of the R.Employee defined in the CM
+		System.out.println("get clock from end day value ActionEvent " + ((int) model.getClock()));
 		int dayNumber = (int) model.getClock() / 1440  ;
+		
 		System.out.println("END of DAY --- " + dayNumber );
 		
 		double numEmployeeT12 = (double) model.numEmployeesT12;
