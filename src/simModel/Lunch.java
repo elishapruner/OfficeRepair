@@ -6,6 +6,7 @@ class Lunch extends ConditionalActivity
 {
 	private Employee e;
 	OfficeRepair model;  // for referencing the model
+	private int etypeId, empId ; 
 	
 	public Lunch(OfficeRepair model) { 
 		this.model = model; 
@@ -13,7 +14,7 @@ class Lunch extends ConditionalActivity
 	
 	// GAComment: the precondition method must be static to allow testing before instantiating the object.
 	protected static boolean precondition(OfficeRepair simModel) {
-		boolean returnValue = false;
+		boolean returnValue = simModel.udp.CanStartLunch() ;
 		// TODO: GAComment: The following is not consistant with the CM.  Need to use UDP to reflect ABCmod paradigm.
 		// Use UDPs as specified in the comments in the CM.
 		
@@ -35,16 +36,23 @@ class Lunch extends ConditionalActivity
 	}
 
 	public void startingEvent() {
-		e.status = Employee.StatusValues.TAKING_LUNCH;
+		// This variable needs to be introduced to implement a UDP that returns two values as
+		// specified in the model 
+		int[] employeeIdentifiers = model.udp.GetEmployeeForLunch() ;
+		etypeId = employeeIdentifiers[0] ; 
+		empId = employeeIdentifiers[1] ; 	
+		model.rEmployees[etypeId][empId].status = Employee.StatusValues.TAKING_LUNCH ; 
+		
 	}
 
 	protected double duration() {
-		return model.getClock() + 60;
+		return Constants.LUNCH_DURATION ; 
 	}
 
 	protected void terminatingEvent() {
-		e.status = Employee.StatusValues.READY_FOR_CALL;
-		e.lunchTaken = true;
+		
+		model.rEmployees[etypeId][empId].status = Employee.StatusValues.READY_FOR_CALL ;
+		model.rEmployees[etypeId][empId].lunchTaken = true;
 			
 	}
 	

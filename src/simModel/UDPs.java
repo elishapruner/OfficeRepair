@@ -1,5 +1,8 @@
 package simModel;
 
+import simModel.Call.EquipmentTypes;
+import simModel.Call.ServiceTypes;
+
 class UDPs 
 {
 	OfficeRepair model;  // for accessing the clock
@@ -47,7 +50,7 @@ class UDPs
 		// able to return 2 values, both an employee type and an employee Id, so that the model
 		// is respected. This int[] is the java implementation for creating a procedure that returns two values
 		// **Note -- this reflects the behaviour in the model as described by: 
-		//	<etypeId, empId, jobQueueIdent> ← UDP.GetEmployeeForCall()
+		//	<etypeId, empId> ← UDP.GetEmployeeForLunch()
 		
 		int[] empIdentifers = new int[2] ; 
 		
@@ -74,6 +77,7 @@ class UDPs
  */
 	
 	protected boolean ReadyToTakeCall() {
+	// checks if there is any call in the system and an there is an apprioriate available employee to respond to it
 		boolean returnValue = false ;
 		
 	for (int i = 0; i < 2; i++) {
@@ -90,30 +94,12 @@ class UDPs
 					}else{
 						if ((model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
 						    (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
-									   returnValue = true ; 
+								returnValue = true ; 
 								   }
 					}
 					
 				}
 				
-//			Employee e = model.rEmployees[i][j];
-//			
-//			if (i == Constants.EMPLOYEE_T12) {
-//				if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
-//					returnValue = true;
-//					emp = e;
-//					this.empType = "T12";
-//					return (returnValue);
-//				}
-//			} else {
-//				if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
-//						|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
-//					returnValue = true;
-//					emp = e;
-//					this.empType = "ALL";
-//					return (returnValue);
-//				}
-//			}
 		}
 	}
 		
@@ -130,7 +116,164 @@ class UDPs
  * SEE HLCM - Simplications and Assumptions for priority.
  */
 
+protected int[] GetEmployeeForCall() {
+	//int[] is implemented here so that the UDP can return multiple valus as described in the model 
+	//The implmented UDP will be able to capture the same behaviour as :
+	// 		<etypeId, empId, jobQueueId> <-- UDP.GetEmpoyeeForCall() 
+	int [] empIdentAndJobIdent = new int[3] ; 
+	
+	boolean availableEMP_T12 = false ; 
+	boolean availableEMP_ALL = false ; 
+	int[]	employeeT12Ident = new int[2]  ;
+	int[] 	employeeALLIdent = new int[2] ;
+	
+	for (int i = 0; i < 2; i++) {			
+		for (int j = 0; j < model.rEmployees[i].length; j++) {
+			if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL){
+				if(i == Constants.EMPLOYEE_T12){
+					availableEMP_T12 = true ; 
+					employeeT12Ident[0] = i ;
+					employeeT12Ident[1] = j ; 
+				}else{
+					availableEMP_ALL = true ; 
+					employeeALLIdent[0] = i ;
+					employeeALLIdent[1] = j ; 
+				}
+			}		
+		}
+	}
+	
+	// Check if there is a premium call of type 3000 or 4000 (highest priority) 
+	// and if there is an EMP_ALL to service the call 
+	if (model.qJobs[Constants.Job_3000_4000_P].size() > 0 && availableEMP_ALL){
+			// if there is call and an employee is available and service
+			empIdentAndJobIdent[0] = employeeALLIdent[0] ; // Assign value to etypeId
+			empIdentAndJobIdent[1] = employeeALLIdent[1] ;  // Assign value to empId
+			empIdentAndJobIdent[2] = Constants.Job_3000_4000_P ;
+	// If there is no Job in the Jobs.[Job_3000_4000] or there is no employee who can service it
+	// check the next queue based on the priority 
+	}else if (model.qJobs[Constants.Job_1000_2000_P].size() > 0 && (availableEMP_ALL || availableEMP_T12) ){
+			if(availableEMP_T12){
+				empIdentAndJobIdent[0] = employeeT12Ident[0]  ; // Assign value to etypeId
+				empIdentAndJobIdent[1] = employeeT12Ident[1] ;  // Assign value to empId
+				empIdentAndJobIdent[2] = Constants.Job_1000_2000_P ;
+			}else if (availableEMP_ALL){
+				empIdentAndJobIdent[0] = employeeALLIdent[0] ; // Assign value to etypeId
+				empIdentAndJobIdent[1] = employeeALLIdent[1] ;  // Assign value to empId
+				empIdentAndJobIdent[2] = Constants.Job_1000_2000_P ;
+			}	
+	// Again if there is no jobs in the queue or there is no employee to service it 
+	// check the next job queue
+	}else if(model.qJobs[Constants.Job_3000_4000_B].size() > 0 && (availableEMP_ALL) ){
+				
+					empIdentAndJobIdent[0] = employeeALLIdent[0] ;// Assign value to etypeId
+					empIdentAndJobIdent[1] = employeeALLIdent[1] ;  // Assign value to empId
+					empIdentAndJobIdent[2] = Constants.Job_3000_4000_B ;
+	// Again if there is no jobs in the queue or there is no employee to service it 
+	// check the next job queue
+					
+	}else if(model.qJobs[Constants.Job_1000_2000_B].size() > 0 && (availableEMP_ALL || availableEMP_T12) ){
+		if(availableEMP_T12){
+			empIdentAndJobIdent[0] = employeeT12Ident[0]  ; // Assign value to etypeId
+			empIdentAndJobIdent[1] = employeeT12Ident[1] ;  // Assign value to empId
+			empIdentAndJobIdent[2] = Constants.Job_1000_2000_B ;
+		}else if(availableEMP_ALL){
+			empIdentAndJobIdent[0] = employeeALLIdent[0] ; // Assign value to etypeId
+			empIdentAndJobIdent[1] = employeeALLIdent[1] ;  // Assign value to empId
+			empIdentAndJobIdent[2] = Constants.Job_1000_2000_B ;
+		
+		}		
+	}
+		
+	return empIdentAndJobIdent ; 
+}
+	
+	
+//	if (empType == "T12") {
+//		if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+//		} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+//		}
+//	} else {// all
+//		if (model.qJobs[Constants.Job_3000_4000_P].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_3000_4000_P].remove(0);
+//		} else if (model.qJobs[Constants.Job_3000_4000_B].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_3000_4000_B].remove(0);
+//		} else if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
+//		} else if (model.qJobs[Constants.Job_1000_2000_B].size() > 0) {
+//			emp.icCall = model.qJobs[Constants.Job_1000_2000_B].remove(0);
+//		}
+//	}
+	
+	
 
+//UpdateContractSSOVs(iC.Call)
+/*Updates all the SSOV output variables that describe number of contracts and number of contracts satisfied. 
+ * Specifically, it updates SSOV.contractsT12satisfied, SSOV.totalNumberT12Contracts, 
+ * SSOV.contractsT34satisfied, SSOV.totalNumberT34Contracts.
+ */
+
+protected void UpdateContractSSOVs(Call icCall){
+	
+	if ((icCall.equipmentType == EquipmentTypes.TYPE1000) || (icCall.equipmentType == EquipmentTypes.TYPE2000)) {
+		model.output.totalNumberT12Contracts += 1;
+		if (icCall.serviceType == ServiceTypes.PREMIUM) {
+			if ((int) model.getClock() - (int) icCall.timeIn <= 180) {
+				model.output.contractsT12satisfied += 1;
+			}
+		} else {
+			if ((int) model.getClock() - (int) icCall.timeIn <= 1440) {
+				model.output.contractsT12satisfied += 1;
+			}
+		}
+	} 
+
+	if ((icCall.equipmentType == EquipmentTypes.TYPE3000) || (icCall.equipmentType == EquipmentTypes.TYPE4000)) {
+		model.output.totalNumberT34Contracts += 1;
+		if (icCall.serviceType == ServiceTypes.PREMIUM) {
+			if ((int) model.getClock() - (int) icCall.timeIn <= 180) {
+				model.output.contractsT34satisfied += 1;
+			}
+		} else {
+			if ((int) model.getClock() - (int) icCall.timeIn <= 1440) {
+				model.output.contractsT34satisfied += 1;
+			}
+		}
+	}
+}
+
+
+//UpdateOvertimeSSOVs(etypeId)
+/*Updates SSOV.overtimeCost based on the current time and the wage of the type of employee that was servicing the call.
+ *  Since this UDP is called from terminating event of the service activity, 
+ *  the current time will represent the time at which the call finishes. 
+ */
+
+protected void UpdateOvertimeSSOV(int etypeId){
+	// mod 1440 gets individual day and 570 gives 5:30 pm of that day. 
+	if ((model.getClock() % 1440) > 570) {
+		if (etypeId == Constants.EMPLOYEE_T12) {
+			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_T12_OVERTIME_WAGE;
+		} else {
+			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_ALL_OVERTIME_WAGE;
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+}
 
 	
 	
@@ -154,4 +297,4 @@ class UDPs
 	------------------------------------------------------------*/
 	
 	
-}
+
