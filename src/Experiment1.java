@@ -26,8 +26,6 @@ public class Experiment1 {
 		//double minSimTime = 60;
 		double minSimTime = 1 ;
 		
-
-		
 		int[][] runOutput = new int[NUMRUNS][2];
 		
 		for (int i = 0; i < NUMRUNS; i++) {

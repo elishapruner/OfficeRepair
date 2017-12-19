@@ -19,6 +19,7 @@ class Initialise extends ScheduledAction {
 		return ts[tsix++]; // only invoked at t=0
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void actionEvent() {
 		// Initial SSOVs to 0
 		model.output.contractsT12satisfied = 0;

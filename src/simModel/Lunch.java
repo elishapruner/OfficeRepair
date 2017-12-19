@@ -21,13 +21,13 @@ class Lunch extends ConditionalActivity
 			for (int j = 0; j < model.rEmployees[i].length; j++) {
 				e = model.rEmployees[i][j];
 				
-//				if (i == Constants.EMPLOYEE_T12) {
-//					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
-//				    	returnValue = true;
-//				} else {
-//					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
-//				    	returnValue = true;
-//				}
+				if (i == Constants.EMPLOYEE_T12) {
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+				    	returnValue = true;
+				} else {
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && ((int)model.getClock())%1440 > 720 )   
+				    	returnValue = true;
+				}
 			}
 		}
 	    

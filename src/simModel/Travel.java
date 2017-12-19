@@ -21,23 +21,22 @@ public class Travel extends ConditionalActivity {
 			for (int j = 0; j < model.rEmployees[i].length; j++) {
 				Employee e = model.rEmployees[i][j];
 				
-				
-//				if (i == Constants.EMPLOYEE_T12) {
-//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
-//						returnValue = true;
-//						emp = e;
-//						this.empType = "T12";
-//						return (returnValue);
-//					}
-//				} else {
-//					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
-//							|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
-//						returnValue = true;
-//						emp = e;
-//						this.empType = "ALL";
-//						return (returnValue);
-//					}
-//				}
+				if (i == Constants.EMPLOYEE_T12) {
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_1000_2000_P].size() > 0 || model.qJobs[Constants.Job_1000_2000_B].size() > 0)) {
+						returnValue = true;
+						emp = e;
+						this.empType = "T12";
+						return (returnValue);
+					}
+				} else {
+					if (e.status == Employee.StatusValues.READY_FOR_CALL && (model.qJobs[Constants.Job_3000_4000_P].size() > 0
+							|| model.qJobs[Constants.Job_3000_4000_B].size() > 0)) {
+						returnValue = true;
+						emp = e;
+						this.empType = "ALL";
+						return (returnValue);
+					}
+				}
 			}
 		}
 

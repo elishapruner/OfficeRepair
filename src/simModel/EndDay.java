@@ -23,7 +23,7 @@ public class EndDay extends ScheduledAction {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < model.rEmployees[i].length; j++) {
 				Employee e = model.rEmployees[i][j];
-//				e.lunchTaken = false;
+				e.lunchTaken = false;
 			}
 		}
         // GAComment:  Why should fixed costs by integer values?
