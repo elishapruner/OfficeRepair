@@ -95,7 +95,7 @@ class UDPs
 						if ((model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
 						    (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
 								returnValue = true ; 
-								   }
+							}
 					}
 					
 				}
@@ -252,17 +252,44 @@ protected void UpdateContractSSOVs(Call icCall){
  */
 
 protected void UpdateOvertimeSSOV(int etypeId){
-	// mod 1440 gets individual day and 570 gives 5:30 pm of that day. 
-	if ((model.getClock() % 1440) > 570) {
+	// mod 1440 gets individual day and 540 gives 5:00 pm of that day. 
+	if ((int) model.getClock() % 1440 > 540) {
 		if (etypeId == Constants.EMPLOYEE_T12) {
-			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_T12_OVERTIME_WAGE;
+			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 540) * Constants.EMP_T12_OVERTIME_WAGE;
 		} else {
-			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 570) * Constants.EMP_ALL_OVERTIME_WAGE;
+			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 540) * Constants.EMP_ALL_OVERTIME_WAGE;
 		}
 
 	}
 }
 
+
+//ComputeServieDuration()
+/*This UDP returns the service time of a call given by RVP.uSericeTime(equipType) UNLESS ….
+ *  The call is of type BASIC and will not be completed before 5:30, 
+ *  then The service time duration is extended to include an overnight idle time.
+ */
+
+protected double ComputerServiceDuration(Call icCall, int etypeId) {
+	
+	double ServiceTime = model.rvp.uServiceTime(icCall.equipmentType) ;
+	
+	
+	if (  ((int) model.getClock() % 1440) + ServiceTime > 570  && icCall.serviceType == Call.ServiceTypes.BASIC){
+		double timeTill5_30  = 570.0 - ( (model.getClock() % 1440) ) ; 
+		// 870 is the time from 5:30 to 8, this is added to the service duration 
+		ServiceTime = timeTill5_30  + 870.0 + (ServiceTime - timeTill5_30) ; 
+		// Add 30 minutes of overtime to SSOV.overtTime
+		if (etypeId == Constants.EMPLOYEE_T12) {
+			model.output.overtimeCost += (30.0 * Constants.EMP_T12_OVERTIME_WAGE) ;
+		} else {
+			model.output.overtimeCost += (30.0 * Constants.EMP_ALL_OVERTIME_WAGE) ;
+		}
+	}
+	
+	return ServiceTime ; 
+	
+}
 
 
 

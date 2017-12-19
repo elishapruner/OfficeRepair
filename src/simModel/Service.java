@@ -16,6 +16,7 @@ public class Service extends SequelActivity {
 		this.model = model;
 		this.etypeId = etypeId ; 
 		this.empId = empId ; 
+		this.icCall = icCall ; 
 	}
 
 	public void startingEvent() {

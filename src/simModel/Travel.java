@@ -4,10 +4,9 @@ import simulationModelling.ConditionalActivity;
 
 public class Travel extends ConditionalActivity {
 	OfficeRepair model; // for referencing the model
-	Employee emp;  // Need to use identifiers to find employee and there are 2 - one for type and other for id.
-	String empType = "none";
+	//Employee emp;  // Need to use identifiers to find employee and there are 2 - one for type and other for id.
+	//String empType = "none";
 	Call icCall ; 
-	
 	private int etypeId, empId, jobQueueIdent ; 
 
 	public Travel(OfficeRepair model) {
