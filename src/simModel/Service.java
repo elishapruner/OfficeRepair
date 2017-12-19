@@ -7,8 +7,8 @@ import simulationModelling.SequelActivity;
 public class Service extends SequelActivity {
 
 	OfficeRepair model; // for referencing the model
-	Employee e;
-	String empType;
+	//Employee e;
+	//String empType;
 	private int etypeId, empId ; 
 	Call icCall ; 
 
@@ -23,7 +23,7 @@ public class Service extends SequelActivity {
 	}
 
 	protected double duration() {
-		return model.rvp.uServiceTime(e.callServicing.equipmentType);
+		return model.rvp.uServiceTime(icCall.equipmentType);
 	}
 
 	protected void terminatingEvent() {
