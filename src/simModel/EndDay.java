@@ -17,6 +17,9 @@ public class EndDay extends ScheduledAction {
 	@Override
 	protected void actionEvent() {
 		// GAComment: the following does not reflect the 2D nature of the R.Employee defined in the CM
+		int dayNumber = (int) model.getClock() / 1440  ;
+		System.out.println("END of DAY --- " + dayNumber );
+		
 		double numEmployeeT12 = (double) model.numEmployeesT12;
 		double numEmployeeALL = (double) model.numEmployeesALL;
 		

@@ -14,7 +14,7 @@ public class Output {
 	int totalNumberT34Contracts;
 	// GAComment: Why should first Cost variables are integers?
 	int fixedTotalCost;
-	int overtimeCost;
+	double overtimeCost;
 	double averageDailyCost;
 
 	// GAcomment: Please cast to double instead of float, much better precision.

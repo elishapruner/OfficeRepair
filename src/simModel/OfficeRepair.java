@@ -123,10 +123,10 @@ public class OfficeRepair extends AOSimulationModel {
 		}
 	}
 	
-	public boolean implicitStopCondition() {
-		double satisfactionLevel = 0.85;
-		return output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
-	}
+//	public boolean implicitStopCondition() {
+//		double satisfactionLevel = 0.85;
+//		return output.getSatisfactionLevelT12() > satisfactionLevel && output.getSatisfactionLevelT34() > satisfactionLevel;
+//	}
 
 	// Standard Procedure to start Sequel Activities with no parameters
 	protected void spStart(SequelActivity seqAct) {

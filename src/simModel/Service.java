@@ -24,7 +24,7 @@ public class Service extends SequelActivity {
 	}
 
 	protected double duration() {
-		return model.rvp.uServiceTime(icCall.equipmentType);
+		return model.udp.ComputerServiceDuration(icCall, etypeId);
 	}
 
 	protected void terminatingEvent() {
