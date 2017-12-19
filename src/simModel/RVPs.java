@@ -17,18 +17,13 @@ class RVPs
 	{ 
 		this.model = model; 
 		seed = sd;
-
-		// GAcomment: where is the initialisation for the callArrival... Random variate procedures.
-		// Set up distribution functions			
-
 		
 		// Set up distribution functions	
-		callArrival1000 = new Exponential(1.0/(60/getMean1000()), new MersenneTwister(seed.callArrival1000));
-		callArrival2000 = new Exponential(1.0/(60/getMean2000()), new MersenneTwister(seed.callArrival2000));
-		callArrival3000 = new Exponential(1.0/(60/getMean3000()), new MersenneTwister(seed.callArrival3000));
-		callArrival4000 = new Exponential(1.0/(60/getMean4000()), new MersenneTwister(seed.callArrival4000));
+		interArrDist1000 = new Exponential(1.0/(getMean1000()), new MersenneTwister(seed.callArrival1000));
+		interArrDist2000 = new Exponential(1.0/(getMean2000()), new MersenneTwister(seed.callArrival2000));
+		interArrDist3000 = new Exponential(1.0/(getMean3000()), new MersenneTwister(seed.callArrival3000));
+		interArrDist4000 = new Exponential(1.0/(getMean4000()), new MersenneTwister(seed.callArrival4000));
 		
-
 		serviceTime1000 =  new Normal(meanSrvTm1000, stdDevSrvTm1000, new MersenneTwister(sd.serviceTime1000));
 		serviceTime2000 =  new Normal(meanSrvTm2000, stdDevSrvTm2000, new MersenneTwister(sd.serviceTime2000));
 		serviceTime3000 =  new Normal(meanSrvTm3000, stdDevSrvTm3000, new MersenneTwister(sd.serviceTime3000));
@@ -39,10 +34,10 @@ class RVPs
 	}
 	
 	/* Random Variate Procedure for Arrivals */
-	private Exponential callArrival1000;  
-	private Exponential callArrival2000;  
-	private Exponential callArrival3000;  
-	private Exponential callArrival4000; 
+	private Exponential interArrDist1000;  
+	private Exponential interArrDist2000;  
+	private Exponential interArrDist3000;  
+	private Exponential interArrDist4000; 
 	
 	private Normal serviceTime1000;
 	private Normal serviceTime2000;
@@ -104,73 +99,55 @@ class RVPs
 	}
 	
 	protected double DuCallArrival1000() {
-
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr1000 = getMean1000();
-			// TODO: GAComment: This will not work. The Exponential object must be created in the constructor.
-			// If you examine your log, you will note that the interarrival times are always the same and not random.
-			// Same comment applies for other arrival methods.
-			// Also the mean is changed as the argument to nextDouble method, not by creating a new Exponential object.
-			callArrival1000 = new Exponential(1.0/meanCallArr1000, new MersenneTwister(seed.callArrival1000));
-			double time = callArrival1000.nextDouble() * 60;
-			return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
-		}
-
-		// code that was on github , 
-		//return callArrival1000.nextDouble() + model.getClock();
-
+		  double nxtArrival;
+		  double mean = getMean1000();
+		  
+		  if (model.getClock() > 540) {
+			  nxtArrival = -1.0;
+		  } else {
+			  nxtArrival = model.getClock() + interArrDist1000.nextDouble(1.0/mean);
+		  }
+		  
+	      return(nxtArrival);
 	}
 	
-	int count2000 = 0;
 	protected double DuCallArrival2000() {
-
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr2000 = getMean2000();
-			callArrival2000 = new Exponential(1.0/meanCallArr2000, new MersenneTwister(seed.callArrival2000));
-			double time = callArrival2000.nextDouble() * 60;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
-		}
-
-// code that was on github , 
-	//return callArrival2000.nextDouble() + model.getClock();
-
+		  double nxtArrival;
+		  double mean = getMean2000();
+		  
+		  if (model.getClock() > 540) {
+			  nxtArrival = -1.0;
+		  } else {
+			  nxtArrival = model.getClock() + interArrDist2000.nextDouble(1.0/mean);
+		  }
+		  
+	      return(nxtArrival);
 	}
 	
-	int count3000 = 0;
 	protected double DuCallArrival3000() {
-
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr3000 = getMean3000();
-			callArrival3000 = new Exponential(1.0/meanCallArr3000, new MersenneTwister(seed.callArrival3000));
-			double time = callArrival3000.nextDouble() * 60;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
-		}
-
-// code that was on github , 
-		//return callArrival3000.nextDouble() + model.getClock();
-
+		  double nxtArrival;
+		  double mean = getMean3000();
+		  
+		  if (model.getClock() > 540) {
+			  nxtArrival = -1.0;
+		  } else {
+			  nxtArrival = model.getClock() + interArrDist3000.nextDouble(1.0/mean);
+		  }
+		  
+	      return(nxtArrival);
 	}
 	
-	int count4000 = 0;
 	protected double DuCallArrival4000() {
-
-		if ((model.getClock() % 1440) < 480) {
-			double meanCallArr4000 = getMean4000();
-			callArrival4000 = new Exponential(1.0/meanCallArr4000, new MersenneTwister(seed.callArrival4000));
-			double time = callArrival4000.nextDouble() * 60;
-		    return time + model.getClock();
-		} else {
-			return model.getClock() + 1440;
-		}
-// code that was on github , 
-		//return callArrival4000.nextDouble() + model.getClock();
-
+		  double nxtArrival;
+		  double mean = getMean4000();
+		  
+		  if (model.getClock() > 540) {
+			  nxtArrival = -1.0;
+		  } else {
+			  nxtArrival = model.getClock() + interArrDist4000.nextDouble(1.0/mean);
+		  }
+		  
+	      return(nxtArrival);
 	}
 	
 	protected double uServiceTime(EquipmentTypes equipType) {
@@ -197,19 +174,18 @@ class RVPs
 	private double getMean1000() {
 		int timeCategory = (int)((model.getClock() % 1440) / 60);
 		double mean;
-		// GAComment: the following are rates, not interarrival times.  
-		// FOr example 7 should be 60.0/7.0 which gives average interarrival times in minutes.
+
 		switch (timeCategory) {
-		case 0: mean = 7; 	break;
-		case 1: mean = 12; 	break;
-		case 2: mean = 10; 	break;
-		case 3: mean = 7; 	break;
-		case 4: mean = 5; 	break;
-		case 5: mean = 4; 	break;
-		case 6: mean = 5; 	break;
-		case 7: mean = 4; 	break;
-		case 8: mean = 3; 	break;
-		default: mean = 60; 	break;
+		case 0: mean = 60.0 / 7.0; 	break;
+		case 1: mean = 60.0 / 12.0; 	break;
+		case 2: mean = 60.0 / 10.0; 	break;
+		case 3: mean = 60.0 / 7.0; 	break;
+		case 4: mean = 60.0 / 5.0; 	break;
+		case 5: mean = 60.0 / 4.0; 	break;
+		case 6: mean = 60.0 / 5.0; 	break;
+		case 7: mean = 60.0 / 4.0; 	break;
+		case 8: mean = 60.0 / 3.0; 	break;
+		default: mean = 1;			break;
 		}
 		
 		return mean;
@@ -220,16 +196,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 8; 	break;
-		case 1: mean = 11; 	break;
-		case 2: mean = 8; 	break;
-		case 3: mean = 9; 	break;
-		case 4: mean = 6; 	break;
-		case 5: mean = 4; 	break;
-		case 6: mean = 3; 	break;
-		case 7: mean = 3; 	break;
-		case 8: mean = 2; 	break;
-		default: mean = 60; 	break;
+		case 0: mean = 60.0 / 8.0; 	break;
+		case 1: mean = 60.0 / 11.0; 	break;
+		case 2: mean = 60.0 / 8.0; 	break;
+		case 3: mean = 60.0 / 9.0; 	break;
+		case 4: mean = 60.0 / 6.0; 	break;
+		case 5: mean = 60.0 / 4.0; 	break;
+		case 6: mean = 60.0 / 3.0; 	break;
+		case 7: mean = 60.0 / 3.0; 	break;
+		case 8: mean = 60.0 / 2.0; 	break;
+		default: mean = 1; 			break;
 		}
 		
 		return mean;
@@ -240,16 +216,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 5; 	break;
-		case 1: mean = 6; 	break;
-		case 2: mean = 5; 	break;
-		case 3: mean = 4; 	break;
-		case 4: mean = 3; 	break;
-		case 5: mean = 3; 	break;
-		case 6: mean = 2; 	break;
-		case 7: mean = 2; 	break;
-		case 8: mean = 1; 	break;
-		default: mean = 60; 	break;
+		case 0: mean = 60.0 / 5.0; 	break;
+		case 1: mean = 60.0 / 6.0; 	break;
+		case 2: mean = 60.0 / 5.0; 	break;
+		case 3: mean = 60.0 / 4.0; 	break;
+		case 4: mean = 60.0 / 3.0; 	break;
+		case 5: mean = 60.0 / 3.0; 	break;
+		case 6: mean = 60.0 / 2.0; 	break;
+		case 7: mean = 60.0 / 2.0; 	break;
+		case 8: mean = 60.0 / 1.0; 	break;
+		default: mean = 1; 			break;
 		}
 		
 		return mean;
@@ -260,16 +236,16 @@ class RVPs
 		double mean;
 		
 		switch (timeCategory) {
-		case 0: mean = 2; 	break;
-		case 1: mean = 3; 	break;
-		case 2: mean = 4; 	break;
-		case 3: mean = 3; 	break;
-		case 4: mean = 2; 	break;
-		case 5: mean = 1; 	break;
-		case 6: mean = 1; 	break;
-		case 7: mean = 1; 	break;
-		case 8: mean = 1; 	break;
-		default: mean = 60; 	break;
+		case 0: mean = 60.0 / 2.0; 	break;
+		case 1: mean = 60.0 / 3.0; 	break;
+		case 2: mean = 60.0 / 4.0; 	break;
+		case 3: mean = 60.0 / 3.0; 	break;
+		case 4: mean = 60.0 / 2.0; 	break;
+		case 5: mean = 60.0 / 1.0; 	break;
+		case 6: mean = 60.0 / 1.0; 	break;
+		case 7: mean = 60.0 / 1.0; 	break;
+		case 8: mean = 60.0 / 1.0; 	break;
+		default: mean = 1; 			break;
 		}
 		
 		return mean;
