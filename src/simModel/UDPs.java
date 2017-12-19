@@ -9,20 +9,63 @@ class UDPs
 		this.model = model; 
 		}
 	
-	protected Employee GetEmployeeForLunch () {
-		Employee employeeGoingToLunch = new Employee();
+
+//CanStartLunch()
+//Returns True as long as long as an employee can start lunch. 
+
+	protected  boolean CanStartLunch() {
+		boolean returnValue = false;  
+		// GAComment: The following is not consistant with the CM.  Need to use UDP to reflect ABCmod paradigm.
+		// Use UDPs as specified in the comments in the CM.
 		
-		for (int i = 0; i < 2; i++) {			
-			for (int j = 0; j < model.rEmployees[i].length; j++) {
-				Employee currEmployee = model.rEmployees[i][j];
-				if (currEmployee.lunchTaken == false) {
-					employeeGoingToLunch = currEmployee;
+		// GAComment: The following is not consistant with the CM.  Need to use UDP to reflect ABCmod paradigm.
+		// Use UDPs as specified in the comments in the CM.
+		
+		if ( (int) model.getClock()%1440 > 210 ) {
+			for (int i = 0; i < 2; i++) {
+				for (int j = 0; j < model.rEmployees[i].length; j++) {
+					if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL &&
+						model.rEmployees[i][j].lunchTaken == false ){
+						returnValue = true ; 
+					}
+					
 				}
+				
 			}
 		}
 		
-		return employeeGoingToLunch;
+		return returnValue ; 
+		
 	}
+	
+//GetEmployeeForLunch()
+//Returns the two identifiers <EMP_TYPE, EMP_ID> from the Employees resource set for an employee who is eligible to take lunch.
+
+		
+	protected  int[] GetEmployeeForLunch () {
+		//This method will return an integer array with the sole purpose of being
+		// able to return 2 values, both an employee type and an employee Id, so that the model
+		// is respected. This int[] is the java implementation for creating a procedure that returns two values
+		// **Note -- this reflects the behaviour in the model as described by: 
+		//	<etypeId, empId, jobQueueIdent> ← UDP.GetEmployeeForCall()
+		
+		int[] empIdentifers = new int[2] ; 
+		
+		for (int i = 0; i < 2; i++) {			
+			for (int j = 0; j < model.rEmployees[i].length; j++) {
+				if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL &&
+						model.rEmployees[i][j].lunchTaken == false ){
+						empIdentifers[0] = i ;
+						empIdentifers[1] = j ; 
+					}
+				
+			}
+		}
+		
+		return empIdentifers;
+	}
+	
+	
 
 	// Translate User Defined Procedures into methods
     /*-------------------------------------------------
