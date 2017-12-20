@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import simulationModelling.AOSimulationModel;
 import simulationModelling.Behaviour;
+import simulationModelling.ConditionalActivity;
 import simulationModelling.SequelActivity;
 
 //
@@ -86,6 +87,9 @@ public class OfficeRepair extends AOSimulationModel {
 		
 		EndDay endDayAction = new EndDay(this);
 		scheduleAction(endDayAction);
+		
+		StartLunch startLunchAction = new StartLunch(this) ; 
+		scheduleAction(startLunchAction);
 
 		Call_Received1000 callReceived1000 = new Call_Received1000(this);
 		Call_Received2000 callReceived2000 = new Call_Received2000(this);
@@ -158,6 +162,12 @@ public class OfficeRepair extends AOSimulationModel {
 
 	// Standard Procedure to start Sequel Activities with no parameters
 	protected void spStart(SequelActivity seqAct) {
+		seqAct.startingEvent();
+		scheduleActivity(seqAct);
+	}
+	
+	//Standard procedure to start a Sequel activity with null wait point
+	protected void spStart(ConditionalActivity seqAct) {
 		seqAct.startingEvent();
 		scheduleActivity(seqAct);
 	}
