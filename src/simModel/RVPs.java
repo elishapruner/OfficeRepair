@@ -98,6 +98,29 @@ class RVPs
 		return serviceType;
 	}
 	
+	
+	protected double uServiceTime(EquipmentTypes equipType) {
+		double serviceTime = 0;
+		
+		if (equipType == EquipmentTypes.TYPE1000) {
+			serviceTime =  serviceTime1000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE2000) {
+			serviceTime =  serviceTime2000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE3000) {
+			serviceTime =  serviceTime3000.nextDouble();
+		} else if (equipType == EquipmentTypes.TYPE4000) {
+			serviceTime =  serviceTime4000.nextDouble();
+		}
+		
+		return serviceTime;
+	}
+	
+	
+	protected double uTravelTime() {
+	    return travelTime.next();
+	}
+	
+	
 	protected double DuCallArrival1000() {
 		  double nxtArrival;
 		  double mean = getMean1000();
@@ -148,26 +171,6 @@ class RVPs
 		  }
 		  
 	      return(nxtArrival);
-	}
-	
-	protected double uServiceTime(EquipmentTypes equipType) {
-		double serviceTime = 0;
-		
-		if (equipType == EquipmentTypes.TYPE1000) {
-			serviceTime =  serviceTime1000.nextDouble();
-		} else if (equipType == EquipmentTypes.TYPE2000) {
-			serviceTime =  serviceTime2000.nextDouble();
-		} else if (equipType == EquipmentTypes.TYPE3000) {
-			serviceTime =  serviceTime3000.nextDouble();
-		} else if (equipType == EquipmentTypes.TYPE4000) {
-			serviceTime =  serviceTime4000.nextDouble();
-		}
-		
-		return serviceTime;
-	}
-	
-	protected double uTravelTime() {
-	    return travelTime.next();
 	}
 	
 	

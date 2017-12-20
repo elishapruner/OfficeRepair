@@ -31,18 +31,19 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 8;
-		int initNumEmpAll = 11;
-		
+
+		int numEmpT12 = 9;
+		int numEmpAll = 9;
+
 		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+initNumEmpT12+"_NumALL_"+initNumEmpAll+".txt");
+			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 			System.setOut(new PrintStream(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		File file = new File("Outputs_Experiment1_NumT12_"+initNumEmpT12+"_NumALL_"+initNumEmpAll+".txt");
+		File file = new File("Outputs_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 		
 		FileWriter fw = null;
 		PrintWriter pw ; 
@@ -53,11 +54,11 @@ public class Experiment1 {
 			e.printStackTrace();
 		}
 		pw = new PrintWriter(fw);
-		pw.println("--- Final Output --- \nnumEmployeeT12: "+initNumEmpT12+"\tnumEmployeeALL: "+initNumEmpAll);
+		pw.println("--- Final Output --- \nnumEmployeeT12: "+ numEmpT12+"\tnumEmployeeALL: "+ numEmpAll);
 		
 		
 		for (int i = 0; i < NUMRUNS; i++) {
-			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll);
+			officeRepair = new OfficeRepair(startTime, sds[i], true, numEmpT12, numEmpAll);
 			officeRepair.setTimef(endTime);
 			officeRepair.runSimulation();
 	         System.out.println("Simulation Done time to output the results");

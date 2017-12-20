@@ -1,6 +1,14 @@
 // File: OfficeWarm.java
 // Description:
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
 import cern.jet.random.engine.*;
 import outputAnalysis.WelchAverage;
 import simModel.OfficeRepair;
@@ -31,52 +39,66 @@ public class WarmUp {
 		satisfactionLevelT34 = new double[NUMRUNS][numIntervals];
 		satisfactionLevelAll = new double[NUMRUNS][numIntervals];
 		averageDailyCost = new double[NUMRUNS][numIntervals];
+		
+		// Parameters
+		int numEmpT12 = 8;
+		int numEmpAll = 8;
+		
+		File file = new File("Outputs_WarmUp.txt");
+		
+		FileWriter fw = null;
+		PrintWriter pw ; 
+		try {
+			fw = new FileWriter(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pw = new PrintWriter(fw);
+		pw.println("--- WarmUp Output --- \nnumEmployeeT12: "+ numEmpT12+ "\tnumEmployeeALL: "+ numEmpAll);
+		
 
-		for (int numEmpT12 = 8; numEmpT12 <= 8; numEmpT12++) {
-			for (int numEmpAll = 8; numEmpAll <= 8; numEmpAll++) {
-				System.out.println("Number of Employees T12: " + numEmpT12);
-				System.out.println("Number of Employees ALL: " + numEmpAll);
-				for(int i= 0 ; i < NUMRUNS ; i++) {
-					// For computing warmup, compute average over intervalLength for numIntervals
-					// Setup the simulation object
-					
-					officeRepair = new OfficeRepair(0, sds[i], true, numEmpT12, numEmpAll);
-					// Loop for the all intervals
-					for( int interval=0 ; interval<numIntervals ; interval++) {
-						// Run the simulation for an interval
-						intervalStart = interval*intervalLength;
-						intervalEnd = intervalStart+intervalLength;
-						
-						officeRepair.setTimef(intervalEnd);
-						officeRepair.runSimulation();
-						
-						// compute scalar output
-						satisfactionLevelT12[i][interval]= officeRepair.getSatisfactionLevelT12() ; // save in matrix
-						satisfactionLevelT34[i][interval]= officeRepair.getSatisfactionLevelT34(); // save in matrix
-						satisfactionLevelAll[i][interval]= officeRepair.getSatisfactionLevelAll() ; // save in matrix
-						averageDailyCost[i][interval]= officeRepair.getAverageDailyCost(); // save in matrix
-					}
-				}
-				int [] wSizeSatisfactionLevelT12 = { 0, 1, 3, 5 };
-				int [] wSizeSatisfactionLevelT34 = { 0, 1, 3, 5 };
-				int [] wSizeSatisfactionLevelAll = { 0, 1, 3, 5 };
-				int [] wSizeAverageDailyCost = { 0, 1, 3, 5 };
+		System.out.println("Number of Employees T12: " + numEmpT12);
+		System.out.println("Number of Employees ALL: " + numEmpAll);
+		for(int i= 0 ; i < NUMRUNS ; i++) {
+			// For computing warmup, compute average over intervalLength for numIntervals
+			// Setup the simulation object
+			
+			officeRepair = new OfficeRepair(0, sds[i], true, numEmpT12, numEmpAll);
+			// Loop for the all intervals
+			for( int interval=0 ; interval<numIntervals ; interval++) {
+				// Run the simulation for an interval
+				intervalStart = interval*intervalLength;
+				intervalEnd = intervalStart+intervalLength;
 				
-				WelchAverage welchAvgSatisfactionLevelT12 = new WelchAverage(satisfactionLevelT12, wSizeSatisfactionLevelT12);
-				WelchAverage welchAvgStatisfactionLevelT34 = new WelchAverage(satisfactionLevelT34, wSizeSatisfactionLevelT34);
-				WelchAverage welchAvgSatisfactionLevelAll = new WelchAverage(satisfactionLevelT12, wSizeSatisfactionLevelAll);
-				WelchAverage welchAvgAverageDailyCost = new WelchAverage(satisfactionLevelT34, wSizeAverageDailyCost);
+				officeRepair.setTimef(intervalEnd);
+				officeRepair.runSimulation();
 				
-				System.out.println("Average Satisfaction Level T12");
-				printWelchOutputMatrix(welchAvgSatisfactionLevelT12.getWelchAvgOutput(), wSizeSatisfactionLevelT12, 1);
-				System.out.println("Average Satisfaction Level T34");
-				printWelchOutputMatrix(welchAvgStatisfactionLevelT34.getWelchAvgOutput(), wSizeSatisfactionLevelT34, 1);
-				System.out.println("Average Satisfaction Level All");
-				printWelchOutputMatrix(welchAvgSatisfactionLevelAll.getWelchAvgOutput(), wSizeSatisfactionLevelAll, 1);
-				System.out.println("Average Daily Cost");
-				printWelchOutputMatrix(welchAvgAverageDailyCost.getWelchAvgOutput(), wSizeAverageDailyCost, 1);
+				// compute scalar output
+				satisfactionLevelT12[i][interval]= officeRepair.getSatisfactionLevelT12() ; // save in matrix
+				satisfactionLevelT34[i][interval]= officeRepair.getSatisfactionLevelT34(); // save in matrix
+				satisfactionLevelAll[i][interval]= officeRepair.getSatisfactionLevelAll() ; // save in matrix
+				averageDailyCost[i][interval]= officeRepair.getAverageDailyCost(); // save in matrix
 			}
 		}
+		int [] wSizeSatisfactionLevelT12 = { 0, 1, 3, 5 };
+		int [] wSizeSatisfactionLevelT34 = { 0, 1, 3, 5 };
+		int [] wSizeSatisfactionLevelAll = { 0, 1, 3, 5 };
+		int [] wSizeAverageDailyCost = { 0, 1, 3, 5 };
+		
+		WelchAverage welchAvgSatisfactionLevelT12 = new WelchAverage(satisfactionLevelT12, wSizeSatisfactionLevelT12);
+		WelchAverage welchAvgStatisfactionLevelT34 = new WelchAverage(satisfactionLevelT34, wSizeSatisfactionLevelT34);
+		WelchAverage welchAvgSatisfactionLevelAll = new WelchAverage(satisfactionLevelT12, wSizeSatisfactionLevelAll);
+		WelchAverage welchAvgAverageDailyCost = new WelchAverage(satisfactionLevelT34, wSizeAverageDailyCost);
+		
+		System.out.println("Average Satisfaction Level T12");
+		printWelchOutputMatrix(welchAvgSatisfactionLevelT12.getWelchAvgOutput(), wSizeSatisfactionLevelT12, 1);
+		System.out.println("Average Satisfaction Level T34");
+		printWelchOutputMatrix(welchAvgStatisfactionLevelT34.getWelchAvgOutput(), wSizeSatisfactionLevelT34, 1);
+		System.out.println("Average Satisfaction Level All");
+		printWelchOutputMatrix(welchAvgSatisfactionLevelAll.getWelchAvgOutput(), wSizeSatisfactionLevelAll, 1);
+		System.out.println("Average Daily Cost");
+		printWelchOutputMatrix(welchAvgAverageDailyCost.getWelchAvgOutput(), wSizeAverageDailyCost, 1);
 	}
 
 	private static void  printWelchOutputMatrix(double[][] m, int [] w, double intervalLength)
