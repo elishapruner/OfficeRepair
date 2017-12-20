@@ -32,8 +32,8 @@ public class Experiment1 {
 			sds[i] = new Seeds(rsg);
 		
 
-		int numEmpT12 = 9;
-		int numEmpAll = 9;
+		int numEmpT12 = 8 ;
+		int numEmpAll = 8 ;
 
 		try {
 			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");

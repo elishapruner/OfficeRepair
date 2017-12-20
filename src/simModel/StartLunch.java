@@ -17,7 +17,7 @@ public class StartLunch extends ScheduledAction {
 
 	@Override
 	protected void actionEvent() {
-		System.out.println("LUNCH_UDP_EXECUTING");
+		//System.out.println("LUNCH_UDP_EXECUTING");
 		model.udp.StartIdleEmpLunch(); 
 		// TODO Auto-generated method stub
 		

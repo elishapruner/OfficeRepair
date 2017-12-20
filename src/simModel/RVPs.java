@@ -124,9 +124,13 @@ class RVPs
 	protected double DuCallArrival1000() {
 		  double nxtArrival;
 		  double mean = getMean1000();
-		  
-		  if (model.getClock() > 540) {
-			  nxtArrival = -1.0;
+		  System.out.println("**MODEL_LOGIC_CHECK");
+		  System.out.println("Clock: "+model.getClock()+"Clock of Day: "+(((int) model.getClock()) % 1440));
+		  double currTime = model.getClock() % 1440;
+		  if (((int) currTime) > 540) {
+			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
+			  double jumpTime = 1440 - currTime;
+			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {
 			  nxtArrival = model.getClock() + interArrDist1000.nextDouble(1.0/mean);
 		  }
@@ -138,8 +142,11 @@ class RVPs
 		  double nxtArrival;
 		  double mean = getMean2000();
 		  
-		  if (model.getClock() > 540) {
-			  nxtArrival = -1.0;
+		  double currTime = model.getClock() % 1440;
+		  if (((int) currTime) > 540) {
+			  //System.out.println("?***RUNNING_NEXT_ARRIVAL");
+			  double jumpTime = 1440 - currTime;
+			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {
 			  nxtArrival = model.getClock() + interArrDist2000.nextDouble(1.0/mean);
 		  }
@@ -151,12 +158,14 @@ class RVPs
 		  double nxtArrival;
 		  double mean = getMean3000();
 		  
-		  if (model.getClock() > 540) {
-			  nxtArrival = -1.0;
+		  double currTime = model.getClock() % 1440;
+		  if (((int) currTime) > 540) {
+			  //System.out.println("?***RUNNING_NEXT_ARRIVAL");
+			  double jumpTime = 1440 - currTime;
+			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {
 			  nxtArrival = model.getClock() + interArrDist3000.nextDouble(1.0/mean);
 		  }
-		  
 	      return(nxtArrival);
 	}
 	
@@ -164,12 +173,14 @@ class RVPs
 		  double nxtArrival;
 		  double mean = getMean4000();
 		  
-		  if (model.getClock() > 540) {
-			  nxtArrival = -1.0;
+		  double currTime = model.getClock() % 1440;
+		  if (((int) currTime) > 540) {
+			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
+			  double jumpTime = 1440 - currTime;
+			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {
 			  nxtArrival = model.getClock() + interArrDist4000.nextDouble(1.0/mean);
 		  }
-		  
 	      return(nxtArrival);
 	}
 	
@@ -180,8 +191,8 @@ class RVPs
 
 		switch (timeCategory) {
 		case 0: mean = 60.0 / 7.0; 	break;
-		case 1: mean = 60.0 / 12.0; 	break;
-		case 2: mean = 60.0 / 10.0; 	break;
+		case 1: mean = 60.0 / 12.0;	break;
+		case 2: mean = 60.0 / 10.0; break;
 		case 3: mean = 60.0 / 7.0; 	break;
 		case 4: mean = 60.0 / 5.0; 	break;
 		case 5: mean = 60.0 / 4.0; 	break;
@@ -200,7 +211,7 @@ class RVPs
 		
 		switch (timeCategory) {
 		case 0: mean = 60.0 / 8.0; 	break;
-		case 1: mean = 60.0 / 11.0; 	break;
+		case 1: mean = 60.0 / 11.0; break;
 		case 2: mean = 60.0 / 8.0; 	break;
 		case 3: mean = 60.0 / 9.0; 	break;
 		case 4: mean = 60.0 / 6.0; 	break;
