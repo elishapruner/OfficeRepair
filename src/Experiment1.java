@@ -32,7 +32,7 @@ public class Experiment1 {
 			sds[i] = new Seeds(rsg);
 		
 		int initNumEmpT12 = 9;
-		int initNumEmpAll = 10;
+		int initNumEmpAll = 9;
 		
 		try {
 			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1.txt");
