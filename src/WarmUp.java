@@ -20,7 +20,7 @@ public class WarmUp {
 	private static double[][] satisfactionLevelT34;
 	private static double[][] satisfactionLevelAll;
 	private static double[][] averageDailyCost;
-
+	private static PrintWriter pw ; 
 	/** main method **/
 	public static void main(String[] args)
 	{
@@ -44,10 +44,19 @@ public class WarmUp {
 		int numEmpT12 = 8;
 		int numEmpAll = 8;
 		
-		File file = new File("Outputs_WarmUp.txt");
+		// Make some output files 
+		try {
+			FileOutputStream file = new FileOutputStream("SBLTrace_WARM_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
+			System.setOut(new PrintStream(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		File file = new File("WarmUp_Output_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 		
 		FileWriter fw = null;
-		PrintWriter pw ; 
+		
 		try {
 			fw = new FileWriter(file);
 		} catch (IOException e) {
@@ -58,8 +67,8 @@ public class WarmUp {
 		pw.println("--- WarmUp Output --- \nnumEmployeeT12: "+ numEmpT12+ "\tnumEmployeeALL: "+ numEmpAll);
 		
 
-		System.out.println("Number of Employees T12: " + numEmpT12);
-		System.out.println("Number of Employees ALL: " + numEmpAll);
+		pw.println("Number of Employees T12: " + numEmpT12);
+		pw.println("Number of Employees ALL: " + numEmpAll);
 		for(int i= 0 ; i < NUMRUNS ; i++) {
 			// For computing warmup, compute average over intervalLength for numIntervals
 			// Setup the simulation object
@@ -91,32 +100,33 @@ public class WarmUp {
 		WelchAverage welchAvgSatisfactionLevelAll = new WelchAverage(satisfactionLevelT12, wSizeSatisfactionLevelAll);
 		WelchAverage welchAvgAverageDailyCost = new WelchAverage(satisfactionLevelT34, wSizeAverageDailyCost);
 		
-		System.out.println("Average Satisfaction Level T12");
+		pw.println("Average Satisfaction Level T12");
 		printWelchOutputMatrix(welchAvgSatisfactionLevelT12.getWelchAvgOutput(), wSizeSatisfactionLevelT12, 1);
-		System.out.println("Average Satisfaction Level T34");
+		pw.println("Average Satisfaction Level T34");
 		printWelchOutputMatrix(welchAvgStatisfactionLevelT34.getWelchAvgOutput(), wSizeSatisfactionLevelT34, 1);
-		System.out.println("Average Satisfaction Level All");
+		pw.println("Average Satisfaction Level All");
 		printWelchOutputMatrix(welchAvgSatisfactionLevelAll.getWelchAvgOutput(), wSizeSatisfactionLevelAll, 1);
-		System.out.println("Average Daily Cost");
+		pw.println("Average Daily Cost");
 		printWelchOutputMatrix(welchAvgAverageDailyCost.getWelchAvgOutput(), wSizeAverageDailyCost, 1);
+		pw.close();
 	}
 
 	private static void  printWelchOutputMatrix(double[][] m, int [] w, double intervalLength)
 	{
 		int ix, jx;
 		// Print out the window Sizes
-		System.out.print("t,");
-		for(ix=0; ix < w.length-1; ix++) System.out.print("w = "+w[ix]+",");
-		System.out.println("w = "+w[ix]); // Last one
+		pw.print("t,");
+		for(ix=0; ix < w.length-1; ix++) pw.print("w = "+w[ix]+",");
+		pw.println("w = "+w[ix]); // Last one
 		// Let's output the data
 		for(jx = 0 ; jx < m[0].length ; jx++)  // print rows as columns
 		{
-			System.out.print( ((jx+1)*intervalLength)+", ");
+			pw.print( ((jx+1)*intervalLength)+", ");
 			for(ix = 0 ; ix < m.length ; ix++) // columns becomes rows
 			{
-				if(jx < m[ix].length)  System.out.print(m[ix][jx]); // rows have different lengths, assumes row 0 is longest		         
-				if(ix != m.length-1 && jx < m[ix+1].length) System.out.print(", "); // more to come
-				else if(jx<m[ix].length) System.out.println();   // Assumes that all rows decrease in length
+				if(jx < m[ix].length)  pw.print(m[ix][jx]); // rows have different lengths, assumes row 0 is longest		         
+				if(ix != m.length-1 && jx < m[ix+1].length) pw.print(", "); // more to come
+				else if(jx<m[ix].length) pw.println();   // Assumes that all rows decrease in length
 			}
 		}
 	}

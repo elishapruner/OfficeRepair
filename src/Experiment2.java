@@ -2,6 +2,13 @@
 // File: 
 // Description:
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -29,13 +36,35 @@ public class Experiment2 {
 	// For output analysis
 	static final double CONF_LEVEL = 0.9;
 	static final int[] NUM_RUNS_ARRAY = { 20, 30, 40, 60, 80, 100, 1000, 10000 };
+	//To make output variable
+	private static PrintWriter pw ;
 
 	/** main method **/
 	public static void main(String[] args) {
 		double startTime = 0.0; // Observation interval starts at t = 0
 		double endTime; // End time, rhs of obserservation interval - to be determined experimentally
 		Seeds[] sds = new Seeds[NUMRUNS];
-
+		
+		// Make some output files
+		try {
+			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment2_.txt");
+			System.setOut(new PrintStream(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		File file = new File("2_Experiment3_Output_NumT12.txt");
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pw = new PrintWriter(fw);
+		pw.println("--- Experiment 2 Output --- ");
+		
 		int numEmpT12; // parameter
 		int numEmpAll; // parameter
 
