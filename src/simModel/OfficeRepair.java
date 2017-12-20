@@ -110,6 +110,12 @@ public class OfficeRepair extends AOSimulationModel {
 	protected void testPreconditions(Behaviour behObj) {
 		reschedule(behObj);
 
+		// TODO: Fix precondition in Lunch
+		if (Lunch.precondition(this) == true) {
+			Lunch lunch = new Lunch(this);
+			lunch.startingEvent();
+			scheduleActivity(lunch);
+		}
 		// TODO: Fix precondition in Travel
 		if (Travel.precondition(this) == true) {
 			Travel travel = new Travel(this);
@@ -117,12 +123,6 @@ public class OfficeRepair extends AOSimulationModel {
 			scheduleActivity(travel);
 		}
 		
-		// TODO: Fix precondition in Lunch
-		if (Lunch.precondition(this) == true) {
-			Lunch lunch = new Lunch(this);
-			lunch.startingEvent();
-			scheduleActivity(lunch);
-		}
 
 	}
 

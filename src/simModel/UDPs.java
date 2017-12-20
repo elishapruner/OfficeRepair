@@ -111,29 +111,32 @@ System.out.println("/****LUNCH_CHECK**** CLock"+((int) model.getClock())+"\n\t "
 	protected boolean ReadyToTakeCall() {
 	// checks if there is any call in the system and an there is an apprioriate available employee to respond to it
 		boolean returnValue = false ;
+		// Employees are only dispatched before 4:30 
+		if ( ((int) model.getClock() % 1440) < 510 ){
 		
-	for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < model.rEmployees[i].length; j++) {
-				if(model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL){
-					
-					if(i == Constants.EMPLOYEE_ALL){
-						if ((model.qJobs[Constants.Job_3000_4000_P].size() > 0 ) ||
-						   (model.qJobs[Constants.Job_3000_4000_B].size() > 0 ) ||
-						   (model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
-						   (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
-							   returnValue = true ; 
-						   }
-					}else{
-						if ((model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
-						    (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
-								returnValue = true ; 
+			for (int i = 0; i < 2; i++) {
+					for (int j = 0; j < model.rEmployees[i].length; j++) {
+						if(model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL){
+							
+							if(i == Constants.EMPLOYEE_ALL){
+								if ((model.qJobs[Constants.Job_3000_4000_P].size() > 0 ) ||
+								   (model.qJobs[Constants.Job_3000_4000_B].size() > 0 ) ||
+								   (model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
+								   (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
+									   returnValue = true ; 
+								   }
+							}else{
+								if ((model.qJobs[Constants.Job_1000_2000_P].size() > 0 ) ||
+								    (model.qJobs[Constants.Job_1000_2000_B].size() > 0) ){
+										returnValue = true ; 
+									}
 							}
-					}
-					
+							
+						}
+						
 				}
-				
+			}
 		}
-	}
 		
 		
 		
@@ -337,23 +340,6 @@ protected double ComputerServiceDuration(Call icCall, int etypeId) {
 	
 	
 
-	// Translate User Defined Procedures into methods
-    /*-------------------------------------------------
-	                       Example
-	    protected int ClerkReadyToCheckOut()
-        {
-        	int num = 0;
-        	Clerk checker;
-        	while(num < model.NumClerks)
-        	{
-        		checker = model.Clerks[num];
-        		if((checker.currentstatus == Clerk.status.READYCHECKOUT)  && checker.list.size() != 0)
-        		{return num;}
-        		num +=1;
-        	}
-        	return -1;
-        }
-	------------------------------------------------------------*/
-	
+
 	
 

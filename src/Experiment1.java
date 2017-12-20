@@ -31,18 +31,18 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 9;
-		int initNumEmpAll = 9;
+		int initNumEmpT12 = 8;
+		int initNumEmpAll = 11;
 		
 		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1.txt");
+			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+initNumEmpT12+"_NumALL_"+initNumEmpAll+".txt");
 			System.setOut(new PrintStream(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		File file = new File("Outputs_Experiment1.txt");
+		File file = new File("Outputs_Experiment1_NumT12_"+initNumEmpT12+"_NumALL_"+initNumEmpAll+".txt");
 		
 		FileWriter fw = null;
 		PrintWriter pw ; 
