@@ -56,10 +56,12 @@ class UDPs
 		
 		for (int i = 0; i < 2; i++) {			
 			for (int j = 0; j < model.rEmployees[i].length; j++) {
+//				System.out.println("/****LUNCH_CHECK****\n\t "+i+" " +j+ " "+model.rEmployees[i][j].status);
 				if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL &&
 						model.rEmployees[i][j].lunchTaken == false ){
 						empIdentifers[0] = i ;
 						empIdentifers[1] = j ; 
+//						System.out.println("Assigned empoyee "+i+" " +j+ " ");
 					}
 				
 			}
