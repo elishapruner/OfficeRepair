@@ -124,11 +124,11 @@ class RVPs
 	protected double DuCallArrival1000() {
 		  double nxtArrival;
 		  double mean = getMean1000();
-		  System.out.println("**MODEL_LOGIC_CHECK");
-		  System.out.println("Clock: "+model.getClock()+"Clock of Day: "+(((int) model.getClock()) % 1440));
+//		  System.out.println("**MODEL_LOGIC_CHECK");
+//		  System.out.println("Clock: "+model.getClock()+"Clock of Day: "+(((int) model.getClock()) % 1440));
 		  double currTime = model.getClock() % 1440;
 		  if (((int) currTime) > 540) {
-			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
+//			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
 			  double jumpTime = 1440 - currTime;
 			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {
@@ -175,7 +175,7 @@ class RVPs
 		  
 		  double currTime = model.getClock() % 1440;
 		  if (((int) currTime) > 540) {
-			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
+//			  System.out.println("?***RUNNING_NEXT_ARRIVAL");
 			  double jumpTime = 1440 - currTime;
 			  nxtArrival = model.getClock() + jumpTime ;
 		  } else {

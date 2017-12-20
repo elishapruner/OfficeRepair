@@ -39,14 +39,6 @@ public class Experiment3 {
 	{
 		// Make some output files 
 		
-		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment3_.txt");
-			System.setOut(new PrintStream(file));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		File file = new File("2_Experiment2_Output_NumT12.txt");
 		FileWriter fw = null;
 		try {
@@ -86,8 +78,7 @@ public class Experiment3 {
 					+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 			for (int i = 0; i < NUMRUNS; i++) 
 			{
-				if(useCRNsFlag) officeRepair = new OfficeRepair(startTime, sds[i], true, numEmpT12, numEmpAll); 
-				else officeRepair = new OfficeRepair(startTime, sds[i+NUMRUNS*ixNEmp], true, numEmpT12, numEmpAll);
+				officeRepair = new OfficeRepair(startTime, sds[i+NUMRUNS*ixNEmp], false, numEmpT12, numEmpAll);
 				officeRepair.setTimef(WARM_UP_PERIOD);
 				officeRepair.runSimulation();
 				officeRepair.setTimef(endTime);

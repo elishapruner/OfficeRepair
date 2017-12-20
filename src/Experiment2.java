@@ -45,15 +45,6 @@ public class Experiment2 {
 		double endTime; // End time, rhs of obserservation interval - to be determined experimentally
 		Seeds[] sds = new Seeds[NUMRUNS];
 		
-		// Make some output files
-		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment2_.txt");
-			System.setOut(new PrintStream(file));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		File file = new File("2_Experiment3_Output_NumT12.txt");
 		FileWriter fw = null;
 		try {
@@ -85,7 +76,7 @@ public class Experiment2 {
 						.println("End Time = " + NUM_WEEKS_ARR[ixNWeeks] + " weeks (" + endTime + " hours), TimeStamp: "
 								+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 				for (int i = 0; i < NUMRUNS; i++) {
-					officeRepair = new OfficeRepair(startTime, sds[i], true, numEmpT12, numEmpAll);
+					officeRepair = new OfficeRepair(startTime, sds[i], false, numEmpT12, numEmpAll);
 					officeRepair.setTimef(WARM_UP_PERIOD);
 					officeRepair.runSimulation();
 					officeRepair.setTimef(endTime);

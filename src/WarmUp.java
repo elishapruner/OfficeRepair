@@ -44,15 +44,6 @@ public class WarmUp {
 		int numEmpT12 = 8;
 		int numEmpAll = 8;
 		
-		// Make some output files 
-		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_WARM_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
-			System.setOut(new PrintStream(file));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		File file = new File("WarmUp_Output_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 		
 		FileWriter fw = null;
