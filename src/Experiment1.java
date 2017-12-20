@@ -19,7 +19,6 @@ public class Experiment1 {
 	public static void main(String[] args) {
 		int NUMRUNS = 10;
 		double startTime = 0.0;
-
 		// Simulate for one week, for the purposes of experiment validation
 		// experimental end time will be computed in Experiment2
 		double endTime=(24*60)*7 ; 
