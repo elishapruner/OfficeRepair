@@ -2,6 +2,7 @@ package simModel;
 
 import simModel.Call.EquipmentTypes;
 import simModel.Call.ServiceTypes;
+import simulationModelling.ScheduledActivity;
 
 class UDPs 
 {
@@ -40,6 +41,33 @@ class UDPs
 		return returnValue ; 
 		
 	}
+	
+
+//StartIdleEmpLunch()
+/* UDP starts a new lunch activity  for every employee 
+ * with status of READY_FOR_CALL (i.e. idle),
+ */
+	
+protected void StartIdleEmpLunch() {
+	
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < model.rEmployees[i].length; j++) {
+			if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL &&
+				model.rEmployees[i][j].lunchTaken == false ){
+				Lunch lunch = new Lunch(model) ;
+				lunch.startingEvent();
+				model.scheduleActivity(lunch) ;
+				
+			}
+			
+		}
+		
+	}
+	System.out.println("UDP_LUNCH_SBL");
+				model.showSBL(); 
+				System.out.println("************?");
+}
+
 	
 //GetEmployeeForLunch()
 //Returns the two identifiers <EMP_TYPE, EMP_ID> from the Employees resource set for an employee who is eligible to take lunch.
