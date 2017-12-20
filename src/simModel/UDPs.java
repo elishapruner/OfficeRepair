@@ -255,9 +255,9 @@ protected void UpdateOvertimeSSOV(int etypeId){
 	// mod 1440 gets individual day and 540 gives 5:00 pm of that day. 
 	if ((int) model.getClock() % 1440 > 540) {
 		if (etypeId == Constants.EMPLOYEE_T12) {
-			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 540) * Constants.EMP_T12_OVERTIME_WAGE;
+			model.output.overtimeCost += (( (int) (model.getClock() % 1440) - 540)/60) * Constants.EMP_T12_OVERTIME_WAGE;
 		} else {
-			model.output.overtimeCost += ((int) (model.getClock() % 1440) - 540) * Constants.EMP_ALL_OVERTIME_WAGE;
+			model.output.overtimeCost += (( (int) (model.getClock() % 1440) - 540)/60) * Constants.EMP_ALL_OVERTIME_WAGE;
 		}
 
 	}

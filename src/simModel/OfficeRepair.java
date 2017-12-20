@@ -43,7 +43,11 @@ public class OfficeRepair extends AOSimulationModel {
 	}
 
 	public double getAverageDailyCost() {
-		return output.averageDailyCost;
+		return output.getAverageDailyCost();
+	}
+	
+	public double getOverTimeCost() {
+		return output.getOvertimeCost() ;
 	}
 
 	// Constructor
@@ -106,6 +110,7 @@ public class OfficeRepair extends AOSimulationModel {
 
 	public void eventOccured() {
 		if (traceFlag) {
+			System.out.println("----------------------------------------------------------------------------");
 			System.out.println("Clock: " + getClock());
 
 			System.out.println("Number of T12 Employees: " + numEmployeesT12 + ", Number of ALL Employees: "

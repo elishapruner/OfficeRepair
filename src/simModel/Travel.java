@@ -17,8 +17,8 @@ public class Travel extends ConditionalActivity {
 		boolean returnValue = simModel.udp.ReadyToTakeCall();
 		int dayNumber = (int) simModel.getClock() / 1440  ;
 		
-		System.out.println("Day Number --- " + dayNumber );
-		System.out.println("/*******\nget clock in TRVAEL PreCond " + ((int) simModel.getClock()) + "\n*********/");
+//		System.out.println("Day Number --- " + dayNumber );
+//		System.out.println("/*******\nget clock in TRVAEL PreCond " + ((int) simModel.getClock()) + "\n*********/");
 		// TODO: GAComment: Does not reflec the CM.  Rule of thumb.  The SM must reflect the ABCmod paradigm.
 		// Be sure to provide a proper specification of the CM and then translate to SM.
 		// See comments on the Lunch Activity and adjust accordingly.
@@ -59,17 +59,17 @@ public class Travel extends ConditionalActivity {
 		empId = empIdentAndJobIdent[1] ; 
 		
 		jobQueueIdent = empIdentAndJobIdent[2] ; 
-		System.out.println(model.qJobs[Constants.Job_1000_2000_P].size() + " " +
-				model.qJobs[Constants.Job_1000_2000_B].size() + " " +
-				model.qJobs[Constants.Job_3000_4000_P].size() + " " +
-				model.qJobs[Constants.Job_3000_4000_B].size());
-		System.out.println("Employee Assinged " + etypeId + " " + empId + " To Job "+ jobQueueIdent);
+//		System.out.println(model.qJobs[Constants.Job_1000_2000_P].size() + " " +
+//				model.qJobs[Constants.Job_1000_2000_B].size() + " " +
+//				model.qJobs[Constants.Job_3000_4000_P].size() + " " +
+//				model.qJobs[Constants.Job_3000_4000_B].size());
+//		System.out.println("Employee Assinged " + etypeId + " " + empId + " To Job "+ jobQueueIdent);
 		model.rEmployees[etypeId][empId].status = Employee.StatusValues.SERVICING_CALL ;
 		icCall = model.qJobs[jobQueueIdent].remove(0) ;
-		System.out.println(model.qJobs[Constants.Job_1000_2000_P].size() + " " +
-				model.qJobs[Constants.Job_1000_2000_B].size() + " " +
-				model.qJobs[Constants.Job_3000_4000_P].size() + " " +
-				model.qJobs[Constants.Job_3000_4000_B].size());
+//		System.out.println(model.qJobs[Constants.Job_1000_2000_P].size() + " " +
+//				model.qJobs[Constants.Job_1000_2000_B].size() + " " +
+//				model.qJobs[Constants.Job_3000_4000_P].size() + " " +
+//				model.qJobs[Constants.Job_3000_4000_B].size());
 //		if (empType == "T12") {
 //			if (model.qJobs[Constants.Job_1000_2000_P].size() > 0) {
 //				emp.icCall = model.qJobs[Constants.Job_1000_2000_P].remove(0);
@@ -89,7 +89,7 @@ public class Travel extends ConditionalActivity {
 //		}
 //		emp.status = Employee.StatusValues.SERVICING_CALL;
 		
-		System.out.println("/*******\nget clock in TRVAEL ActionEVent " + ((int) model.getClock()) + "\n*********/");
+//		System.out.println("/*******\nget clock in TRVAEL ActionEVent " + ((int) model.getClock()) + "\n*********/");
 
 	}
 
