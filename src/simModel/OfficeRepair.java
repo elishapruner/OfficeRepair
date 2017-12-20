@@ -1,5 +1,9 @@
 package simModel;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import simulationModelling.AOSimulationModel;
@@ -23,7 +27,13 @@ public class OfficeRepair extends AOSimulationModel {
 	// References to RVP and DVP objects
 	protected RVPs rvp; // Reference to rvp object - object created in constructor
 	protected UDPs udp;
-	protected DVPs dvp ; 
+	protected DVPs dvp ;
+
+	
+	
+	
+	 
+	 
 	
 
 	// Output object
@@ -52,6 +62,9 @@ public class OfficeRepair extends AOSimulationModel {
 
 	// Constructor
 	public OfficeRepair(double t0time, Seeds sd, boolean traceFlag, int addEmployeesT12, int addEmployeesALL) {
+		
+		
+		
 		// Turn trancing on if traceFlag is true
 		this.traceFlag = traceFlag;
 		
@@ -106,14 +119,18 @@ public class OfficeRepair extends AOSimulationModel {
 			lunch.startingEvent();
 			scheduleActivity(lunch);
 		}
-		
-		
+
 	}
 
 	public void eventOccured() {
+		
+		
+		
+		
 		if (traceFlag) {
 			System.out.println("----------------------------------------------------------------------------");
 			System.out.println("Clock: " + getClock());
+		
 
 			System.out.println("Number of T12 Employees: " + numEmployeesT12 + ", Number of ALL Employees: "
 					+ numEmployeesALL);
@@ -125,11 +142,13 @@ public class OfficeRepair extends AOSimulationModel {
 			System.out.println("SatisfactionLevelT12: " + (Math.round(output.getSatisfactionLevelT12() * 100))
 					+ "%, SatisfactionLevelT34: " + (Math.round(output.getSatisfactionLevelT34() * 100))
 					+ "%, SatisfactionLevelAll: " + (Math.round((output.getSatisfactionLevelAll() * 100))) + "%");
+
 			
-			System.out.println("----------------------------------------------------------------------------");
 
 			showSBL();
+			
 		}
+		
 	}
 	
 //	public boolean implicitStopCondition() {

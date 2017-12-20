@@ -2,6 +2,14 @@
 // File: Experiment.java
 // Description:
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
 import cern.jet.random.engine.*;
 import simModel.*;
 
@@ -9,9 +17,10 @@ import simModel.*;
 //
 public class Experiment1 {
 	public static void main(String[] args) {
-		int NUMRUNS = 6;
+		int NUMRUNS = 10;
 		double startTime = 0.0;
-
+		// Simulate for one week, for the purposes of experiment validation
+		// experimental end time will be computed in Experiment2
 		double endTime=(24*60)*7 ; 
 
 		Seeds[] sds = new Seeds[NUMRUNS];
@@ -22,8 +31,30 @@ public class Experiment1 {
 		for (int i = 0; i < NUMRUNS; i++)
 			sds[i] = new Seeds(rsg);
 		
-		int initNumEmpT12 = 7;
-		int initNumEmpAll = 9;
+		int initNumEmpT12 = 9;
+		int initNumEmpAll = 10;
+		
+		try {
+			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1.txt");
+			System.setOut(new PrintStream(file));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		File file = new File("Outputs_Experiment1.txt");
+		
+		FileWriter fw = null;
+		PrintWriter pw ; 
+		try {
+			fw = new FileWriter(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		pw = new PrintWriter(fw);
+		pw.println("--- Final Output --- \nnumEmployeeT12: "+initNumEmpT12+"\tnumEmployeeALL: "+initNumEmpAll);
+		
 		
 		for (int i = 0; i < NUMRUNS; i++) {
 			officeRepair = new OfficeRepair(startTime, sds[i], true, initNumEmpT12, initNumEmpAll);
@@ -39,8 +70,18 @@ public class Experiment1 {
 	         System.out.println("Average Daily Costs: "+ "$" +officeRepair.getAverageDailyCost());
 	         System.out.println("/*****************************/\n");
 	         System.out.println("Terminated " + (i + 1) + " cases");
+	         
+	         pw.println("\n/*****************************/");
+	         pw.println("Satisfaction LevelT12: "+(Math.round(officeRepair.getSatisfactionLevelT12() * 100)+"%"));
+	         pw.println("Satisfaction LevelT34: "+(Math.round(officeRepair.getSatisfactionLevelT34() * 100)+"%"));
+	         pw.println("Satisfaction LevelALL: "+(Math.round(officeRepair.getSatisfactionLevelAll() * 100)+"%"));
+	         pw.println("Overtime Costs: " + "$"+officeRepair.getOverTimeCost());
+	         pw.println("Average Daily Costs: "+ "$" +officeRepair.getAverageDailyCost());
+	         pw.println("/*****************************/\n");
+	         pw.println("Terminated " + (i + 1) + " cases");
+	         
 	       }
-			 
+		pw.close();	 
 			
 		}
 		

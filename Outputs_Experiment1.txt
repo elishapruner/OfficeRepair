@@ -1,0 +1,102 @@
+--- Final Output --- 
+numEmployeeT12: 9	numEmployeeALL: 10
+
+/*****************************/
+Satisfaction LevelT12: 99%
+Satisfaction LevelT34: 71%
+Satisfaction LevelALL: 90%
+Overtime Costs: $35577.5
+Average Daily Costs: $10878.5
+/*****************************/
+
+Terminated 1 cases
+
+/*****************************/
+Satisfaction LevelT12: 100%
+Satisfaction LevelT34: 74%
+Satisfaction LevelALL: 91%
+Overtime Costs: $35362.25
+Average Daily Costs: $10847.75
+/*****************************/
+
+Terminated 2 cases
+
+/*****************************/
+Satisfaction LevelT12: 98%
+Satisfaction LevelT34: 87%
+Satisfaction LevelALL: 94%
+Overtime Costs: $34860.0
+Average Daily Costs: $10776.0
+/*****************************/
+
+Terminated 3 cases
+
+/*****************************/
+Satisfaction LevelT12: 99%
+Satisfaction LevelT34: 94%
+Satisfaction LevelALL: 98%
+Overtime Costs: $34716.5
+Average Daily Costs: $10755.5
+/*****************************/
+
+Terminated 4 cases
+
+/*****************************/
+Satisfaction LevelT12: 100%
+Satisfaction LevelT34: 94%
+Satisfaction LevelALL: 98%
+Overtime Costs: $33810.0
+Average Daily Costs: $10626.0
+/*****************************/
+
+Terminated 5 cases
+
+/*****************************/
+Satisfaction LevelT12: 98%
+Satisfaction LevelT34: 87%
+Satisfaction LevelALL: 94%
+Overtime Costs: $34573.0
+Average Daily Costs: $10735.0
+/*****************************/
+
+Terminated 6 cases
+
+/*****************************/
+Satisfaction LevelT12: 93%
+Satisfaction LevelT34: 95%
+Satisfaction LevelALL: 94%
+Overtime Costs: $34644.75
+Average Daily Costs: $10745.25
+/*****************************/
+
+Terminated 7 cases
+
+/*****************************/
+Satisfaction LevelT12: 98%
+Satisfaction LevelT34: 92%
+Satisfaction LevelALL: 96%
+Overtime Costs: $34161.75
+Average Daily Costs: $10676.25
+/*****************************/
+
+Terminated 8 cases
+
+/*****************************/
+Satisfaction LevelT12: 96%
+Satisfaction LevelT34: 100%
+Satisfaction LevelALL: 97%
+Overtime Costs: $34168.75
+Average Daily Costs: $10677.25
+/*****************************/
+
+Terminated 9 cases
+
+/*****************************/
+Satisfaction LevelT12: 100%
+Satisfaction LevelT34: 89%
+Satisfaction LevelALL: 97%
+Overtime Costs: $34384.0
+Average Daily Costs: $10708.0
+/*****************************/
+
+Terminated 10 cases
