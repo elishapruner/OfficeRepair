@@ -19,6 +19,7 @@ public class Experiment1 {
 	public static void main(String[] args) {
 		int NUMRUNS = 10;
 		double startTime = 0.0;
+
 		// Simulate for one week, for the purposes of experiment validation
 		// experimental end time will be computed in Experiment2
 		double endTime=(24*60)*7 ; 
@@ -32,7 +33,7 @@ public class Experiment1 {
 			sds[i] = new Seeds(rsg);
 		
 		int initNumEmpT12 = 9;
-		int initNumEmpAll = 10;
+		int initNumEmpAll = 9;
 		
 		try {
 			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1.txt");

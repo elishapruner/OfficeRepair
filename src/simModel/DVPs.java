@@ -3,7 +3,8 @@ package simModel;
 public class DVPs {
 
 	OfficeRepair model;  // for accessing the clock
-	double nextTime ; 
+	double nextTimeEndDay ; 
+	double nextTimeStartLunch ; 
 
 	// Constructor
 	protected DVPs (OfficeRepair model) { 
@@ -14,9 +15,9 @@ public class DVPs {
 
 //		double nextTime;
 		if(model.getClock() == 0.0){
-			nextTime = 960.0 ;
+			nextTimeEndDay = 960.0 ;
 		}else {
-			nextTime = nextTime  + 1440 ; 
+			nextTimeEndDay = nextTimeEndDay  + 1440 ; 
 
 		}
 //		if (model.getClock() % 1440 == 0) {
@@ -26,8 +27,20 @@ public class DVPs {
 //			nextTime = -1.0;
 //		}
 		
-		return nextTime;
+		return nextTimeEndDay;
 //		return (double) (1440*(Math.floor(((int) model.getClock()) / 1440)));
+		
+	}
+	
+	protected double StartLunch(){
+		
+		if(model.getClock() == 0.0){
+			nextTimeStartLunch = 210 ;
+		}else {
+			nextTimeStartLunch = nextTimeStartLunch  + 1440 ; 
+		}
+		
+		return nextTimeStartLunch ; 
 		
 	}
 	

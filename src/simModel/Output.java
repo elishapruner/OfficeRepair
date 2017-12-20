@@ -46,13 +46,12 @@ public class Output {
 	//            as specified in the CM Output specs.
 
 	
-	
 	protected double getAverageDailyCost(){
 		double numEmployeeT12 = (double) model.numEmployeesT12;
 		double numEmployeeALL = (double) model.numEmployeesALL;
 		int totalNumberDays = (int) model.getClock() / 1440; 
-		System.out.println("AvgDailyCost calc: "+"TotalNumDays: "+totalNumberDays );
-		System.out.println("AvgDailyCost: "+"numEmployeeT12: "+numEmployeeT12 + "numEmployeeAll: "+ numEmployeeALL);
+//		System.out.println("AvgDailyCost calc: "+"TotalNumDays: "+totalNumberDays );
+//		System.out.println("AvgDailyCost: "+"numEmployeeT12: "+numEmployeeT12 + "numEmployeeAll: "+ numEmployeeALL);
 		double fixedTotalCost = ((9.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (9.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE)) 
 				* totalNumberDays ;
 		return (fixedTotalCost + overtimeCost) / totalNumberDays ; 
@@ -64,12 +63,6 @@ public class Output {
 		// TODO Auto-generated method stub
 		return overtimeCost ;
 	}
-	
-//	public double getFixedTotalCost = 
-//	
-//	model.output.fixedTotalCost =  ((8.0 * numEmployeeT12 * Constants.EMP_T12_HOURLY_WAGE) + (8.0 * numEmployeeALL * Constants.EMP_ALL_HOURLY_WAGE) * (Math.floor(((int) model.getClock()) / 1440)));
-//	
-//	model.output.averageDailyCost = (model.output.fixedTotalCost + model.output.overtimeCost) / (Math.floor(((int) model.getClock()) / 1440));
 
 
 }

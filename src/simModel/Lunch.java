@@ -2,11 +2,10 @@ package simModel;
 
 import simulationModelling.*;
 
-class Lunch extends ConditionalActivity 
-{
-	private Employee e;
+class Lunch extends ConditionalActivity {
+	
 	OfficeRepair model;  // for referencing the model
-	private int etypeId, empId ; 
+	protected int etypeId, empId ; 
 	
 	public Lunch(OfficeRepair model) { 
 		this.model = model; 
@@ -36,6 +35,7 @@ class Lunch extends ConditionalActivity
 	}
 
 	public void startingEvent() {
+		System.out.println("****\t\tLunch_STARTING");
 		// This variable needs to be introduced to implement a UDP that returns two values as
 		// specified in the model 
 		int[] employeeIdentifiers = model.udp.GetEmployeeForLunch() ;
