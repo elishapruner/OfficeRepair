@@ -36,14 +36,14 @@ public class Experiment1 {
 		int numEmpAll = 8 ;
 
 		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
+			FileOutputStream file = new FileOutputStream("~/Desktop/SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 			System.setOut(new PrintStream(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		File file = new File("Outputs_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
+		File file = new File("~/Desktop/Outputs_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 		
 		FileWriter fw = null;
 		PrintWriter pw ; 

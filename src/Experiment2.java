@@ -2,13 +2,6 @@
 // File: 
 // Description:
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -22,7 +15,7 @@ public class Experiment2 {
 	
 	// Some experimental constants
 	public static final int NUMRUNS = 10000; // for exploring number of runs
-	public static final int[] NUM_WEEKS_ARR = { 10, 20, 30 };
+	public static final int[] NUM_WEEKS_ARR = { 1, 2, 3 };
 	public static final int[] NUM_EMP_ARR = { 8, 9 };
 	public static final double WEEK = 7.0 * 24.0 * 60; // 7 day week, 24 hours/day, 60 minutes/hour
 	public static final double WARM_UP_PERIOD = 30 * 60; // 30 hour warm up period, see WarmUp.java
@@ -36,8 +29,6 @@ public class Experiment2 {
 	// For output analysis
 	static final double CONF_LEVEL = 0.9;
 	static final int[] NUM_RUNS_ARRAY = { 20, 30, 40, 60, 80, 100, 1000, 10000 };
-	//To make output variable
-	private static PrintWriter pw ;
 
 	/** main method **/
 	public static void main(String[] args) {
@@ -45,16 +36,7 @@ public class Experiment2 {
 		double endTime; // End time, rhs of obserservation interval - to be determined experimentally
 		Seeds[] sds = new Seeds[NUMRUNS];
 		
-		File file = new File("2_Experiment3_Output_NumT12.txt");
-		FileWriter fw = null;
-		try {
-			fw = new FileWriter(file);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		pw = new PrintWriter(fw);
-		pw.println("--- Experiment 2 Output --- ");
+		System.out.println("--- Experiment 2 Output --- ");
 		
 		int numEmpT12; // parameter
 		int numEmpAll; // parameter
@@ -72,9 +54,7 @@ public class Experiment2 {
 			
 			for (int ixNWeeks = 0; ixNWeeks < NUM_WEEKS_ARR.length; ixNWeeks++) {
 				endTime = NUM_WEEKS_ARR[ixNWeeks] * WEEK;
-				System.out
-						.println("End Time = " + NUM_WEEKS_ARR[ixNWeeks] + " weeks (" + endTime + " hours), TimeStamp: "
-								+ new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
+				System.out.println("End Time = " + NUM_WEEKS_ARR[ixNWeeks] + " weeks (" + endTime + " hours), TimeStamp: " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 				for (int i = 0; i < NUMRUNS; i++) {
 					officeRepair = new OfficeRepair(startTime, sds[i], false, numEmpT12, numEmpAll);
 					officeRepair.setTimef(WARM_UP_PERIOD);
