@@ -106,6 +106,8 @@ public class OfficeRepair extends AOSimulationModel {
 			lunch.startingEvent();
 			scheduleActivity(lunch);
 		}
+		
+		
 	}
 
 	public void eventOccured() {
