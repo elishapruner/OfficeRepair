@@ -14,9 +14,9 @@ public class Experiment2 {
 	private static OfficeRepair officeRepair;
 	
 	// Some experimental constants
-	public static final int NUMRUNS = 10000; // for exploring number of runs
-	public static final int[] NUM_WEEKS_ARR = { 1, 2, 3 };
-	public static final int[] NUM_EMP_ARR = { 8, 9 };
+	public static final int NUMRUNS = 1000; // for exploring number of runs
+	public static final int[] NUM_WEEKS_ARR = { 1, 2 };
+	public static final int[] NUM_EMP_ARR = { 11, 12, 13 };
 	public static final double WEEK = 7.0 * 24.0 * 60; // 7 day week, 24 hours/day, 60 minutes/hour
 	public static final double WARM_UP_PERIOD = 30 * 60; // 30 hour warm up period, see WarmUp.java
 
@@ -48,7 +48,7 @@ public class Experiment2 {
 
 		for (int ixNEmp = 0; ixNEmp < NUM_EMP_ARR.length; ixNEmp++) {
 			numEmpT12 = NUM_EMP_ARR[ixNEmp];
-			numEmpAll = NUM_EMP_ARR[ixNEmp];
+			numEmpAll = 13;
 			System.out.println("Number of Employees of type T12 = " + numEmpT12);
 			System.out.println("Number of Employees of type ALL = " + numEmpAll);
 			
