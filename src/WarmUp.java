@@ -22,15 +22,15 @@ public class WarmUp {
 			sds[i] = new Seeds(rsg);
 		
 		double intervalStart, intervalEnd;  // start and end times of current interval
-		double intervalLength = 60.0 * 24;   // 
-		int numIntervals = 100;            // Total 60 week observation interval
+		double intervalLength = 60.0 * 24;   // 60 minutes/hour, 24 hours/day
+		int numIntervals = 100;            // Total 100 week observation interval
 		
 		satisfactionLevelAll = new double[NUMRUNS][numIntervals];
 		averageDailyCost = new double[NUMRUNS][numIntervals];
 		
 		// Parameters
-		int numEmpT12 = 10;
-		int numEmpAll = 10;
+		int numEmpT12 = 13;
+		int numEmpAll = 13;
 
 		System.out.println("Number of Employees T12: " + numEmpT12);
 		System.out.println("Number of Employees ALL: " + numEmpAll);
