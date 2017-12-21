@@ -35,7 +35,7 @@ class Lunch extends ConditionalActivity {
 	}
 
 	public void startingEvent() {
-		System.out.println("****\t\tLunch_STARTING");
+//		System.out.println("****\t\tLunch_STARTING");
 		// This variable needs to be introduced to implement a UDP that returns two values as
 		// specified in the model 
 		int[] employeeIdentifiers = model.udp.GetEmployeeForLunch() ;

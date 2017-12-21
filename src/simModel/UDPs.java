@@ -49,10 +49,10 @@ class UDPs
  */
 	
 protected void StartIdleEmpLunch() {
-System.out.println("/****LUNCH_CHECK**** CLock"+((int) model.getClock())+"\n\t ");
+//System.out.println("/****LUNCH_CHECK**** CLock"+((int) model.getClock())+"\n\t ");
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < model.rEmployees[i].length; j++) {
-			System.out.println("EmpBefore: " +i+" " +j+ " "+model.rEmployees[i][j].status);
+//			System.out.println("EmpBefore: " +i+" " +j+ " "+model.rEmployees[i][j].status);
 			if( model.rEmployees[i][j].status == Employee.StatusValues.READY_FOR_CALL &&
 				model.rEmployees[i][j].lunchTaken == false ){
 				
@@ -65,9 +65,9 @@ System.out.println("/****LUNCH_CHECK**** CLock"+((int) model.getClock())+"\n\t "
 		}
 		
 	}
-	System.out.println("UDP_LUNCH_SBL");
-				model.showSBL(); 
-				System.out.println("************?");
+//	System.out.println("UDP_LUNCH_SBL");
+//				model.showSBL(); 
+//				System.out.println("************?");
 }
 
 	
