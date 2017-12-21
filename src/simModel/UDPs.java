@@ -306,11 +306,17 @@ protected void UpdateOvertimeSSOV(int etypeId){
  */
 
 protected double ComputerServiceDuration(Call icCall, int etypeId) {
-	
+//	System.out.println("****DURATION******");
 	double ServiceTime = model.rvp.uServiceTime(icCall.equipmentType) ;
-	
-	
-	if (  ((int) model.getClock() % 1440) + ServiceTime > 570  && icCall.serviceType == Call.ServiceTypes.BASIC){
+//	if (icCall.serviceType == Call.ServiceTypes.BASIC){
+//		System.out.println("CALL_is_BASIC");
+//		System.out.println("Clock: " +((int) model.getClock() % 1440));
+//		System.out.println("Service time is : "+ServiceTime);
+//	}
+//	
+	if (  ( (int) (model.getClock() % 1440)) + ServiceTime > 570  && icCall.serviceType == Call.ServiceTypes.BASIC){
+//		System.out.println("CALL_NEXT_DAY");
+//		System.out.println("Clock: "+model.getClock()+" "+icCall.serviceType + icCall.timeIn);
 		double timeTill5_30  = 570.0 - ( (model.getClock() % 1440) ) ; 
 		// 870 is the time from 5:30 to 8, this is added to the service duration 
 		ServiceTime = timeTill5_30  + 870.0 + (ServiceTime - timeTill5_30) ; 

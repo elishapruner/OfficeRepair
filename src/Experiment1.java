@@ -17,7 +17,7 @@ import simModel.*;
 //
 public class Experiment1 {
 	public static void main(String[] args) {
-		int NUMRUNS = 10;
+		int NUMRUNS = 100;
 		double startTime = 0.0;
 		// Simulate for one week, for the purposes of experiment validation
 		// experimental end time will be computed in Experiment2
@@ -36,14 +36,14 @@ public class Experiment1 {
 		int numEmpAll = 8 ;
 
 		try {
-			FileOutputStream file = new FileOutputStream("SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
+			FileOutputStream file = new FileOutputStream("/Users/joseph-lef/Desktop/EmpNumTesting/SBLTrace_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 			System.setOut(new PrintStream(file));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		File file = new File("Outputs_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
+		File file = new File("/Users/joseph-lef/Desktop/EmpNumTesting/Outputs_Experiment1_NumT12_"+numEmpT12+"_NumALL_"+numEmpAll+".txt");
 		
 		FileWriter fw = null;
 		PrintWriter pw ; 
